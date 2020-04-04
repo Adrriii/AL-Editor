@@ -10,6 +10,12 @@ public class Model {
     private TopMenu topMenu;
 
     public Model() {
+        /*
+
+        Starts at 800x600, has to be resizable.
+        Menu is constant height, toolbar is constant width.
+
+        */
         canvas = new Canvas();
         toolbar = new Toolbar();
         topMenu = new TopMenu();

@@ -10,6 +10,14 @@ public class Toolbar extends Drawable implements ISerializable {
         super();
 
         toolbarElements = new ArrayList<>();
+
+        this.pos_x = 0;
+        this.pos_y = 75; // Height of the TopMenu
+
+        this.width = 75; // Constant
+        this.height = 600 - this.pos_y; // Resizable
+
+        Notify();
     }
 
     public ArrayList<ToolbarElement> getToolbarElements() {
