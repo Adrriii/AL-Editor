@@ -7,6 +7,9 @@ import editor.userinterface.View;
 
 public abstract class Drawable {
 
+    public int pos_x = 0;
+    public int pos_y = 0;
+
     ArrayList<View> views;
 
     public Drawable() {

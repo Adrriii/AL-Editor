@@ -1,8 +1,15 @@
 package editor.domain;
 
-import editor.userinterface.View;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.ArrayList;
 
 public class Toolbar extends Drawable implements ISerializable {
+
+    private ArrayList<ToolbarElement> toolbarElements;
+
+    public Toolbar() {
+        super();
+        
+        toolbarElements = new ArrayList<>();
+    }
 
 }

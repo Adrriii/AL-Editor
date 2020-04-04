@@ -1,8 +1,16 @@
 package editor.domain;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.ArrayList;
 
-public class Element extends Drawable implements ISerializable, IControllable, IClonable {
+public abstract class Element extends Drawable implements ISerializable, IControllable, IClonable {
+
+    private ArrayList<ElementProperty> properties;
+
+    public Element() {
+        super();
+
+        properties = new ArrayList<>();
+    }
 
     public void Add(Element element) throws InvalidCompositeAddition {
         throw new InvalidCompositeAddition();
@@ -12,9 +20,7 @@ public class Element extends Drawable implements ISerializable, IControllable, I
         throw new InvalidCompositeAddition();
     }
 
-    @Override
     public void Update() {
-        throw new NotImplementedException();
+        Notify();
     }
-
 }

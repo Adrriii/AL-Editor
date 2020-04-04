@@ -21,7 +21,6 @@ public class App {
         while(true) {
             App.model.Update();
             App.controller.Notify();
-            App.view.Update();
         }
     }
 }
