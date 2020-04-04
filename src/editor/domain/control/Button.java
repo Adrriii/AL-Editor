@@ -2,6 +2,6 @@ package editor.domain.control;
 
 import editor.domain.Control;
 
-public interface Button extends Control {
+public abstract class Button extends Control {
 
 }

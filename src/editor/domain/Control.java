@@ -1,5 +1,5 @@
 package editor.domain;
 
-public interface Control extends IDrawable {
+public abstract class Control extends Drawable {
 
 }

@@ -1,5 +1,6 @@
 package editor.userinterface.javafximpl;
 
+import editor.model.Model;
 import editor.userinterface.Controller;
 import editor.userinterface.UserInterface;
 import editor.userinterface.View;
@@ -9,12 +10,12 @@ public class JavaFXUI implements UserInterface {
 
     @Override
     public Controller GetController() {
-        throw new NotImplementedException();
+        return new JavaFXController();
     }
 
     @Override
-    public View GetView() {
-        throw new NotImplementedException();
+    public View GetView(Model model) {
+        return new JavaFXView(model);
     }
 
 }

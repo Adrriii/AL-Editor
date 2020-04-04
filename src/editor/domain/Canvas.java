@@ -1,28 +1,5 @@
 package editor.domain;
 
-import editor.userinterface.View;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-public class Canvas implements IDrawable, ISerializable {
-
-    @Override
-    public void Attach(View view) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public void Detach(View view) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public void Notify() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public void Draw() {
-        throw new NotImplementedException();
-    }
+public class Canvas extends Drawable implements ISerializable {
 
 }
