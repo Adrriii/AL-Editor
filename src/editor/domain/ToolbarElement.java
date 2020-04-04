@@ -2,6 +2,10 @@ package editor.domain;
 
 public class ToolbarElement extends Drawable implements ISerializable {
 
-    public Element element;
+    private Element element;
+
+    public Element getElement() {
+        return (Element) element.clone();
+    }
 
 }

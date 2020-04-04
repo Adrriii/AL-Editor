@@ -8,8 +8,12 @@ public class Canvas extends Drawable implements ISerializable {
 
     public Canvas() {
         super();
-        
+
         elements = new ArrayList<>();
+    }
+
+    public ArrayList<Element> getElements() {
+        return new ArrayList<Element>(elements);
     }
 
 }

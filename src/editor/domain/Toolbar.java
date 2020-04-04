@@ -8,8 +8,12 @@ public class Toolbar extends Drawable implements ISerializable {
 
     public Toolbar() {
         super();
-        
+
         toolbarElements = new ArrayList<>();
+    }
+
+    public ArrayList<ToolbarElement> getToolbarElements() {
+        return new ArrayList<ToolbarElement>(toolbarElements);
     }
 
 }
