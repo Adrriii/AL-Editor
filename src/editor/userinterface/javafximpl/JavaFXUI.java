@@ -13,8 +13,8 @@ public class JavaFXUI implements UserInterface {
     }
 
     @Override
-    public View GetView(Model model) {
-        return new JavaFXView(model);
+    public View GetView() {
+        return new JavaFXView();
     }
 
 }

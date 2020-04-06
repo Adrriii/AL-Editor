@@ -15,10 +15,10 @@ public class App {
 
         UserInterface ui = new JavaFXUI();
 
-        App.view = ui.GetView(App.model);
+        App.view = ui.GetView();
         App.controller = ui.GetController();
 
-        while(true) {
+        while(model.isRunning()) {
             App.model.Update();
             App.controller.Notify();
         }

@@ -5,5 +5,5 @@ import editor.model.Model;
 public interface UserInterface {
 
     public Controller GetController();
-    public View GetView(Model model);
+    public View GetView();
 }

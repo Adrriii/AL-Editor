@@ -9,6 +9,8 @@ public class Model {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
+    private boolean running;
+
     public Model() {
         /*
 
@@ -16,6 +18,9 @@ public class Model {
         Menu is constant height, toolbar is constant width.
 
         */
+
+        running = true;
+
         canvas = new Canvas();
         toolbar = new Toolbar();
         topMenu = new TopMenu();
@@ -25,4 +30,12 @@ public class Model {
 
     }
 
+    public void Stop() {
+        this.running = false;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+    
 }

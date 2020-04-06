@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import editor.domain.IControllable;
 import editor.userinterface.Controller;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class JavaFXController implements Controller {
 
@@ -26,7 +25,7 @@ public class JavaFXController implements Controller {
 
     @Override
     public void Notify() {
-        throw new NotImplementedException();
+        
     }
 
 }

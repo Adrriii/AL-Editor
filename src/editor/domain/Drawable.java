@@ -30,7 +30,7 @@ public abstract class Drawable {
     }
 
     public void Notify() {
-        views.forEach(view -> view.Update());
+        //views.forEach(view -> view.Update());
     }
 
 }

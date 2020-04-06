@@ -1,20 +1,37 @@
 package editor.userinterface.javafximpl;
 
+import javafx.stage.Stage;
+
 import editor.model.Model;
 import editor.userinterface.View;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class JavaFXView implements View {
 
-    private Model model;
+    private JavaFXApplication application;
 
-    public JavaFXView(Model model) {
-        this.model = model;
+    public JavaFXView() {
+        this.application = new JavaFXApplication();
+
+        JavaFXApplication.main(new String[0]);
     }
 
     @Override
     public void Update() {
-        throw new NotImplementedException();
+        drawCanvas();
+        drawToolBar();
+        drawMenu();
+    }
+
+    public void drawCanvas() {
+        
+    }
+
+    public void drawToolBar() {
+
+    }
+
+    public void drawMenu() {
+
     }
 
 }
