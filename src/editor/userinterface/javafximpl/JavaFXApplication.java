@@ -69,6 +69,13 @@ public class JavaFXApplication extends Application implements Runnable {
             } 
         };  
         JavaFXApplication.scene.addEventFilter(MouseEvent.ANY, eventHandler);   
+
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            ((JavaFXController) App.controller).NotifyWidth(newVal.intValue());
+        });
+        stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            ((JavaFXController) App.controller).NotifyHeight(newVal.intValue());
+        });
     }
 
     static public void addToRoot(Node node) {

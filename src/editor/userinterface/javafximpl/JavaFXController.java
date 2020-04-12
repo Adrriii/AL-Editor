@@ -82,4 +82,12 @@ public class JavaFXController implements Controller {
         }
     }
 
+    public void NotifyWidth(int newWidth) {
+        App.model.Resize(newWidth, App.model.height);
+    }
+
+    public void NotifyHeight(int newHeight) {
+        App.model.Resize(App.model.width, newHeight);
+    }
+
 }

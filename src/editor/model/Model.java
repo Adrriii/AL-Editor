@@ -11,6 +11,9 @@ public class Model {
 
     private boolean running;
 
+    public int width;
+    public int height;
+
     public void init() {
         /*
 
@@ -18,6 +21,9 @@ public class Model {
         Menu is constant height, toolbar is constant width.
 
         */
+
+        this.width = 800;
+        this.height = 600;
 
         this.running = true;
 
@@ -53,4 +59,17 @@ public class Model {
         return this.topMenu;
     }
     
+    public void Resize(int width, int height) {
+        this.width = width;
+        this.height = height;
+
+        topMenu.width = width;
+        toolbar.height = height;
+        canvas.width = width - toolbar.width;
+        canvas.height = height - topMenu.height;
+
+        this.canvas.Notify();
+        this.toolbar.Notify();
+        this.topMenu.Notify();
+    }
 }
