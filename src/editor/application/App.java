@@ -11,12 +11,12 @@ public class App {
     public static Model model;
 
     public static void main(String args[]) {
-        model = new Model();
 
         UserInterface ui = new JavaFXUI();
-
         App.view = ui.GetView();
         App.controller = ui.GetController();
+        App.model = new Model();
+        App.model.init();
 
         while(model.isRunning()) {
             App.model.Update();

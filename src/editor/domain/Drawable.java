@@ -13,10 +13,10 @@ public abstract class Drawable {
     public int width = 0;
     public int height = 0;
 
-    ArrayList<View> views;
+    protected ArrayList<View> views;
 
     public Drawable() {
-        views = new ArrayList<>();
+        views = new ArrayList<View>();
 
         Attach(App.view);
     }
@@ -30,7 +30,7 @@ public abstract class Drawable {
     }
 
     public void Notify() {
-        //views.forEach(view -> view.Update());
+        views.forEach(view -> view.Update());
     }
 
 }

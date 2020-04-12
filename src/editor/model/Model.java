@@ -11,7 +11,7 @@ public class Model {
 
     private boolean running;
 
-    public Model() {
+    public void init() {
         /*
 
         Starts at 800x600, has to be resizable.
