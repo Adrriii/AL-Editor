@@ -9,7 +9,7 @@ public class Element extends Drawable implements ISerializable, IControllable, I
     public Element(HashMap<String,ElementProperty> properties) {
         super();
 
-        properties = new HashMap<>(properties);
+        this.properties = new HashMap<>(properties);
     }
 
     public Element() {

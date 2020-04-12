@@ -2,6 +2,8 @@ package editor.domain;
 
 import java.util.ArrayList;
 
+import editor.domain.element.Rectangle;
+
 public class Canvas extends Drawable implements ISerializable {
 
     private ArrayList<Element> elements;
@@ -16,6 +18,8 @@ public class Canvas extends Drawable implements ISerializable {
 
         this.width = 800 - this.pos_x; // Resizable
         this.height = 600 - this.pos_y; // Resizable
+
+        elements.add(new Rectangle(130,160));
     }
 
     public ArrayList<Element> getElements() {
