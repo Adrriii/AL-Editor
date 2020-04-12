@@ -1,19 +1,19 @@
 package editor.domain;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Element extends Drawable implements ISerializable, IControllable, IClonable {
 
-    private ArrayList<ElementProperty> properties;
+    public HashMap<String,ElementProperty> properties;
 
-    public Element(ArrayList<ElementProperty> properties) {
+    public Element(HashMap<String,ElementProperty> properties) {
         super();
 
-        properties = new ArrayList<>(properties);
+        properties = new HashMap<>(properties);
     }
 
     public Element() {
-        this(new ArrayList<ElementProperty>());
+        this(new HashMap<String,ElementProperty>());
     }
 
     public void Add(Element element) throws InvalidCompositeAddition {

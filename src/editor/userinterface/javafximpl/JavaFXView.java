@@ -3,6 +3,8 @@ package editor.userinterface.javafximpl;
 import editor.application.App;
 import editor.domain.Canvas;
 import editor.domain.Toolbar;
+import editor.domain.element.Rectangle;
+import editor.domain.elementproperty.ColorProperty;
 import editor.domain.menu.TopMenu;
 import editor.userinterface.View;
 import javafx.scene.paint.Color;
@@ -67,6 +69,22 @@ public class JavaFXView implements View {
         rectangle.setFill(Color.LIGHTGREY);
         
         JavaFXApplication.addToRoot(rectangle);
+
+    }
+
+    public void drawRectangle(Rectangle rectangle) {
+        javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
+        
+        JavaFXRectangle.setX(rectangle.pos_x);
+        JavaFXRectangle.setY(rectangle.pos_y);
+        JavaFXRectangle.setWidth(rectangle.width);
+        JavaFXRectangle.setHeight(rectangle.height);
+
+        ColorProperty colors = (ColorProperty) rectangle.properties.get("color");
+
+        JavaFXRectangle.setFill(new Color(colors.r,colors.g,colors.b,colors.a));
+        
+        JavaFXApplication.addToRoot(JavaFXRectangle);
 
     }
 
