@@ -19,15 +19,18 @@ public class Model {
 
         */
 
-        running = true;
+        this.running = true;
 
-        canvas = new Canvas();
-        toolbar = new Toolbar();
-        topMenu = new TopMenu();
+        this.canvas = new Canvas();
+        this.toolbar = new Toolbar();
+        this.topMenu = new TopMenu();
+
+        this.canvas.Notify();
+        this.toolbar.Notify();
+        this.topMenu.Notify();
     }
 
     public void Update() {
-
     }
 
     public void Stop() {
@@ -36,6 +39,18 @@ public class Model {
 
     public boolean isRunning() {
         return running;
+    }
+
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
+    public Toolbar getToolbar() {
+        return this.toolbar;
+    }
+
+    public TopMenu getTopMenu() {
+        return this.topMenu;
     }
     
 }

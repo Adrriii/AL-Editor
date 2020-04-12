@@ -12,7 +12,5 @@ public class TopMenu extends Menu {
 
         this.width = 800; // Resizable
         this.height = 75; // Constant
-
-        Notify();
     }
 }

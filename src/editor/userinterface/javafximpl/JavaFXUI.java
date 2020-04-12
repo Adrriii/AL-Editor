@@ -1,6 +1,5 @@
 package editor.userinterface.javafximpl;
 
-import editor.model.Model;
 import editor.userinterface.Controller;
 import editor.userinterface.UserInterface;
 import editor.userinterface.View;

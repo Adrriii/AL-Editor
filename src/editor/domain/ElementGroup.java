@@ -2,8 +2,6 @@ package editor.domain;
 
 import java.util.ArrayList;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class ElementGroup extends Element {
 
     private ArrayList<Element> elements;

@@ -16,8 +16,6 @@ public class Canvas extends Drawable implements ISerializable {
 
         this.width = 800 - this.pos_x; // Resizable
         this.height = 600 - this.pos_y; // Resizable
-
-        Notify();
     }
 
     public ArrayList<Element> getElements() {

@@ -5,7 +5,7 @@ import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;
 
 public class App {
-    
+
     public static View view;
     public static Controller controller;
     public static Model model;
@@ -18,9 +18,15 @@ public class App {
         App.model = new Model();
         App.model.init();
 
-        while(model.isRunning()) {
+        while (model.isRunning()) {
             App.model.Update();
             App.controller.Notify();
+
+            try {
+                Thread.sleep(16); // 60 fps, need to process delta time to make it better
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

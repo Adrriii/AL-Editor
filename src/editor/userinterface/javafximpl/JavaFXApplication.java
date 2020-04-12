@@ -1,20 +1,24 @@
 package editor.userinterface.javafximpl;
 
 import editor.application.App;
-import editor.model.Model;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.*;
 import javafx.stage.*;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.*;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
-public class JavaFXApplication extends Application {
+public class JavaFXApplication extends Application implements Runnable {
+
+    static volatile private Group root;
+    static volatile private Scene scene;
+    static volatile private Stage stage;
+
+    static volatile public boolean ready = false;
+    static volatile public boolean update = true;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -22,8 +26,10 @@ public class JavaFXApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+        JavaFXApplication.stage = stage;
+
+        JavaFXApplication.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
                 Platform.exit();
@@ -31,13 +37,39 @@ public class JavaFXApplication extends Application {
             }
         });
 
-        Group root = new Group();
-        Scene scene = new Scene(root, 800, 600);
+        JavaFXApplication.root = new Group();
+        JavaFXApplication.scene = new Scene(root, 800, 600);
 
-        stage.setTitle("Editor");
-        stage.setScene(scene);
-        stage.show();
+        JavaFXApplication.stage.setTitle("Editor");
+        JavaFXApplication.stage.setScene(scene);
+        
+        JavaFXApplication.ready = true;
+        
+        new AnimationTimer()
+        {
+            public void handle(long currentNanoTime)
+            {
+                if (JavaFXApplication.update) {
+                    JavaFXApplication.stage.show();
+                    JavaFXApplication.update = false;
+                }
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 
+    static public void addToRoot(Node node) {
+        JavaFXApplication.root.getChildren().add(node);
+        JavaFXApplication.update = true;
+    }
+
+    @Override
+    public void run() {
+        main(new String[0]);
     }
 
 }

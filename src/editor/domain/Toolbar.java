@@ -16,8 +16,6 @@ public class Toolbar extends Drawable implements ISerializable {
 
         this.width = 75; // Constant
         this.height = 600 - this.pos_y; // Resizable
-
-        Notify();
     }
 
     public ArrayList<ToolbarElement> getToolbarElements() {
