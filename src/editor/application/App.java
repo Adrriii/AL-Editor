@@ -20,7 +20,6 @@ public class App {
 
         while (model.isRunning()) {
             App.model.Update();
-            App.controller.Notify();
 
             try {
                 Thread.sleep(16); // 60 fps, need to process delta time to make it better

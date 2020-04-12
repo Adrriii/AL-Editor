@@ -6,6 +6,5 @@ public interface Controller {
 
     public void Attach(IControllable controllable);
     public void Detach(IControllable controllable);
-    public void Notify();
 
 }

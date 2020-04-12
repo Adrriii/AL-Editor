@@ -38,4 +38,16 @@ public class Element extends Drawable implements ISerializable, IControllable, I
 
         return newElement;
     }
+
+    @Override
+    public boolean isClicked(int x, int y) {
+        return x > pos_x && x < pos_x + width && y > pos_y && y < pos_y + height; // Base hitbox, redefine for more complex objects.
+    }
+
+    public void Update(int new_pos_x, int new_pos_y) {
+        pos_x = new_pos_x;
+        pos_y = new_pos_y;
+
+        Update();
+    }
 }

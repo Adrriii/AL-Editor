@@ -9,6 +9,7 @@ import javafx.stage.*;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class JavaFXApplication extends Application implements Runnable {
@@ -59,7 +60,15 @@ public class JavaFXApplication extends Application implements Runnable {
                     e.printStackTrace();
                 }
             }
-        }.start();
+        }.start();        
+       
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
+            @Override 
+            public void handle(MouseEvent e) { 
+                ((JavaFXController) App.controller).NotifyMouse(e);
+            } 
+        };  
+        JavaFXApplication.scene.addEventFilter(MouseEvent.ANY, eventHandler);   
     }
 
     static public void addToRoot(Node node) {
