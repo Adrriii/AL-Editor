@@ -1,6 +1,9 @@
 package editor.model;
 
+import java.util.ArrayList;
+
 import editor.domain.*;
+import editor.domain.element.Rectangle;
 import editor.domain.menu.*;
 
 public class Model {
@@ -9,7 +12,10 @@ public class Model {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
-    private Element selected;
+    private Element selectedTool;
+
+    private Rectangle selectionRectangle;
+    private ArrayList<Element> selected;
 
     private boolean running;
 
@@ -34,6 +40,7 @@ public class Model {
         this.topMenu = new TopMenu();
 
         this.selected = null;
+        this.selectionRectangle = null;
 
         this.canvas.Notify();
         this.toolbar.Notify();
@@ -63,12 +70,28 @@ public class Model {
         return this.topMenu;
     }
 
-    public void setSelected(Element element) {
-        this.selected = element;
+    public void setSelectedTool(Element element) {
+        this.selectedTool = element;
     }
 
-    public Element getSelected() {
-        return selected;
+    public Element getSelectedTool() {
+        return selectedTool;
+    }
+
+    public void SetSelectionRectangle(int pos_x, int pos_y, int width, int height) {
+        this.selectionRectangle = new Rectangle(pos_x, pos_y, width, height, 0,0,255,50);
+    }
+
+    public void UpdateSelectionRectangle(int pos_x, int pos_y, int width, int height) {
+        if(this.selectionRectangle == null) {
+            SetSelectionRectangle(pos_x, pos_y, width, height);
+        } else {
+            this.selectionRectangle.Update(pos_x, pos_y, width, height);
+        }
+    }
+
+    public Rectangle getSelectionRectangle() {
+        return this.selectionRectangle;
     }
 
     public void addElement(Element element, int pos_x, int pos_y) {

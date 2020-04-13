@@ -47,6 +47,10 @@ public class JavaFXView implements View {
         canvas.getElements().forEach(element -> {
             drawElement(element, canvas.pos_x, canvas.pos_y);
         });
+
+        if(App.model.getSelectionRectangle() != null) {
+            drawRectangle(App.model.getSelectionRectangle(), canvas.pos_x, canvas.pos_y);
+        }
     }
 
     public void drawToolBar(Toolbar toolbar) {

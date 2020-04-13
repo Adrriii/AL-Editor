@@ -34,7 +34,7 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     abstract public int getSurfaceHeight();
 
-    public void Update(int new_pos_x, int new_pos_y) {
+    public void Update(int new_pos_x, int new_pos_y, int width, int height) {
         if(new_pos_x > 0) {
             pos_x = new_pos_x;
         } else {
@@ -46,6 +46,13 @@ public abstract class Element extends Drawable implements ISerializable, IContro
             pos_y = 0;
         }
 
+        this.width = width;
+        this.height = height;
+
         Update();
+    }
+
+    public void Update(int new_pos_x, int new_pos_y) {
+        Update(new_pos_x, new_pos_y, this.width, this.height);
     }
 }
