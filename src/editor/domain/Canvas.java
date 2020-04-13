@@ -26,4 +26,12 @@ public class Canvas extends Drawable implements ISerializable {
         return new ArrayList<Element>(elements);
     }
 
+    public void newElement(Element element, int pos_x, int pos_y) {
+        Element newElement = element.Clone();
+        newElement.pos_x = pos_x;
+        newElement.pos_y = pos_y;
+        elements.add(newElement);
+        Notify();
+    }
+
 }

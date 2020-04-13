@@ -9,6 +9,8 @@ public class Model {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
+    private Element selected;
+
     private boolean running;
 
     public int width;
@@ -30,6 +32,8 @@ public class Model {
         this.canvas = new Canvas();
         this.toolbar = new Toolbar();
         this.topMenu = new TopMenu();
+
+        this.selected = null;
 
         this.canvas.Notify();
         this.toolbar.Notify();
@@ -57,6 +61,18 @@ public class Model {
 
     public TopMenu getTopMenu() {
         return this.topMenu;
+    }
+
+    public void setSelected(Element element) {
+        this.selected = element;
+    }
+
+    public Element getSelected() {
+        return selected;
+    }
+
+    public void addElement(Element element, int pos_x, int pos_y) {
+        this.canvas.newElement(element, pos_x, pos_y);
     }
     
     public void Resize(int width, int height) {

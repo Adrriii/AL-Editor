@@ -32,5 +32,9 @@ public abstract class Drawable {
     public void Notify() {
         views.forEach(view -> view.Update());
     }
+    
+    public boolean isClicked(int x, int y) {
+        return x > pos_x && x < pos_x + width && y > pos_y && y < pos_y + height;
+    }
 
 }

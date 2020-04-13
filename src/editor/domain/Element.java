@@ -30,11 +30,6 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     public abstract Element Clone();
 
-    @Override
-    public boolean isClicked(int x, int y) {
-        return x > pos_x && x < pos_x + width && y > pos_y && y < pos_y + height; // Base hitbox, redefine for more complex objects.
-    }
-
     abstract public int getSurfaceWidth();
 
     abstract public int getSurfaceHeight();
