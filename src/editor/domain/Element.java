@@ -2,7 +2,7 @@ package editor.domain;
 
 import java.util.HashMap;
 
-public class Element extends Drawable implements ISerializable, IControllable, IClonable {
+public abstract class Element extends Drawable implements ISerializable, IControllable {
 
     public HashMap<String,ElementProperty> properties;
 
@@ -28,21 +28,16 @@ public class Element extends Drawable implements ISerializable, IControllable, I
         Notify();
     }
 
-    @Override
-    public Object clone() {
-        Element newElement = new Element(properties);
-        newElement.pos_x = pos_x;
-        newElement.pos_y = pos_y;
-        newElement.width = width;
-        newElement.height = height;
-
-        return newElement;
-    }
+    public abstract Element Clone();
 
     @Override
     public boolean isClicked(int x, int y) {
         return x > pos_x && x < pos_x + width && y > pos_y && y < pos_y + height; // Base hitbox, redefine for more complex objects.
     }
+
+    abstract public int getSurfaceWidth();
+
+    abstract public int getSurfaceHeight();
 
     public void Update(int new_pos_x, int new_pos_y) {
         if(new_pos_x > 0) {

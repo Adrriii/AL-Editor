@@ -2,7 +2,7 @@ package editor.domain;
 
 import java.util.ArrayList;
 
-public class ElementGroup extends Element {
+public abstract class ElementGroup extends Element {
 
     private ArrayList<Element> elements;
 
