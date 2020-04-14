@@ -2,6 +2,7 @@ package editor.model;
 
 import java.util.ArrayList;
 
+import editor.application.App;
 import editor.domain.*;
 import editor.domain.element.Rectangle;
 import editor.domain.menu.*;
@@ -48,6 +49,7 @@ public class Model {
     }
 
     public void Update() {
+        
     }
 
     public void Stop() {
@@ -79,7 +81,12 @@ public class Model {
     }
 
     public void SetSelectionRectangle(int pos_x, int pos_y, int width, int height) {
-        this.selectionRectangle = new Rectangle(pos_x, pos_y, width, height, 0,0,255,50);
+        if(pos_x == 0 && pos_y == 0 && width == 0 && height == 0) {
+            this.selectionRectangle = null;
+        } else {
+            this.selectionRectangle = new Rectangle(pos_x, pos_y, width, height, 0,0,255,50);
+            this.selectionRectangle.Attach(App.view.getCanvasView());
+        }
     }
 
     public void UpdateSelectionRectangle(int pos_x, int pos_y, int width, int height) {

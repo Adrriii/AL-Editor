@@ -55,4 +55,11 @@ public abstract class Element extends Drawable implements ISerializable, IContro
     public void Update(int new_pos_x, int new_pos_y) {
         Update(new_pos_x, new_pos_y, this.width, this.height);
     }
+
+    abstract public void Draw(int x, int y, int fit_width, int fit_height);
+
+    @Override
+    public void Draw(int x, int y) {
+        Draw(x, y, -1, -1);
+    }
 }

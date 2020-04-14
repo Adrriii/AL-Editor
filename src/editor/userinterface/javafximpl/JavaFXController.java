@@ -182,7 +182,8 @@ public class JavaFXController implements Controller {
                 if(!readyToDrag) break; // Started dragging on an empty spot, ignoring.
 
                 if(draggingElement != null) {
-                    draggingElement.Update(relative_x - drag_x_elem_rel, relative_y - drag_y_elem_rel);
+                    int canvas_x = Math.max(0,relative_x - App.model.getCanvas().pos_x);
+                    draggingElement.Update(canvas_x - drag_x_elem_rel, relative_y - drag_y_elem_rel);
                 }
                 break;
             default:
@@ -227,7 +228,9 @@ public class JavaFXController implements Controller {
                 if(!readyToDrag) break; // Started dragging on an empty spot, ignoring.
 
                 if(draggingElement != null) {
-                    draggingElement.Update(relative_x - drag_x_elem_rel, relative_y - drag_y_elem_rel);
+                    int canvas_x = Math.max(0,relative_x - App.model.getCanvas().pos_x);
+                    int canvas_y = Math.max(0,relative_y - App.model.getCanvas().pos_y);
+                    draggingElement.Update(canvas_x - drag_x_elem_rel, canvas_y - drag_y_elem_rel);
                 }
                 break;
             default:

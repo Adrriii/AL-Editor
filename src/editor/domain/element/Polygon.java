@@ -42,4 +42,10 @@ public class Polygon extends Element {
     public int getSurfaceHeight() {
         return height;
     }
+
+    @Override
+    public void Draw(int x, int y, int fit_width, int fit_height) {
+        // TODO Auto-generated method stub
+
+    }
 }

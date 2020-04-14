@@ -1,5 +1,6 @@
 package editor.domain.element;
 
+import editor.application.App;
 import editor.domain.elementproperty.ColorProperty;
 
 public class Rectangle extends Polygon {
@@ -40,5 +41,21 @@ public class Rectangle extends Polygon {
         ColorProperty colors = getColorProperty();
         Rectangle newElement = new Rectangle(pos_x, pos_y, width, height, colors.r, colors.g, colors.b, colors.a);
         return newElement;
+    }
+
+    @Override
+    public void Draw(int x, int y, int fit_width, int fit_height) {
+
+        double scale = 1;
+        
+        if(fit_width >= 0) {
+            scale = fit_width / (double) getSurfaceWidth();
+        }
+        if(fit_height >= 0) {
+            scale = Math.min(scale, fit_height / (double) getSurfaceHeight());
+        }
+
+        App.view.drawRectangle(this, x, y, scale < 1 ? scale : 1);
+
     }
 }
