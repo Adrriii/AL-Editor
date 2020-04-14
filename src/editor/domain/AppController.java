@@ -1,0 +1,184 @@
+package editor.domain;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
+import editor.application.App;
+import editor.domain.menu.TopMenu;
+
+public class AppController {
+
+    private final int drag_start_dist = 4;
+
+    private Canvas canvas;
+    private Toolbar toolbar;
+    private TopMenu topMenu;
+
+    private boolean left = false;
+    private boolean left_clicked = false;
+    private int left_pos_x = -1;
+    private int left_pos_y = -1;
+
+    private boolean right = false;
+    private boolean right_clicked = false;
+    private int right_pos_x = -1;
+    private int right_pos_y = -1;
+
+    private int pos_x = 0;
+    private int pos_y = 0;
+
+    private Element draggingElement = null;
+    private int drag_x_elem_rel;
+    private int drag_y_elem_rel;
+
+    private boolean readyToDrag = true;
+
+    private boolean selecting = false;
+    private int select_start_x;
+    private int select_start_y;
+
+    public AppController() {
+        canvas = App.model.getCanvas();
+        toolbar = App.model.getToolbar();
+        topMenu = App.model.getTopMenu();
+    }
+
+    public void NotifyMouseLeftPress(int x, int y) {
+        left = true;
+        left_pos_x = x;
+        left_pos_y = y;
+        System.out.println("Pressing left ...");
+        NotifyMousePos(x, y);
+    }
+
+    public void NotifyMouseLeftRelease(int x, int y) {
+        left = false;
+        left_clicked = true;
+        left_pos_x = -1;
+        left_pos_y = -1;
+        System.out.println("Released left !");
+        NotifyMousePos(x, y);
+    }
+
+    public void NotifyMouseRightPress(int x, int y) {
+        right = true;
+        right_pos_x = x;
+        right_pos_y = y;
+        System.out.println("Pressing right ...");
+        NotifyMousePos(x, y);
+    }
+
+    public void NotifyMouseRightRelease(int x, int y) {
+        right = false;
+        right_clicked = true;
+        right_pos_x = -1;
+        right_pos_y = -1;
+        System.out.println("Released right !");
+        NotifyMousePos(x, y);
+    }
+
+    public void NotifyMousePos(int x, int y) {
+        pos_x = x;
+        pos_y = y;
+        System.out.println("Move to "+x+","+y+"");
+        Update();
+    }
+
+    public void NotifyWidth(int newWidth) {
+        App.model.Resize(newWidth, App.model.height);
+    }
+
+    public void NotifyHeight(int newHeight) {
+        App.model.Resize(App.model.width, newHeight);
+    }
+
+    public void Update() {
+        
+        int canvas_relative_x = Math.max(0, pos_x - canvas.pos_x);
+        int canvas_relative_y = Math.max(0, pos_y - canvas.pos_y);
+
+        boolean inCanvas = App.model.getCanvas().isClicked(pos_x, pos_y);
+        boolean inToolbar = App.model.getToolbar().isClicked(pos_x, pos_y);
+        boolean inTopMenu = App.model.getTopMenu().isClicked(pos_x, pos_y);
+
+        if(left) {
+            if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
+                // Dragging
+                if(selecting) {
+                    App.model.UpdateSelectionRectangle(
+                        Math.min(select_start_x, canvas_relative_x), 
+                        Math.min(select_start_y, canvas_relative_y),
+                        select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x, 
+                        select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y
+                    );
+
+                    return;
+                }
+                if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
+
+                if(draggingElement == null) {
+                    // Find an element to drag, or, disable
+                    Optional<Element> found = canvas.getElements()
+                                                            .stream().filter(element -> element.isClicked(canvas_relative_x, canvas_relative_y))
+                                                            .findFirst();
+
+                    if(!found.isPresent()) {
+                        readyToDrag = false;
+                        selecting = true;
+
+                        select_start_x = canvas_relative_x;
+                        select_start_y = canvas_relative_y;
+                    } else {
+                        draggingElement = found.get();
+                        drag_x_elem_rel = canvas_relative_x - draggingElement.pos_x;
+                        drag_y_elem_rel = canvas_relative_y - draggingElement.pos_y;
+                    }
+                }
+
+                if(draggingElement != null) {
+                    draggingElement.Update(canvas_relative_x - drag_x_elem_rel, canvas_relative_y - drag_y_elem_rel);
+                }
+            } else {
+                // Holding click
+            }
+        }
+
+        if(left_clicked) {
+            left_clicked = false; // Consume event
+                
+            readyToDrag = true;
+
+            if(selecting) {
+                selecting = false;
+                App.model.UpdateSelectionRectangle(0,0,0,0);
+                return;
+            }
+
+            if(inCanvas) {
+                // Clicking in canvas adds the selected element
+                if(draggingElement == null) {
+                    Element selected = App.model.getSelectedTool();
+                    if(selected != null) {
+                        App.model.addElement(selected,canvas_relative_x,canvas_relative_y);
+                    }
+                }
+            }
+
+            if(inToolbar) {
+                // Find an element to select, or, select nothing
+                Optional<ToolbarElement> found = toolbar.getToolbarElements()
+                                                        .stream().filter(element -> element.isClicked(pos_x, pos_y))
+                                                        .findFirst();
+
+                if(!found.isPresent()) {
+                    App.model.setSelectedTool(null);
+                } else {
+                    App.model.setSelectedTool(found.get().getElement());
+                }
+            }
+            
+            draggingElement = null;
+            return;
+        }
+    }
+}
