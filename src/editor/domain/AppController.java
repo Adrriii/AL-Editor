@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import editor.application.App;
+import editor.domain.menu.InteractionMenu;
 import editor.domain.menu.TopMenu;
+import editor.domain.menu.interactionmenus.ElementInteractionMenu;
 
 public class AppController {
 
@@ -120,9 +122,7 @@ public class AppController {
 
                 if(draggingElement == null) {
                     // Find an element to drag, or, disable
-                    Optional<Element> found = canvas.getElements()
-                                                            .stream().filter(element -> element.isClicked(canvas_relative_x, canvas_relative_y))
-                                                            .findFirst();
+                    Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
 
 
                     select_start_x = canvas_relative_x;
@@ -197,7 +197,16 @@ public class AppController {
         }
 
         if(right_clicked) {
-            
+            right_clicked = false;
+
+            if(inCanvas) {
+                // Find an element to drag, or, disable
+                Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
+
+                if(found.isPresent()) {
+                    App.model.setInteractionMenu(new ElementInteractionMenu(pos_x, pos_y,found.get()));
+                }
+            }
         }
     }
 }

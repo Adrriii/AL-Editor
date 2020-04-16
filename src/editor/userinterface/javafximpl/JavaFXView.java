@@ -13,12 +13,14 @@ import editor.domain.menu.TopMenu;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class JavaFXView implements View {
 
     private boolean started;
     private Thread JavaFXThread;
 
+    private JavaFXViewMain mainView;
     private JavaFXViewCanvas canvasView;
     private JavaFXViewToolbar toolbarView;
     private JavaFXViewTopMenu topMenuView;
@@ -28,6 +30,7 @@ public class JavaFXView implements View {
 
         this.JavaFXThread = new Thread(new JavaFXApplication());
 
+        this.mainView = new JavaFXViewMain();
         this.canvasView = new JavaFXViewCanvas();
         this.toolbarView = new JavaFXViewToolbar();
         this.topMenuView = new JavaFXViewTopMenu();
@@ -45,6 +48,11 @@ public class JavaFXView implements View {
     }
 
     @Override
+    public ViewScope getMainView() {
+        return mainView;
+    }
+
+    @Override
     public ViewScope getToolbarView() {
         return toolbarView;
     }
@@ -56,6 +64,9 @@ public class JavaFXView implements View {
 
     @Override
     public void Update() {
+        canvasView.Update();
+        toolbarView.Update();
+        topMenuView.Update();
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, int ref_x, int ref_y, double scale) {
@@ -72,6 +83,15 @@ public class JavaFXView implements View {
 
     }
 
+    public void drawJavaFXText(String label, int x, int y, int size) {
+        Text text = new Text(label);
+
+        text.setX(x);
+        text.setY(y);
+
+        JavaFXApplication.addToRoot(text);
+    }
+
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
         drawJavaFXRectangle(pos_x, pos_y, width, height, color, 0, 0, 1);
     }
@@ -83,6 +103,11 @@ public class JavaFXView implements View {
     }
     public void drawRectangle(Rectangle rectangle, int ref_x, int ref_y) {
         drawRectangle(rectangle, ref_x, ref_y, 1);
+    }
+
+    @Override
+    public void drawText(String text, int x, int y, int size) {
+        
     }
 
 }

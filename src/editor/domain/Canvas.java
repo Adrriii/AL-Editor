@@ -1,6 +1,7 @@
 package editor.domain;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import editor.application.App;
 import editor.domain.element.Rectangle;
@@ -49,6 +50,10 @@ public class Canvas extends Drawable implements ISerializable {
         if(App.model.getSelectionRectangle() != null) {
             App.model.getSelectionRectangle().Draw(x,y);
         }
+    }
+
+    public Optional<Element> getElementAt(int x, int y) {
+        return this.elements.stream().filter(element -> element.isClicked(x, y)).findFirst();
     }
 
 }

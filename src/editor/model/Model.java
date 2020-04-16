@@ -20,6 +20,8 @@ public class Model {
 
     private boolean running;
 
+    private InteractionMenu currentInteraction;
+
     public int width;
     public int height;
 
@@ -135,5 +137,14 @@ public class Model {
 
     public void DeselectAll() {
         canvas.getElements().forEach(element -> Deselect(element));
+    }
+
+    public void setInteractionMenu(InteractionMenu interactionMenu) {
+        this.currentInteraction = interactionMenu;
+        this.currentInteraction.Notify();
+    }
+
+    public InteractionMenu getInteractionMenu() {
+        return this.currentInteraction;
     }
 }
