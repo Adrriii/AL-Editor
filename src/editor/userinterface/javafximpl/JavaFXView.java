@@ -13,6 +13,7 @@ import editor.domain.menu.TopMenu;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class JavaFXView implements View {
@@ -86,6 +87,7 @@ public class JavaFXView implements View {
     public void drawJavaFXText(String label, int x, int y, int size) {
         Text text = new Text(label);
 
+        text.setFont(new Font(size));
         text.setX(x);
         text.setY(y);
 
@@ -107,7 +109,7 @@ public class JavaFXView implements View {
 
     @Override
     public void drawText(String text, int x, int y, int size) {
-        
+        drawJavaFXText(text, x, y, size);
     }
 
 }

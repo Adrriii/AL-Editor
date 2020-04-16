@@ -8,6 +8,8 @@ public abstract class Interaction extends Drawable {
 
     private Rectangle background;
     private String label;
+
+    public int fontSize = 18;
     
     public Interaction(String label) {
         super();
@@ -27,7 +29,7 @@ public abstract class Interaction extends Drawable {
     @Override
     public void Draw(int x, int y) {
         App.view.drawRectangle(this.background, x, y);
-        App.view.drawText(this.label, x, y, 18);
+        App.view.drawText(this.label, x, y + this.fontSize, this.fontSize);
     }
 
 }
