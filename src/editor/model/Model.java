@@ -1,6 +1,6 @@
 package editor.model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import editor.application.App;
 import editor.domain.*;
@@ -16,7 +16,7 @@ public class Model {
     private Element selectedTool;
 
     private Rectangle selectionRectangle;
-    private ArrayList<Element> selected;
+    private HashSet<Element> selected;
 
     private boolean running;
 
@@ -40,7 +40,7 @@ public class Model {
         this.toolbar = new Toolbar();
         this.topMenu = new TopMenu();
 
-        this.selected = null;
+        this.selected = new HashSet<>();
         this.selectionRectangle = null;
 
         this.canvas.Notify();
@@ -117,5 +117,23 @@ public class Model {
         this.canvas.Notify();
         this.toolbar.Notify();
         this.topMenu.Notify();
+    }
+
+    public void Select(Element element) {
+        this.selected.add(element);
+        element.setSelected(true);
+    }
+
+    public void Deselect(Element element) {
+        this.selected.remove(element);
+        element.setSelected(false);
+    }
+
+    public void SelectAll() {
+        canvas.getElements().forEach(element -> Select(element));
+    }
+
+    public void DeselectAll() {
+        canvas.getElements().forEach(element -> Deselect(element));
     }
 }

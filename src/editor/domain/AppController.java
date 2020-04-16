@@ -76,7 +76,7 @@ public class AppController {
     public void NotifyMousePos(int x, int y) {
         pos_x = x;
         pos_y = y;
-        Update();
+        UpdateMouse();
     }
 
     public void NotifyWidth(int newWidth) {
@@ -87,7 +87,7 @@ public class AppController {
         App.model.Resize(App.model.width, newHeight);
     }
 
-    public void Update() {
+    public void UpdateMouse() {
         
         int canvas_relative_x = Math.max(0, pos_x - canvas.pos_x);
         int canvas_relative_y = Math.max(0, pos_y - canvas.pos_y);
@@ -100,13 +100,20 @@ public class AppController {
             if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
                 // Dragging
                 if(selecting) {
-                    App.model.UpdateSelectionRectangle(
-                        Math.min(select_start_x, canvas_relative_x), 
-                        Math.min(select_start_y, canvas_relative_y),
-                        select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x, 
-                        select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y
-                    );
+                    int sr_x = Math.min(select_start_x, canvas_relative_x);
+                    int sr_y = Math.min(select_start_y, canvas_relative_y);
+                    int sr_width = select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x;
+                    int sr_height = select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y;
 
+                    App.model.UpdateSelectionRectangle(sr_x, sr_y, sr_width, sr_height);
+
+                    App.model.getCanvas().getElements().forEach(element -> {
+                        if(element.intersects(sr_x, sr_y, sr_width, sr_height)) {
+                            App.model.Select(element);
+                        } else {
+                            App.model.Deselect(element);
+                        }
+                    });
                     return;
                 }
                 if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
@@ -183,6 +190,14 @@ public class AppController {
             
             draggingElement = null;
             return;
+        }
+    
+        if(right) {
+
+        }
+
+        if(right_clicked) {
+            
         }
     }
 }

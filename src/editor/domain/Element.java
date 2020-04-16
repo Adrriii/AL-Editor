@@ -6,6 +6,8 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     public HashMap<String,ElementProperty> properties;
 
+    private boolean selected = false;
+
     public Element(HashMap<String,ElementProperty> properties) {
         super();
 
@@ -61,5 +63,13 @@ public abstract class Element extends Drawable implements ISerializable, IContro
     @Override
     public void Draw(int x, int y) {
         Draw(x, y, -1, -1);
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean state) {
+        selected = state;
     }
 }
