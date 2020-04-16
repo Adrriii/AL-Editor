@@ -10,6 +10,8 @@ public abstract class InteractionMenu extends Menu {
 
     protected ArrayList<Interaction> interactions;
 
+    private int interaction_pos_y;
+
     public InteractionMenu(int x, int y) {
         Attach(App.view.getMainView());
 
@@ -17,12 +19,32 @@ public abstract class InteractionMenu extends Menu {
 
         this.pos_x = x;
         this.pos_y = y;
+        this.interaction_pos_y = y;
+
+        this.height = 0;
+        this.width = 0;
     }
 
     protected abstract void SetInteractions();
 
     public void onClick(int x, int y) {
         interactions.forEach(interaction -> { if (interaction.isClicked(x, y)) interaction.onClick(); });
+    }
+
+    public void addInteraction(Interaction interaction) {
+        interaction.pos_x = pos_x;
+        interaction.pos_y = interaction_pos_y;
+        interaction_pos_y += interaction.height;
+
+        this.interactions.add(interaction);
+
+        this.height = interaction_pos_y;
+        this.width = interaction.width > this.width ? interaction.width : this.width;
+    }
+
+    public void removeInteraction(Interaction interaction) {
+        this.interactions.remove(interaction);
+        this.height -= interaction.height;
     }
 
     @Override

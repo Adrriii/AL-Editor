@@ -141,7 +141,7 @@ public class Model {
 
     public void setInteractionMenu(InteractionMenu interactionMenu) {
         this.currentInteraction = interactionMenu;
-        this.currentInteraction.Notify();
+        App.view.getMainView().Update();
     }
 
     public InteractionMenu getInteractionMenu() {

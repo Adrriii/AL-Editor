@@ -16,8 +16,8 @@ public class ElementInteractionMenu extends InteractionMenu {
 
     @Override
     protected void SetInteractions() {
-        this.interactions.add(new GroupElementsInteraction(element));
-        this.interactions.add(new ColorChangeInteraction(element));
+        this.addInteraction(new GroupElementsInteraction(element));
+        this.addInteraction(new ColorChangeInteraction(element));
     }
 
 }

@@ -90,13 +90,15 @@ public class AppController {
     }
 
     public void UpdateMouse() {
+
         
         int canvas_relative_x = Math.max(0, pos_x - canvas.pos_x);
         int canvas_relative_y = Math.max(0, pos_y - canvas.pos_y);
-
+        
         boolean inCanvas = App.model.getCanvas().isClicked(pos_x, pos_y);
         boolean inToolbar = App.model.getToolbar().isClicked(pos_x, pos_y);
         boolean inTopMenu = App.model.getTopMenu().isClicked(pos_x, pos_y);
+        boolean inInteractionMenu = App.model.getInteractionMenu() == null ? false : App.model.getInteractionMenu().isClicked(pos_x, pos_y);
 
         if(left) {
             if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
@@ -147,6 +149,14 @@ public class AppController {
 
         if(left_clicked) {
             left_clicked = false; // Consume event
+
+            if(inInteractionMenu) {
+                App.model.getInteractionMenu().onClick(pos_x, pos_y);
+                return;
+            } else if (!(App.model.getInteractionMenu() == null)) {
+                App.model.setInteractionMenu(null);
+                return;
+            }
                 
             readyToDrag = true;
 
@@ -200,12 +210,17 @@ public class AppController {
             right_clicked = false;
 
             if(inCanvas) {
-                // Find an element to drag, or, disable
                 Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
 
                 if(found.isPresent()) {
                     App.model.setInteractionMenu(new ElementInteractionMenu(pos_x, pos_y,found.get()));
+                    return;
                 }
+            } 
+            
+            if (!(App.model.getInteractionMenu() == null)) {
+                App.model.setInteractionMenu(null);
+                return;
             }
         }
     }
