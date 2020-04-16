@@ -34,9 +34,6 @@ public class Toolbar extends Drawable implements ISerializable {
         this.element_height = this.width - this.element_padding * 2;
 
         this.background = new Rectangle(0, 0, width, height, 80, 80, 80, 255);
-
-        addElement(new Rectangle(130,160));
-        addElement(new Rectangle(190,130, 255, 0, 0));
     }
 
     public int getElementPadding() {
@@ -45,11 +42,13 @@ public class Toolbar extends Drawable implements ISerializable {
 
     public void addElement(Element element) {
         toolbarElements.add(new ToolbarElement(this,
-                element.Clone(), 
+                element, 
                 this.pos_x + this.element_padding, 
                 this.pos_y + this.element_padding + (this.element_height + this.element_padding) * toolbarElements.size(), 
                 this.element_height
             ));
+
+        Notify();
     }
 
     public ArrayList<ToolbarElement> getToolbarElements() {

@@ -12,6 +12,8 @@ public class ToolbarElement extends Drawable implements ISerializable {
         this.width = side;
         this.height = side;
         this.element = element.Clone();
+        this.element.pos_x = 0;
+        this.element.pos_y = 0;
     }
 
     public Element cloneElement() {

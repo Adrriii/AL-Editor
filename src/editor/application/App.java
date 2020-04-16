@@ -1,6 +1,7 @@
 package editor.application;
 
 import editor.domain.AppController;
+import editor.domain.element.Rectangle;
 import editor.model.Model;
 import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;
@@ -22,6 +23,9 @@ public class App {
         App.model.init();
 
         App.appController = new AppController();
+
+        App.model.getToolbar().addElement(new Rectangle(130,160));
+        App.model.getToolbar().addElement(new Rectangle(190,130, 255, 0, 0));
 
         while (model.isRunning()) {
             App.model.Update();
