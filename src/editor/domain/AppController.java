@@ -32,6 +32,7 @@ public class AppController {
     private Element draggingElement = null;
     private int drag_x_elem_rel;
     private int drag_y_elem_rel;
+    private boolean dragging_from_toolbar = false;
 
     private boolean readyToDrag = true;
 
@@ -103,44 +104,68 @@ public class AppController {
         if(left) {
             if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
                 // Dragging
-                if(selecting) {
-                    int sr_x = Math.min(select_start_x, canvas_relative_x);
-                    int sr_y = Math.min(select_start_y, canvas_relative_y);
-                    int sr_width = select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x;
-                    int sr_height = select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y;
 
-                    App.model.UpdateSelectionRectangle(sr_x, sr_y, sr_width, sr_height);
+                if(inCanvas) {
+                    if(selecting) {
+                        int sr_x = Math.min(select_start_x, canvas_relative_x);
+                        int sr_y = Math.min(select_start_y, canvas_relative_y);
+                        int sr_width = select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x;
+                        int sr_height = select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y;
 
-                    App.model.getCanvas().getElements().forEach(element -> {
-                        if(element.intersects(sr_x, sr_y, sr_width, sr_height)) {
-                            App.model.Select(element);
-                        } else {
-                            App.model.Deselect(element);
-                        }
-                    });
-                    return;
-                }
-                if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
+                        App.model.UpdateSelectionRectangle(sr_x, sr_y, sr_width, sr_height);
 
-                if(draggingElement == null) {
-                    // Find an element to drag, or, disable
-                    Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
-
-
-                    select_start_x = canvas_relative_x;
-                    select_start_y = canvas_relative_y;
-                    if(!found.isPresent()) {
-                        readyToDrag = false;
-                        selecting = true;
-                    } else {
-                        draggingElement = found.get();
-                        drag_x_elem_rel = canvas_relative_x - draggingElement.pos_x;
-                        drag_y_elem_rel = canvas_relative_y - draggingElement.pos_y;
+                        App.model.getCanvas().getElements().forEach(element -> {
+                            if(element.intersects(sr_x, sr_y, sr_width, sr_height)) {
+                                App.model.Select(element);
+                            } else {
+                                App.model.Deselect(element);
+                            }
+                        });
+                        return;
                     }
-                }
+                    if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
+                    if(dragging_from_toolbar) {
+                        dragging_from_toolbar = false;
+                        draggingElement = App.model.addElement(App.model.getSelectedTool(),canvas_relative_x,canvas_relative_y);
+                        App.model.setSelectedTool(null);
+                    }
 
-                if(draggingElement != null) {
-                    draggingElement.Update(canvas_relative_x - drag_x_elem_rel, canvas_relative_y - drag_y_elem_rel);
+                    if(draggingElement == null) {
+                        // Find an element to drag, or, disable
+                        Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
+
+
+                        select_start_x = canvas_relative_x;
+                        select_start_y = canvas_relative_y;
+                        if(!found.isPresent()) {
+                            readyToDrag = false;
+                            selecting = true;
+                        } else {
+                            draggingElement = found.get();
+                            drag_x_elem_rel = canvas_relative_x - draggingElement.pos_x;
+                            drag_y_elem_rel = canvas_relative_y - draggingElement.pos_y;
+                        }
+                    }
+
+                    if(draggingElement != null) {
+                        draggingElement.Update(canvas_relative_x - drag_x_elem_rel, canvas_relative_y - drag_y_elem_rel);
+                    }
+                } else if (inToolbar) {
+
+                    if(!dragging_from_toolbar) {
+                        // Find an element to select and drag, or, select nothing
+                        Optional<ToolbarElement> found = toolbar.getToolbarElements()
+                                                                .stream().filter(element -> element.isClicked(pos_x, pos_y))
+                                                                .findFirst();
+        
+                        if(!found.isPresent()) {
+                            App.model.setSelectedTool(null);
+                            readyToDrag = false;
+                        } else {
+                            App.model.setSelectedTool(found.get().getElement());
+                            dragging_from_toolbar = true;
+                        }
+                    }
                 }
             } else {
                 // Holding click

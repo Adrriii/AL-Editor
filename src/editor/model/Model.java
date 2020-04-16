@@ -103,8 +103,8 @@ public class Model {
         return this.selectionRectangle;
     }
 
-    public void addElement(Element element, int pos_x, int pos_y) {
-        this.canvas.newElement(element, pos_x, pos_y);
+    public Element addElement(Element element, int pos_x, int pos_y) {
+        return this.canvas.newElement(element, pos_x, pos_y);
     }
     
     public void Resize(int width, int height) {
