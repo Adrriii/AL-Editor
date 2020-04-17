@@ -29,6 +29,9 @@ public class AppController {
     private int pos_x = 0;
     private int pos_y = 0;
 
+    private Element holdElement = null;
+    private boolean clickedOnHoldElement = false;
+
     private Element draggingElement = null;
     private int drag_x_elem_rel;
     private int drag_y_elem_rel;
@@ -101,11 +104,34 @@ public class AppController {
         boolean inTopMenu = App.model.getTopMenu().isClicked(pos_x, pos_y);
         boolean inInteractionMenu = App.model.getInteractionMenu() == null ? false : App.model.getInteractionMenu().isClicked(pos_x, pos_y);
 
+        System.out.println("----------------------------");
+        System.out.println("readyToDrag: "+readyToDrag);
+        System.out.println("dragging: "+draggingElement);
+        System.out.println("holdElement: "+holdElement);
+        System.out.println("selecting: "+selecting);
+        System.out.println("clickedOnHoldElement: "+clickedOnHoldElement);
+
         if(left) {
+            if(draggingElement == null && readyToDrag && holdElement == null) {
+                // Find the clicked element before dragging
+                Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
+
+                if(found.isPresent()) {
+                    holdElement = found.get();
+                    if(holdElement.isSelected()) {
+                        clickedOnHoldElement = true;
+                    }
+                    holdElement.setSelected(true);
+                    App.view.getCanvasView().Update();
+                }
+            } else if (holdElement != null && holdElement.isSelected()) {
+                clickedOnHoldElement = true;
+            }
+
             if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
                 // Dragging
 
-                if(inCanvas) {
+                if(inCanvas || draggingElement != null) {
                     if(selecting) {
                         int sr_x = Math.min(select_start_x, canvas_relative_x);
                         int sr_y = Math.min(select_start_y, canvas_relative_y);
@@ -127,28 +153,26 @@ public class AppController {
                     if(dragging_from_toolbar) {
                         dragging_from_toolbar = false;
                         draggingElement = App.model.addElement(App.model.getSelectedTool(),canvas_relative_x,canvas_relative_y);
+                        draggingElement.setSelected(true);
                         App.model.setSelectedTool(null);
                     }
 
                     if(draggingElement == null) {
-                        // Find an element to drag, or, disable
-                        Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
-
 
                         select_start_x = canvas_relative_x;
                         select_start_y = canvas_relative_y;
-                        if(!found.isPresent()) {
+                        if(holdElement == null) {
                             readyToDrag = false;
                             selecting = true;
                         } else {
-                            draggingElement = found.get();
+                            draggingElement = holdElement;
                             drag_x_elem_rel = canvas_relative_x - draggingElement.pos_x;
                             drag_y_elem_rel = canvas_relative_y - draggingElement.pos_y;
                         }
                     }
 
                     if(draggingElement != null) {
-                        draggingElement.Update(canvas_relative_x - drag_x_elem_rel, canvas_relative_y - drag_y_elem_rel);
+                        draggingElement.Update(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel));
                     }
                 } else if (inToolbar) {
 
@@ -200,11 +224,20 @@ public class AppController {
 
                 if(inCanvas) {
                     // Clicking in canvas adds the selected element
-                    if(draggingElement == null) {
-                        Element selected = App.model.getSelectedTool();
-                        if(selected != null) {
-                            App.model.addElement(selected,canvas_relative_x,canvas_relative_y);
+                    if(holdElement == null) {
+                        App.model.DeselectAll();
+                    } else {
+                        if(clickedOnHoldElement) {
+                            clickedOnHoldElement = false;
+                            App.model.Deselect(holdElement);
                         }
+                    }
+                    
+                    Element selected = App.model.getSelectedTool();
+                    if(selected != null) {
+                        App.model.addElement(selected,canvas_relative_x,canvas_relative_y);
+                    } else {
+                        App.view.getCanvasView().Update();
                     }
                 }
     
@@ -224,6 +257,7 @@ public class AppController {
             }
             
             draggingElement = null;
+            holdElement = null;
             return;
         }
     
@@ -238,8 +272,12 @@ public class AppController {
                 Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
 
                 if(found.isPresent()) {
+                    App.model.Select(found.get());
                     App.model.setInteractionMenu(new ElementInteractionMenu(pos_x, pos_y,found.get()));
                     return;
+                } else {
+                    App.model.DeselectAll();
+                    App.view.getCanvasView().Update();
                 }
             } 
             

@@ -6,7 +6,7 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     public HashMap<String,ElementProperty> properties;
 
-    private boolean selected = false;
+    protected boolean selected = false;
 
     public Element(HashMap<String,ElementProperty> properties) {
         super();
@@ -55,7 +55,7 @@ public abstract class Element extends Drawable implements ISerializable, IContro
     }
 
     public void Update(int new_pos_x, int new_pos_y) {
-        Update(new_pos_x, new_pos_y, this.width, this.height);
+        Update(new_pos_x, new_pos_y, this.getSurfaceWidth(), this.getSurfaceHeight());
     }
 
     abstract public void Draw(int x, int y, int fit_width, int fit_height);

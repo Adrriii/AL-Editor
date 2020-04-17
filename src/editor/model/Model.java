@@ -1,5 +1,6 @@
 package editor.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import editor.application.App;
@@ -137,6 +138,11 @@ public class Model {
 
     public void DeselectAll() {
         canvas.getElements().forEach(element -> Deselect(element));
+        new ArrayList<Element>(this.selected).forEach(element -> Deselect(element));
+    }
+ 
+    public HashSet<Element> getSelectedElements() {
+        return this.selected;
     }
 
     public void setInteractionMenu(InteractionMenu interactionMenu) {

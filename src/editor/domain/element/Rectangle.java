@@ -55,6 +55,10 @@ public class Rectangle extends Polygon {
             scale = Math.min(scale, fit_height / (double) getSurfaceHeight());
         }
 
+        if(isSelected()) {
+            App.view.drawRectangle(new Rectangle(x, y, width + 10, height + 10, 0, 0, 255, 100),pos_x-5, pos_y-5);
+        }
+
         App.view.drawRectangle(this, x, y, scale < 1 ? scale : 1);
 
     }
