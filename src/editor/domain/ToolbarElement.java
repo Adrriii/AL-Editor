@@ -12,8 +12,7 @@ public class ToolbarElement extends Drawable implements ISerializable {
         this.width = side;
         this.height = side;
         this.element = element.Clone();
-        this.element.pos_x = 0;
-        this.element.pos_y = 0;
+        this.element.Update(0, 0);
     }
 
     public Element cloneElement() {
@@ -26,7 +25,7 @@ public class ToolbarElement extends Drawable implements ISerializable {
 
     @Override
     public void Draw(int x, int y) {
-        this.element.Draw(pos_x, pos_y, this.parent.getElementSideSize(), this.parent.getElementSideSize());
+        this.element.Draw(x, y, this.parent.getElementSideSize(), this.parent.getElementSideSize());
     }
 
 }

@@ -17,12 +17,14 @@ public class DegroupElementsInteraction extends ElementInteraction {
     @Override
     public void onClick() {
         ArrayList<Element> elements = ((ElementGroup) element).getElements();
+        element.Detach(App.view.getCanvasView());
         App.model.getCanvas().removeElement(element);
         
         App.model.DeselectAll();
 
         elements.forEach(element -> {
             App.model.getCanvas().addElement(element);
+            element.Attach(App.view.getCanvasView());
             App.model.Select(element);
         });
         

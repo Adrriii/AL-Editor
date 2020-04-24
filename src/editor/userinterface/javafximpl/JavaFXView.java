@@ -70,11 +70,11 @@ public class JavaFXView implements View {
         topMenuView.Update();
     }
 
-    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, int ref_x, int ref_y, double scale) {
+    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
         
-        JavaFXRectangle.setX(ref_x + pos_x); 
-        JavaFXRectangle.setY(ref_y + pos_y);
+        JavaFXRectangle.setX(pos_x); 
+        JavaFXRectangle.setY(pos_y);
         JavaFXRectangle.setWidth(width * scale);
         JavaFXRectangle.setHeight(height * scale);
 
@@ -95,16 +95,25 @@ public class JavaFXView implements View {
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
-        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 0, 0, 1);
+        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1);
     }
 
-    public void drawRectangle(Rectangle rectangle, int ref_x, int ref_y, double scale) {
+    public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y, double scale) {
         ColorProperty colors = (ColorProperty) rectangle.properties.get("color");
 
-        drawJavaFXRectangle(rectangle.pos_x, rectangle.pos_y, rectangle.width, rectangle.height, new Color(colors.r / 255.0,colors.g / 255.0,colors.b / 255.0,colors.a / 255.0), ref_x, ref_y, scale);
+        drawJavaFXRectangle(pos_x, pos_y, rectangle.width, rectangle.height, new Color(colors.r / 255.0,colors.g / 255.0,colors.b / 255.0,colors.a / 255.0), scale);
     }
-    public void drawRectangle(Rectangle rectangle, int ref_x, int ref_y) {
-        drawRectangle(rectangle, ref_x, ref_y, 1);
+
+    public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y) {
+        drawRectangle(rectangle, pos_x, pos_y, 1);
+    }
+
+    public void drawRectangle(Rectangle rectangle, double scale) {
+        drawRectangle(rectangle, rectangle.pos_x, rectangle.pos_y, scale);
+    }
+
+    public void drawRectangle(Rectangle rectangle) {
+        drawRectangle(rectangle, rectangle.pos_x, rectangle.pos_y, 1);
     }
 
     @Override

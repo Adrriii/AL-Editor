@@ -8,6 +8,9 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     protected boolean selected = false;
 
+    protected int min_x = 0;
+    protected int min_y = 0;
+
     public Element(HashMap<String,ElementProperty> properties) {
         super();
 
@@ -37,15 +40,15 @@ public abstract class Element extends Drawable implements ISerializable, IContro
     abstract public int getSurfaceHeight();
 
     public void Update(int new_pos_x, int new_pos_y, int width, int height) {
-        if(new_pos_x > 0) {
+        if(new_pos_x > min_x) {
             pos_x = new_pos_x;
         } else {
-            pos_x = 0;
+            pos_x = min_x;
         }
-        if(new_pos_y > 0) {
+        if(new_pos_y > min_y) {
             pos_y = new_pos_y;
         } else {
-            pos_y = 0;
+            pos_y = min_y;
         }
 
         this.width = width;
@@ -63,6 +66,10 @@ public abstract class Element extends Drawable implements ISerializable, IContro
     @Override
     public void Draw(int x, int y) {
         Draw(x, y, -1, -1);
+    }
+    
+    public void Draw(int x, int y, double scale) {
+        Draw(x, y, (int) (width * scale), (int) (height * scale));
     }
 
     public boolean isSelected() {

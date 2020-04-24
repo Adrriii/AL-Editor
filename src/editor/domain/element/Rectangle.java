@@ -56,7 +56,10 @@ public class Rectangle extends Polygon {
         }
 
         if(isSelected()) {
-            App.view.drawRectangle(new Rectangle(x, y, width + 10, height + 10, 0, 0, 255, 100),pos_x-5, pos_y-5);
+            int selectionRectangleX = Math.max(App.model.getCanvas().pos_x,x-5);
+            int selectionRectangleY = Math.max(App.model.getCanvas().pos_y,y-5);
+            
+            App.view.drawRectangle(new Rectangle(x, y, width + 10 + Math.min(0,x-App.model.getCanvas().pos_x-5), height + 10 + Math.min(0,y-App.model.getCanvas().pos_y-5), 0, 0, 255, 100),selectionRectangleX, selectionRectangleY);
         }
 
         App.view.drawRectangle(this, x, y, scale < 1 ? scale : 1);

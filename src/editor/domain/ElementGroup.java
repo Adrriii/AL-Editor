@@ -1,6 +1,7 @@
 package editor.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ElementGroup extends Element {
 
@@ -11,8 +12,6 @@ public class ElementGroup extends Element {
 
         elements = new ArrayList<>();
 
-        pos_x = 0;
-        pos_y = 0;
         width = 0;
         height = 0;
     }
@@ -36,6 +35,7 @@ public class ElementGroup extends Element {
     @Override
     public void Update() {
         elements.forEach(element -> element.Update());
+        Notify();
     }
 
     @Override
@@ -64,43 +64,69 @@ public class ElementGroup extends Element {
     }
 
     @Override
+    public void Draw(int x, int y) {
+        this.elements.forEach(element -> element.Draw(x - pos_x + element.pos_x,y - pos_y +  element.pos_y));
+    }
+
+    @Override
     public void Draw(int x, int y, int fit_width, int fit_height) {
-        this.elements.forEach(element -> element.Draw(x, y));
+        final double scale = Math.min(fit_width / (double) width, fit_height / (double) height);
+        
+        this.elements.forEach(element ->  {
+            element.Draw(x - pos_x + element.pos_x, y - pos_y +  element.pos_y, scale);
+        });
     }
 
     @Override
     public void Update(int new_pos_x, int new_pos_y, int width, int height) {
-        this.elements.forEach(element -> element.Update(new_pos_x + (element.pos_x - pos_x), new_pos_y + (element.pos_y - pos_y)));
-        if(new_pos_x > 0) {
+        int diff_x = 0;
+        int diff_y = 0;
+        if(new_pos_x > min_x) {
+            diff_x = new_pos_x - pos_x;
             pos_x = new_pos_x;
         } else {
-            pos_x = 0;
+            diff_x = min_x - pos_x;
+            pos_x = min_x;
         }
-        if(new_pos_y > 0) {
+        if(new_pos_y > min_x) {
+            diff_y = new_pos_y - pos_y;
             pos_y = new_pos_y;
         } else {
-            pos_y = 0;
+            diff_y = min_y - pos_y;
+            pos_y = min_y;
         }
+        final int dx = diff_x;
+        final int dy = diff_y;
+        this.elements.forEach(element -> element.Update(element.pos_x + dx, element.pos_y + dy));
         
+        Update();
     }
 
     public void UpdateReferencePos() {
         this.elements.forEach(element -> {
             if(pos_x == 0 || element.pos_x < pos_x) {
                 pos_x = element.pos_x;
+                min_x = element.min_x;
             }
 
             if(pos_y == 0 || element.pos_y < pos_y) {
                 pos_y = element.pos_y;
+                min_y = element.min_y;
             }
 
             if(width == 0 || element.pos_x + element.getSurfaceWidth() - pos_x > width) {
                 width = element.pos_x + element.getSurfaceWidth() - pos_x;
             }
 
-            if(height == 0 || element.pos_x + element.getSurfaceHeight() - pos_y > height) {
-                height = element.pos_x + element.getSurfaceHeight() - pos_y;
+            if(height == 0 || element.pos_y + element.getSurfaceHeight() - pos_y > height) {
+                height = element.pos_y + element.getSurfaceHeight() - pos_y;
             }
+        });
+        
+        this.elements.forEach(element -> {
+            element.min_x = min_x + (element.pos_x - pos_x);
+            element.min_y = min_y + (element.pos_y - pos_y);
+            System.out.println(element.min_x + " " + element.min_y);
         });
     }
 
@@ -108,5 +134,14 @@ public class ElementGroup extends Element {
     public void setSelected(boolean state) {
         selected = state;
         this.elements.forEach(element -> element.setSelected(state));
+    }
+
+    @Override
+    public boolean isClicked(int x, int y) {
+        Iterator<Element> iter = elements.iterator();
+        while(iter.hasNext()) {
+            if(iter.next().isClicked(x, y)) return true;
+        }
+        return false;
     }
 }

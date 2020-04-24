@@ -104,28 +104,25 @@ public class AppController {
         boolean inTopMenu = App.model.getTopMenu().isClicked(pos_x, pos_y);
         boolean inInteractionMenu = App.model.getInteractionMenu() == null ? false : App.model.getInteractionMenu().isClicked(pos_x, pos_y);
 
-        System.out.println("----------------------------");
-        System.out.println("readyToDrag: "+readyToDrag);
-        System.out.println("dragging: "+draggingElement);
-        System.out.println("holdElement: "+holdElement);
-        System.out.println("selecting: "+selecting);
-        System.out.println("clickedOnHoldElement: "+clickedOnHoldElement);
+        // System.out.println("----------------------------");
+        // System.out.println("readyToDrag: "+readyToDrag);
+        // System.out.println("dragging: "+draggingElement);
+        // System.out.println("holdElement: "+holdElement);
+        // System.out.println("selecting: "+selecting);
+        // System.out.println("clickedOnHoldElement: "+clickedOnHoldElement);
 
         if(left) {
+            if(inInteractionMenu) {
+                return;
+            }
+            
             if(draggingElement == null && readyToDrag && holdElement == null) {
                 // Find the clicked element before dragging
                 Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
 
                 if(found.isPresent()) {
-                    holdElement = found.get();
-                    if(holdElement.isSelected()) {
-                        clickedOnHoldElement = true;
-                    }
-                    holdElement.setSelected(true);
-                    App.view.getCanvasView().Update();
+                    SelectHoldElement(found.get());
                 }
-            } else if (holdElement != null && holdElement.isSelected()) {
-                clickedOnHoldElement = true;
             }
 
             if(Math.sqrt((left_pos_y - pos_y) * (left_pos_y - pos_y) + (left_pos_x - pos_x) * (left_pos_x - pos_x)) >= this.drag_start_dist) {
@@ -153,6 +150,7 @@ public class AppController {
                     if(dragging_from_toolbar) {
                         dragging_from_toolbar = false;
                         draggingElement = App.model.addElement(App.model.getSelectedTool(),canvas_relative_x,canvas_relative_y);
+                        App.model.DeselectAll();
                         draggingElement.setSelected(true);
                         App.model.setSelectedTool(null);
                     }
@@ -286,5 +284,13 @@ public class AppController {
                 return;
             }
         }
+    }
+
+    private void SelectHoldElement(Element element) {
+        holdElement = element;
+        clickedOnHoldElement = holdElement.isSelected();
+        App.model.DeselectAll();
+        holdElement.setSelected(true);
+        App.view.getCanvasView().Update();
     }
 }

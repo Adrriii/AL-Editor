@@ -42,9 +42,8 @@ public class Canvas extends Drawable implements ISerializable {
 
     public Element newElement(Element element, int pos_x, int pos_y) {
         Element newElement = element.Clone();
-        newElement.pos_x = pos_x;
-        newElement.pos_y = pos_y;
         newElement.Attach(App.view.getCanvasView());
+        newElement.Update(pos_x, pos_y);
         elements.add(newElement);
         Notify();
         return newElement;
@@ -54,10 +53,10 @@ public class Canvas extends Drawable implements ISerializable {
     public void Draw(int x, int y) {
         App.view.drawRectangle(this.background, x, y);
 
-        getElements().forEach(element -> element.Draw(x, y));
+        getElements().forEach(element -> element.Draw(pos_x + element.pos_x, pos_y + element.pos_y));
 
         if(App.model.getSelectionRectangle() != null) {
-            App.model.getSelectionRectangle().Draw(x,y);
+            App.model.getSelectionRectangle().Draw(pos_x + App.model.getSelectionRectangle().pos_x, pos_y + App.model.getSelectionRectangle().pos_y);
         }
     }
 

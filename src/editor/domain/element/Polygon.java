@@ -29,6 +29,8 @@ public class Polygon extends Element {
         newElement.pos_y = pos_y;
         newElement.width = width;
         newElement.height = height;
+        newElement.min_x = min_x;
+        newElement.min_y = min_y;
 
         return newElement;
     }
