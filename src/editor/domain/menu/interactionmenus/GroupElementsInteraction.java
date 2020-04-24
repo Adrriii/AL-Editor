@@ -19,10 +19,12 @@ public class GroupElementsInteraction extends ElementInteraction {
 
 
         ElementGroup group = new ElementGroup();
+        group.Attach(App.view.getCanvasView());
 
         selected.forEach(element -> {
             try {
                 group.Add(element);
+                element.Detach(App.view.getCanvasView());
                 App.model.getCanvas().removeElement(element);
             } catch (InvalidCompositeAddition e) {
                 e.printStackTrace();

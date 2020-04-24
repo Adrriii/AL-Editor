@@ -73,8 +73,6 @@ public class ElementGroup extends Element {
     @Override
     public void Draw(int x, int y, int fit_width, int fit_height) {
         final double scale = Math.min(fit_width / (double) width, fit_height / (double) height);
-
-        System.out.println(fit_width + " " + fit_height + " " + scale);
         
         this.elements.forEach(element ->  {
             element.Draw((int) (x - pos_x + element.pos_x * scale),(int) (y - pos_y +  element.pos_y * scale), scale);
@@ -101,21 +99,25 @@ public class ElementGroup extends Element {
         }
         final int dx = diff_x;
         final int dy = diff_y;
+        System.out.println(diff_x + " " + diff_y);
         this.elements.forEach(element -> element.Update(element.pos_x + dx, element.pos_y + dy));
         
         Update();
+    }
+
+    @Override
+    public void Update(int new_pos_x, int new_pos_y) {        
+        Update(new_pos_x, new_pos_y, width, height);
     }
 
     public void UpdateReferencePos() {
         this.elements.forEach(element -> {
             if(pos_x == 0 || element.pos_x < pos_x) {
                 pos_x = element.pos_x;
-                min_x = element.min_x;
             }
 
             if(pos_y == 0 || element.pos_y < pos_y) {
                 pos_y = element.pos_y;
-                min_y = element.min_y;
             }
 
             if(width == 0 || element.pos_x + element.getSurfaceWidth() - pos_x > width) {
