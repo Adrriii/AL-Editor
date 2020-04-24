@@ -25,7 +25,7 @@ public class DegroupElementsInteraction extends ElementInteraction {
 
         elements.forEach(out -> {
             try {
-            element.Remove(out);
+                element.Remove(out);
             }
             catch (InvalidCompositeAddition e) {
                 e.printStackTrace();

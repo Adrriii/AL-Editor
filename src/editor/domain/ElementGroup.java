@@ -90,7 +90,7 @@ public class ElementGroup extends Element {
             diff_x = min_x - pos_x;
             pos_x = min_x;
         }
-        if(new_pos_y > min_x) {
+        if(new_pos_y > min_y) {
             diff_y = new_pos_y - pos_y;
             pos_y = new_pos_y;
         } else {
@@ -99,7 +99,7 @@ public class ElementGroup extends Element {
         }
         final int dx = diff_x;
         final int dy = diff_y;
-        System.out.println(diff_x + " " + diff_y);
+        
         this.elements.forEach(element -> element.Update(element.pos_x + dx, element.pos_y + dy));
         
         Update();
