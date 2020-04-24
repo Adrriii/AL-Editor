@@ -115,7 +115,7 @@ public class AppController {
             if(inInteractionMenu) {
                 return;
             }
-            
+
             if(draggingElement == null && readyToDrag && holdElement == null) {
                 // Find the clicked element before dragging
                 Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
@@ -274,6 +274,7 @@ public class AppController {
                     App.model.setInteractionMenu(new ElementInteractionMenu(pos_x, pos_y,found.get()));
                     return;
                 } else {
+                    System.out.println("f");
                     App.model.DeselectAll();
                     App.view.getCanvasView().Update();
                 }

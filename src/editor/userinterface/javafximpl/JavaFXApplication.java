@@ -50,6 +50,7 @@ public class JavaFXApplication extends Application implements Runnable {
         {
             public void handle(long currentNanoTime)
             {
+                App.view.Update();
                 if (JavaFXApplication.update) {
                     JavaFXApplication.stage.show();
                     JavaFXApplication.update = false;

@@ -65,9 +65,7 @@ public class JavaFXView implements View {
 
     @Override
     public void Update() {
-        canvasView.Update();
-        toolbarView.Update();
-        topMenuView.Update();
+        mainView.Tick();
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale) {
