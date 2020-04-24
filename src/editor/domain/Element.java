@@ -65,7 +65,7 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     @Override
     public void Draw(int x, int y) {
-        Draw(x, y, -1, -1);
+        Draw(x, y, 1);
     }
     
     public void Draw(int x, int y, double scale) {

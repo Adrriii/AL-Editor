@@ -45,15 +45,11 @@ public class Rectangle extends Polygon {
 
     @Override
     public void Draw(int x, int y, int fit_width, int fit_height) {
+        Draw(x,y,Math.min(fit_width / (double) getSurfaceWidth(), fit_height / (double) getSurfaceHeight()));
+    }
 
-        double scale = 1;
-        
-        if(fit_width >= 0) {
-            scale = fit_width / (double) getSurfaceWidth();
-        }
-        if(fit_height >= 0) {
-            scale = Math.min(scale, fit_height / (double) getSurfaceHeight());
-        }
+    @Override
+    public void Draw(int x, int y, double scale) {
 
         if(isSelected()) {
             int selectionRectangleX = Math.max(App.model.getCanvas().pos_x,x-5);

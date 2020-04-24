@@ -25,6 +25,8 @@ public class ElementGroup extends Element {
     @Override
     public void Remove(Element element) throws InvalidCompositeAddition {
         elements.remove(element);
+        element.min_x = 0;
+        element.min_y = 0;
         UpdateReferencePos();
     }
 
@@ -71,9 +73,11 @@ public class ElementGroup extends Element {
     @Override
     public void Draw(int x, int y, int fit_width, int fit_height) {
         final double scale = Math.min(fit_width / (double) width, fit_height / (double) height);
+
+        System.out.println(fit_width + " " + fit_height + " " + scale);
         
         this.elements.forEach(element ->  {
-            element.Draw(x - pos_x + element.pos_x, y - pos_y +  element.pos_y, scale);
+            element.Draw((int) (x - pos_x + element.pos_x * scale),(int) (y - pos_y +  element.pos_y * scale), scale);
         });
     }
 
@@ -126,7 +130,6 @@ public class ElementGroup extends Element {
         this.elements.forEach(element -> {
             element.min_x = min_x + (element.pos_x - pos_x);
             element.min_y = min_y + (element.pos_y - pos_y);
-            System.out.println(element.min_x + " " + element.min_y);
         });
     }
 
