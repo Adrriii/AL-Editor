@@ -37,6 +37,8 @@ public class Canvas extends Drawable implements ISerializable {
     }
 
     public void addElement(Element element) {
+        element.Detach(App.view.getCanvasView());
+        element.Attach(App.view.getCanvasView());
         this.elements.add(element);
     }
 

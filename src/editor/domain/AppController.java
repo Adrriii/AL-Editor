@@ -10,7 +10,7 @@ import editor.application.App;
 import editor.domain.menu.InteractionMenu;
 import editor.domain.menu.TopMenu;
 import editor.domain.menu.interactionmenus.ElementInteractionMenu;
-import editor.domain.operation.MoveElement;
+import editor.domain.operation.*;
 
 public class AppController {
 
@@ -44,6 +44,7 @@ public class AppController {
     private int drag_x_elem_rel;
     private int drag_y_elem_rel;
     private boolean dragging_from_toolbar = false;
+    private boolean dropped_from_toolbar = false;
 
     private boolean readyToDrag = true;
 
@@ -163,7 +164,17 @@ public class AppController {
                     if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
                     if(dragging_from_toolbar) {
                         dragging_from_toolbar = false;
-                        draggingElement = App.model.addElement(App.model.getSelectedTool(),new Position(canvas_relative_x,canvas_relative_y));
+                        
+                        CreateElement createElement = new CreateElement(
+                            App.model.getSelectedTool(),
+                            new Position(canvas_relative_x,canvas_relative_y)
+                        );
+
+                        actionControl.Do(createElement);  
+                        draggingElement = createElement.getCreatedElement();
+
+                        dropped_from_toolbar = true;
+
                         App.model.DeselectAll();
                         draggingElement.setSelected(true);
                         App.model.setSelectedTool(null);
@@ -232,13 +243,24 @@ public class AppController {
                     draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
                     toolbar.addElement(draggingElement);
                 } else {
-                    actionControl.Do(
-                        new MoveElement(
-                            draggingElement, 
-                            new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel),
-                            new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel))
-                        )
+
+                    Position elementNextPosition = new Position(
+                        Math.max(0,canvas_relative_x - drag_x_elem_rel), 
+                        Math.max(0,canvas_relative_y - drag_y_elem_rel)
                     );
+                    
+                    if (!dropped_from_toolbar) {
+                        actionControl.Do(
+                            new MoveElement(
+                                draggingElement, 
+                                new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel),
+                                elementNextPosition
+                            )
+                        );
+                    } else {
+                        ((CreateElement) actionControl.peekLastOperation()).setLocation(elementNextPosition);
+                        dropped_from_toolbar = false;
+                    }
                 }
 
             } else {

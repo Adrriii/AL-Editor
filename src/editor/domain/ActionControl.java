@@ -31,5 +31,9 @@ public class ActionControl {
         toRedo.Do();
         operations.push(toRedo);
     }
+
+    public Operation peekLastOperation() {
+        return operations.peek();
+    }
     
 }

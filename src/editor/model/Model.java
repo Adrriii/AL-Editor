@@ -107,6 +107,16 @@ public class Model {
     public Element addElement(Element element, Position pos) {
         return this.canvas.newElement(element, pos);
     }
+
+    public Element addExistingElement(Element element, Position pos) {
+        element.Update(pos);
+        this.canvas.addElement(element);
+        return element;
+    }
+
+    public void removeElement(Element element) {
+        this.canvas.removeElement(element);
+    }
     
     public void Resize(int width, int height) {
         this.width = width;
