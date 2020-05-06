@@ -9,6 +9,7 @@ import javafx.stage.*;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -61,7 +62,7 @@ public class JavaFXApplication extends Application implements Runnable {
                     e.printStackTrace();
                 }
             }
-        }.start();        
+        }.start();
        
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
             @Override 
@@ -70,6 +71,14 @@ public class JavaFXApplication extends Application implements Runnable {
             } 
         };  
         JavaFXApplication.scene.addEventFilter(MouseEvent.ANY, eventHandler);   
+       
+        EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>() { 
+            @Override 
+            public void handle(KeyEvent e) { 
+                ((JavaFXController) App.controller).NotifyKeyboard(e);
+            } 
+        };  
+        JavaFXApplication.scene.addEventFilter(KeyEvent.ANY, keyEventHandler);   
 
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
             ((JavaFXController) App.controller).NotifyWidth(newVal.intValue());

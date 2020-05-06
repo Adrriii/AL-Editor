@@ -7,8 +7,7 @@ import editor.userinterface.ViewScope;
 
 public abstract class Drawable {
 
-    public int pos_x = 0;
-    public int pos_y = 0;
+    public Position pos;
 
     public int width = 0;
     public int height = 0;
@@ -17,17 +16,18 @@ public abstract class Drawable {
 
     public Drawable() {
         views = new ArrayList<ViewScope>();
+        pos = new Position(0,0);
     }
 
     public void Draw() {
-        Draw(pos_x, pos_y);
+        Draw(pos);
     }
 
-    public void DrawRef(int ref_x, int ref_y) {
-        Draw(pos_x + ref_x, pos_y + ref_y);
+    public void DrawRef(Position ref) {
+        Draw(ref);
     }
 
-    abstract public void Draw(int x, int y);
+    abstract public void Draw(Position ref);
 
     public void Attach(ViewScope view) {
         views.add(view);
@@ -42,15 +42,15 @@ public abstract class Drawable {
     }
     
     public boolean isClicked(int x, int y) {
-        return x > pos_x && x < pos_x + width && y > pos_y && y < pos_y + height;
+        return x > pos.x && x < pos.x + width && y > pos.y && y < pos.y + height;
     }
     
     public boolean intersects(int rx, int ry, int rwidth, int rheight) {
 
-        return !(pos_x + width <= rx ||
-                 pos_y + height <= ry ||
-                 pos_x >= rx + rwidth || 
-                 pos_y >= ry + rheight); 
+        return !(pos.x + width <= rx ||
+                 pos.y + height <= ry ||
+                 pos.x >= rx + rwidth || 
+                 pos.y >= ry + rheight); 
     }
 
 }

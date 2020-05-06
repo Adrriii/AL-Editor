@@ -39,37 +39,39 @@ public abstract class Element extends Drawable implements ISerializable, IContro
 
     abstract public int getSurfaceHeight();
 
-    public void Update(int new_pos_x, int new_pos_y, int width, int height) {
-        if(new_pos_x > min_x) {
-            pos_x = new_pos_x;
+    public Position Update(Position new_pos, int width, int height) {
+        if(new_pos.x > min_x) {
+            pos.x = new_pos.x;
         } else {
-            pos_x = min_x;
+            pos.x = min_x;
         }
-        if(new_pos_y > min_y) {
-            pos_y = new_pos_y;
+        if(new_pos.y > min_y) {
+            pos.y = new_pos.y;
         } else {
-            pos_y = min_y;
+            pos.y = min_y;
         }
 
         this.width = width;
         this.height = height;
 
         Update();
+
+        return new Position(pos.x, pos.y);
     }
 
-    public void Update(int new_pos_x, int new_pos_y) {
-        Update(new_pos_x, new_pos_y, this.getSurfaceWidth(), this.getSurfaceHeight());
+    public Position Update(Position new_pos) {
+        return Update(new_pos, this.getSurfaceWidth(), this.getSurfaceHeight());
     }
 
-    abstract public void Draw(int x, int y, int fit_width, int fit_height);
+    abstract public void Draw(Position pos, int fit_width, int fit_height);
 
     @Override
-    public void Draw(int x, int y) {
-        Draw(x, y, 1);
+    public void Draw(Position pos) {
+        Draw(pos, 1);
     }
     
-    public void Draw(int x, int y, double scale) {
-        Draw(x, y, (int) (width * scale), (int) (height * scale));
+    public void Draw(Position pos, double scale) {
+        Draw(pos, (int) (width * scale), (int) (height * scale));
     }
 
     public boolean isSelected() {

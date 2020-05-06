@@ -107,11 +107,11 @@ public class JavaFXView implements View {
     }
 
     public void drawRectangle(Rectangle rectangle, double scale) {
-        drawRectangle(rectangle, rectangle.pos_x, rectangle.pos_y, scale);
+        drawRectangle(rectangle, rectangle.pos.x, rectangle.pos.y, scale);
     }
 
     public void drawRectangle(Rectangle rectangle) {
-        drawRectangle(rectangle, rectangle.pos_x, rectangle.pos_y, 1);
+        drawRectangle(rectangle, rectangle.pos.x, rectangle.pos.y, 1);
     }
 
     @Override

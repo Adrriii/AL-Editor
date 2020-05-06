@@ -14,6 +14,7 @@ public class JavaFXViewMain implements ViewScope {
 
     @Override
     public void Tick() {
+        if(!App.ready) return;
         if(invalidated) {
             App.view.getCanvasView().Update();
             App.view.getToolbarView().Update();

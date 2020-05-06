@@ -2,8 +2,8 @@ package editor.domain;
 
 public interface IControllable {
 
-    public void Update(int new_pos_x, int new_pos_y);
+    public Position Update(Position new_pos);
 
-    public boolean isClicked(int x, int y);
+    public boolean isClicked(Position pos);
 
 }

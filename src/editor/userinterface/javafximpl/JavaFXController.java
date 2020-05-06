@@ -1,10 +1,13 @@
 package editor.userinterface.javafximpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import editor.application.App;
 import editor.domain.IControllable;
 import editor.userinterface.Controller;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -12,8 +15,11 @@ public class JavaFXController implements Controller {
 
     private ArrayList<IControllable> controllables;
 
+    private HashMap<KeyCode, Boolean> heldKeys;
+
     public JavaFXController() {
         controllables = new ArrayList<>();
+        heldKeys = new HashMap<>();
     }
 
     @Override
@@ -66,6 +72,31 @@ public class JavaFXController implements Controller {
             case "MOUSE_EXITED":
                 break;
             case "DRAG_DETECTED":
+                break;
+            default:
+                System.out.println("Unsupported event type : "+type);
+        }
+    }
+
+    public void NotifyKeyboard(KeyEvent keyEvent) {
+        String type = keyEvent.getEventType().getName();
+
+        KeyCode key = keyEvent.getCode();
+
+        switch(type) {
+            case "KEY_TYPED":
+                break;
+            case "KEY_PRESSED":
+                if(heldKeys.get(key) == null) {
+                    App.appController.NotifyKeyPressed(key.toString());
+                    heldKeys.put(key, true);
+                }
+                break;
+            case "KEY_RELEASED":
+                if(heldKeys.get(key) != null) {
+                    App.appController.NotifyKeyReleased(key.toString());
+                    heldKeys.remove(key);
+                }
                 break;
             default:
                 System.out.println("Unsupported event type : "+type);

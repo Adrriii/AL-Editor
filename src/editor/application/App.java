@@ -12,8 +12,11 @@ public class App {
     public static Controller controller;
     public static AppController appController;
     public static Model model;
+    public static boolean ready;
 
     public static void main(String args[]) {
+
+        ready = false;
 
         UserInterface ui = new JavaFXUI();
         App.view = ui.GetView();
@@ -26,6 +29,8 @@ public class App {
 
         App.model.getToolbar().addElement(new Rectangle(130,160));
         App.model.getToolbar().addElement(new Rectangle(190,130, 255, 0, 0));
+        
+        ready = true;
 
         while (model.isRunning()) {
             App.model.Update();

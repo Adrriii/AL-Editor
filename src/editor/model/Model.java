@@ -83,20 +83,20 @@ public class Model {
         return selectedTool;
     }
 
-    public void SetSelectionRectangle(int pos_x, int pos_y, int width, int height) {
-        if(pos_x == 0 && pos_y == 0 && width == 0 && height == 0) {
+    public void SetSelectionRectangle(Position pos, int width, int height) {
+        if(pos.x == 0 && pos.y == 0 && width == 0 && height == 0) {
             this.selectionRectangle = null;
         } else {
-            this.selectionRectangle = new Rectangle(pos_x, pos_y, width, height, 0,0,255,50);
+            this.selectionRectangle = new Rectangle(pos.x, pos.y, width, height, 0,0,255,50);
             this.selectionRectangle.Attach(App.view.getCanvasView());
         }
     }
 
-    public void UpdateSelectionRectangle(int pos_x, int pos_y, int width, int height) {
+    public void UpdateSelectionRectangle(Position pos, int width, int height) {
         if(this.selectionRectangle == null) {
-            SetSelectionRectangle(pos_x, pos_y, width, height);
+            SetSelectionRectangle(pos, width, height);
         } else {
-            this.selectionRectangle.Update(pos_x, pos_y, width, height);
+            this.selectionRectangle.Update(pos, width, height);
         }
     }
 
@@ -104,18 +104,17 @@ public class Model {
         return this.selectionRectangle;
     }
 
-    public Element addElement(Element element, int pos_x, int pos_y) {
-        return this.canvas.newElement(element, pos_x, pos_y);
+    public Element addElement(Element element, Position pos) {
+        return this.canvas.newElement(element, pos);
     }
     
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;
 
-        topMenu.width = width;
-        toolbar.height = height;
-        canvas.width = width - toolbar.width;
-        canvas.height = height - topMenu.height;
+        topMenu.Resize(width, topMenu.height);
+        toolbar.Resize(toolbar.width, height);
+        canvas.Resize(width - toolbar.width, height - topMenu.height);
 
         this.canvas.Notify();
         this.toolbar.Notify();

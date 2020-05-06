@@ -19,11 +19,11 @@ public class Canvas extends Drawable implements ISerializable {
 
         elements = new ArrayList<>();
 
-        this.pos_x = 75; // Width of the Toolbar
-        this.pos_y = 75; // Height of the TopMenu
+        this.pos.x = 75; // Width of the Toolbar
+        this.pos.y = 75; // Height of the TopMenu
 
-        this.width = 800 - this.pos_x; // Resizable
-        this.height = 600 - this.pos_y; // Resizable
+        this.width = 800 - this.pos.x; // Resizable
+        this.height = 600 - this.pos.y; // Resizable
 
         this.background = new Rectangle(0, 0, width, height, 255, 255, 255, 255);
     }
@@ -40,23 +40,29 @@ public class Canvas extends Drawable implements ISerializable {
         this.elements.add(element);
     }
 
-    public Element newElement(Element element, int pos_x, int pos_y) {
+    public Element newElement(Element element, Position pos) {
         Element newElement = element.Clone();
         newElement.Attach(App.view.getCanvasView());
-        newElement.Update(pos_x, pos_y);
+        newElement.Update(pos);
         elements.add(newElement);
         Notify();
         return newElement;
     }
+    
+    public void Resize(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.background.Update(this.pos, width, height);
+    }
 
     @Override
-    public void Draw(int x, int y) {
-        App.view.drawRectangle(this.background, x, y);
+    public void Draw(Position pos) {
+        App.view.drawRectangle(this.background, pos.x, pos.y);
 
-        getElements().forEach(element -> element.Draw(pos_x + element.pos_x, pos_y + element.pos_y));
+        getElements().forEach(element -> element.Draw(new Position(pos.x + element.pos.x, pos.y + element.pos.y)));
 
         if(App.model.getSelectionRectangle() != null) {
-            App.model.getSelectionRectangle().Draw(pos_x + App.model.getSelectionRectangle().pos_x, pos_y + App.model.getSelectionRectangle().pos_y);
+            App.model.getSelectionRectangle().Draw(new Position(pos.x + App.model.getSelectionRectangle().pos.x, pos.y + App.model.getSelectionRectangle().pos.y));
         }
     }
 

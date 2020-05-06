@@ -1,12 +1,16 @@
 package editor.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Optional;
+import java.util.Stack;
 
 import editor.application.App;
 import editor.domain.menu.InteractionMenu;
 import editor.domain.menu.TopMenu;
 import editor.domain.menu.interactionmenus.ElementInteractionMenu;
+import editor.domain.operation.MoveElement;
 
 public class AppController {
 
@@ -15,6 +19,10 @@ public class AppController {
     private Canvas canvas;
     private Toolbar toolbar;
     private TopMenu topMenu;
+
+    private ActionControl actionControl;
+
+    private HashMap<String, Boolean> heldKeys;
 
     private boolean left = false;
     private boolean left_clicked = false;
@@ -47,6 +55,12 @@ public class AppController {
         canvas = App.model.getCanvas();
         toolbar = App.model.getToolbar();
         topMenu = App.model.getTopMenu();
+        actionControl = new ActionControl();
+        heldKeys = new HashMap<>();
+
+        heldKeys.put("CONTROL", false);
+        heldKeys.put("SHIFT", false);
+        heldKeys.put("ALT", false);
     }
 
     public void NotifyMouseLeftPress(int x, int y) {
@@ -96,8 +110,8 @@ public class AppController {
     public void UpdateMouse() {
 
         
-        int canvas_relative_x = Math.max(0, pos_x - canvas.pos_x);
-        int canvas_relative_y = Math.max(0, pos_y - canvas.pos_y);
+        int canvas_relative_x = Math.max(0, pos_x - canvas.pos.x);
+        int canvas_relative_y = Math.max(0, pos_y - canvas.pos.y);
         
         boolean inCanvas = App.model.getCanvas().isClicked(pos_x, pos_y);
         boolean inToolbar = App.model.getToolbar().isClicked(pos_x, pos_y);
@@ -135,7 +149,7 @@ public class AppController {
                         int sr_width = select_start_x < canvas_relative_x ? canvas_relative_x - select_start_x : select_start_x - canvas_relative_x;
                         int sr_height = select_start_y < canvas_relative_y ? canvas_relative_y - select_start_y : select_start_y - canvas_relative_y;
 
-                        App.model.UpdateSelectionRectangle(sr_x, sr_y, sr_width, sr_height);
+                        App.model.UpdateSelectionRectangle(new Position(sr_x, sr_y), sr_width, sr_height);
 
                         App.model.getCanvas().getElements().forEach(element -> {
                             if(element.intersects(sr_x, sr_y, sr_width, sr_height)) {
@@ -149,7 +163,7 @@ public class AppController {
                     if(!readyToDrag) return; // Started dragging on an empty spot, ignoring.
                     if(dragging_from_toolbar) {
                         dragging_from_toolbar = false;
-                        draggingElement = App.model.addElement(App.model.getSelectedTool(),canvas_relative_x,canvas_relative_y);
+                        draggingElement = App.model.addElement(App.model.getSelectedTool(),new Position(canvas_relative_x,canvas_relative_y));
                         App.model.DeselectAll();
                         draggingElement.setSelected(true);
                         App.model.setSelectedTool(null);
@@ -164,13 +178,13 @@ public class AppController {
                             selecting = true;
                         } else {
                             draggingElement = holdElement;
-                            drag_x_elem_rel = canvas_relative_x - draggingElement.pos_x;
-                            drag_y_elem_rel = canvas_relative_y - draggingElement.pos_y;
+                            drag_x_elem_rel = canvas_relative_x - draggingElement.pos.x;
+                            drag_y_elem_rel = canvas_relative_y - draggingElement.pos.y;
                         }
                     }
 
                     if(draggingElement != null) {
-                        draggingElement.Update(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel));
+                        draggingElement.Update(new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel)));
                     }
                 } else if (inToolbar) {
 
@@ -209,15 +223,24 @@ public class AppController {
 
             if(selecting) {
                 selecting = false;
-                App.model.UpdateSelectionRectangle(0,0,0,0);
+                App.model.UpdateSelectionRectangle(new Position(0,0),0,0);
                 return;
             }
 
             if(draggingElement != null) {
                 if(inToolbar) {
-                    draggingElement.Update(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel);
+                    draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
                     toolbar.addElement(draggingElement);
+                } else {
+                    actionControl.Do(
+                        new MoveElement(
+                            draggingElement, 
+                            new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel),
+                            new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel))
+                        )
+                    );
                 }
+
             } else {
 
                 if(inCanvas) {
@@ -233,7 +256,7 @@ public class AppController {
                     
                     Element selected = App.model.getSelectedTool();
                     if(selected != null) {
-                        App.model.addElement(selected,canvas_relative_x,canvas_relative_y);
+                        App.model.addElement(selected,new Position(canvas_relative_x,canvas_relative_y));
                     } else {
                         App.view.getCanvasView().Update();
                     }
@@ -293,5 +316,33 @@ public class AppController {
         App.model.DeselectAll();
         holdElement.setSelected(true);
         App.view.getCanvasView().Update();
+    }
+
+    public void NotifyKeyPressed(String key) {
+        heldKeys.put(key, true);
+
+        switch(key) {
+            case "Z":
+                if(heldKeys.get("CONTROL") == true) {
+                    actionControl.Undo();
+                }
+                break;
+            case "Y":
+                if(heldKeys.get("CONTROL") == true) {
+                    actionControl.Redo();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void NotifyKeyReleased(String key) {
+        heldKeys.put(key, false);
+
+        switch(key) {
+            default:
+                break;
+        }
     }
 }

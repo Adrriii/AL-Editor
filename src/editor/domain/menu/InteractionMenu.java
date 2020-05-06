@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import editor.application.App;
 import editor.domain.Menu;
+import editor.domain.Position;
 
 public abstract class InteractionMenu extends Menu {
 
@@ -17,8 +18,8 @@ public abstract class InteractionMenu extends Menu {
 
         interactions = new ArrayList<>();
 
-        this.pos_x = x;
-        this.pos_y = y;
+        this.pos.x = x;
+        this.pos.y = y;
         this.interaction_pos_y = y;
 
         this.height = 0;
@@ -32,8 +33,8 @@ public abstract class InteractionMenu extends Menu {
     }
 
     public void addInteraction(Interaction interaction) {
-        interaction.pos_x = pos_x;
-        interaction.pos_y = interaction_pos_y;
+        interaction.pos.x = pos.x;
+        interaction.pos.y = interaction_pos_y;
         interaction_pos_y += interaction.height;
 
         this.interactions.add(interaction);
@@ -48,14 +49,14 @@ public abstract class InteractionMenu extends Menu {
     }
 
     @Override
-    public void Draw(int x, int y) {
-        int curr_y = y;
+    public void Draw(Position pos) {
+        int curr_y = pos.y;
 
         Iterator<Interaction> iter = interactions.iterator();
 
         while(iter.hasNext()) {
             Interaction item = iter.next();
-            item.Draw(x, curr_y);
+            item.Draw(new Position(pos.x, curr_y));
             curr_y += item.height;
         }
     }

@@ -66,72 +66,74 @@ public class ElementGroup extends Element {
     }
 
     @Override
-    public void Draw(int x, int y) {
-        this.elements.forEach(element -> element.Draw(x - pos_x + element.pos_x,y - pos_y +  element.pos_y));
+    public void Draw(Position pos) {
+        this.elements.forEach(element -> element.Draw(new Position(pos.x - this.pos.x + element.pos.x, pos.y - this.pos.y +  element.pos.y)));
     }
 
     @Override
-    public void Draw(int x, int y, int fit_width, int fit_height) {
+    public void Draw(Position pos, int fit_width, int fit_height) {
         final double scale = Math.min(fit_width / (double) width, fit_height / (double) height);
         
         this.elements.forEach(element ->  {
-            element.Draw((int) (x - pos_x + element.pos_x * scale),(int) (y - pos_y +  element.pos_y * scale), scale);
+            element.Draw(new Position((int) (pos.x - this.pos.x + element.pos.x * scale),(int) (pos.y - this.pos.y +  element.pos.y * scale)), scale);
         });
     }
 
     @Override
-    public void Update(int new_pos_x, int new_pos_y, int width, int height) {
+    public Position Update(Position new_pos, int width, int height) {
         int diff_x = 0;
         int diff_y = 0;
-        if(new_pos_x > min_x) {
-            diff_x = new_pos_x - pos_x;
-            pos_x = new_pos_x;
+        if(new_pos.x > min_x) {
+            diff_x = new_pos.x - pos.x;
+            pos.x = new_pos.x;
         } else {
-            diff_x = min_x - pos_x;
-            pos_x = min_x;
+            diff_x = min_x - pos.x;
+            pos.x = min_x;
         }
-        if(new_pos_y > min_y) {
-            diff_y = new_pos_y - pos_y;
-            pos_y = new_pos_y;
+        if(new_pos.y > min_y) {
+            diff_y = new_pos.y - pos.y;
+            pos.y = new_pos.y;
         } else {
-            diff_y = min_y - pos_y;
-            pos_y = min_y;
+            diff_y = min_y - pos.y;
+            pos.y = min_y;
         }
         final int dx = diff_x;
         final int dy = diff_y;
         
-        this.elements.forEach(element -> element.Update(element.pos_x + dx, element.pos_y + dy));
+        this.elements.forEach(element -> element.Update(new Position(element.pos.x + dx, element.pos.y + dy)));
         
         Update();
+
+        return new Position(pos.x, pos.y);
     }
 
     @Override
-    public void Update(int new_pos_x, int new_pos_y) {        
-        Update(new_pos_x, new_pos_y, width, height);
+    public Position Update(Position new_pos) {        
+        return Update(new_pos, width, height);
     }
 
     public void UpdateReferencePos() {
         this.elements.forEach(element -> {
-            if(pos_x == 0 || element.pos_x < pos_x) {
-                pos_x = element.pos_x;
+            if(pos.x == 0 || element.pos.x < pos.x) {
+                pos.x = element.pos.x;
             }
 
-            if(pos_y == 0 || element.pos_y < pos_y) {
-                pos_y = element.pos_y;
+            if(pos.y == 0 || element.pos.y < pos.y) {
+                pos.y = element.pos.y;
             }
 
-            if(width == 0 || element.pos_x + element.getSurfaceWidth() - pos_x > width) {
-                width = element.pos_x + element.getSurfaceWidth() - pos_x;
+            if(width == 0 || element.pos.x + element.getSurfaceWidth() - pos.x > width) {
+                width = element.pos.x + element.getSurfaceWidth() - pos.x;
             }
 
-            if(height == 0 || element.pos_y + element.getSurfaceHeight() - pos_y > height) {
-                height = element.pos_y + element.getSurfaceHeight() - pos_y;
+            if(height == 0 || element.pos.y + element.getSurfaceHeight() - pos.y > height) {
+                height = element.pos.y + element.getSurfaceHeight() - pos.y;
             }
         });
         
         this.elements.forEach(element -> {
-            element.min_x = min_x + (element.pos_x - pos_x);
-            element.min_y = min_y + (element.pos_y - pos_y);
+            element.min_x = min_x + (element.pos.x - pos.x);
+            element.min_y = min_y + (element.pos.y - pos.y);
         });
     }
 
@@ -142,10 +144,10 @@ public class ElementGroup extends Element {
     }
 
     @Override
-    public boolean isClicked(int x, int y) {
+    public boolean isClicked(Position pos) {
         Iterator<Element> iter = elements.iterator();
         while(iter.hasNext()) {
-            if(iter.next().isClicked(x, y)) return true;
+            if(iter.next().isClicked(pos)) return true;
         }
         return false;
     }

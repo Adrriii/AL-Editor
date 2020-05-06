@@ -23,17 +23,23 @@ public class Toolbar extends Drawable implements ISerializable {
 
         toolbarElements = new ArrayList<>();
 
-        this.pos_x = 0;
-        this.pos_y = 75; // Height of the TopMenu
+        this.pos.x = 0;
+        this.pos.y = 75; // Height of the TopMenu
 
         this.width = 75; // Constant
-        this.height = 600 - this.pos_y; // Resizable
+        this.height = 600 - this.pos.y; // Resizable
 
         this.element_padding = 10;
 
         this.element_height = this.width - this.element_padding * 2;
 
         this.background = new Rectangle(0, 0, width, height, 80, 80, 80, 255);
+    }
+    
+    public void Resize(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.background.Update(this.pos, width, height);
     }
 
     public int getElementPadding() {
@@ -43,8 +49,8 @@ public class Toolbar extends Drawable implements ISerializable {
     public void addElement(Element element) {
         toolbarElements.add(new ToolbarElement(this,
                 element, 
-                this.pos_x + this.element_padding, 
-                this.pos_y + this.element_padding + (this.element_height + this.element_padding) * toolbarElements.size(), 
+                this.pos.x + this.element_padding, 
+                this.pos.y + this.element_padding + (this.element_height + this.element_padding) * toolbarElements.size(), 
                 this.element_height
             ));
 
@@ -60,15 +66,15 @@ public class Toolbar extends Drawable implements ISerializable {
     }
 
     @Override
-    public void Draw(int x, int y) {
-        App.view.drawRectangle(this.background, x, y);
+    public void Draw(Position pos) {
+        App.view.drawRectangle(this.background, pos.x, pos.y);
 
-        int curr_y = y;
+        int curr_y = pos.y;
 
         Iterator<ToolbarElement> iter = getToolbarElements().iterator();
 
         while(iter.hasNext()) {
-            iter.next().Draw(x + getElementPadding(), curr_y + getElementPadding());
+            iter.next().Draw(new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
             curr_y += width;
         }
     }

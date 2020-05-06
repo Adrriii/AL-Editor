@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import editor.domain.Element;
 import editor.domain.ElementProperty;
+import editor.domain.Position;
 import editor.domain.elementproperty.ColorProperty;
 
 public class Polygon extends Element {
@@ -25,8 +26,8 @@ public class Polygon extends Element {
     @Override
     public Polygon Clone() {
         Polygon newElement = new Polygon(properties);
-        newElement.pos_x = pos_x;
-        newElement.pos_y = pos_y;
+        newElement.pos.x = pos.x;
+        newElement.pos.y = pos.y;
         newElement.width = width;
         newElement.height = height;
         newElement.min_x = min_x;
@@ -46,8 +47,14 @@ public class Polygon extends Element {
     }
 
     @Override
-    public void Draw(int x, int y, int fit_width, int fit_height) {
+    public void Draw(Position pos, int fit_width, int fit_height) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public boolean isClicked(Position pos) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }
