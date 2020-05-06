@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import editor.application.App;
+import editor.domain.AppController;
 import editor.domain.Element;
 import editor.domain.ElementGroup;
 import editor.domain.InvalidCompositeAddition;
+import editor.domain.operation.DeGroupElements;
 
 public class DegroupElementsInteraction extends ElementInteraction {
 
@@ -16,24 +18,8 @@ public class DegroupElementsInteraction extends ElementInteraction {
 
     @Override
     public void onClick() {
-        ArrayList<Element> elements = new ArrayList<>(((ElementGroup) element).getElements());
 
-        element.Detach(App.view.getCanvasView());
-        App.model.getCanvas().removeElement(element);
-        
-        App.model.DeselectAll();
-
-        elements.forEach(out -> {
-            try {
-                element.Remove(out);
-            }
-            catch (InvalidCompositeAddition e) {
-                e.printStackTrace();
-            }
-            App.model.getCanvas().addElement(out);
-            out.Attach(App.view.getCanvasView());
-            App.model.Select(out);
-        });
+        AppController.actionControl.Do(new DeGroupElements((ElementGroup) element));
         
         App.model.setInteractionMenu(null); 
     }

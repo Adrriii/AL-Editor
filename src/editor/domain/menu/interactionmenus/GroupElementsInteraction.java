@@ -3,9 +3,11 @@ package editor.domain.menu.interactionmenus;
 import java.util.HashSet;
 
 import editor.application.App;
+import editor.domain.AppController;
 import editor.domain.Element;
 import editor.domain.ElementGroup;
 import editor.domain.InvalidCompositeAddition;
+import editor.domain.operation.GroupElements;
 
 public class GroupElementsInteraction extends ElementInteraction {
 
@@ -17,23 +19,8 @@ public class GroupElementsInteraction extends ElementInteraction {
     public void onClick() {
         HashSet<Element> selected = App.model.getSelectedElements();
 
-
-        ElementGroup group = new ElementGroup();
-        group.Attach(App.view.getCanvasView());
-
-        selected.forEach(element -> {
-            try {
-                group.Add(element);
-                element.Detach(App.view.getCanvasView());
-                App.model.getCanvas().removeElement(element);
-            } catch (InvalidCompositeAddition e) {
-                e.printStackTrace();
-            }
-        });
+        AppController.actionControl.Do(new GroupElements(selected));
         
-        App.model.getCanvas().addElement(group);
-        App.model.DeselectAll();
-        App.model.Select(group);
         App.model.setInteractionMenu(null);
     }
 

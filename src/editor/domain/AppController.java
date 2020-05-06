@@ -20,7 +20,7 @@ public class AppController {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
-    private ActionControl actionControl;
+    static public ActionControl actionControl;
 
     private HashMap<String, Boolean> heldKeys;
 
