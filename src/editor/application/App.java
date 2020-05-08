@@ -42,4 +42,8 @@ public class App {
             }
         }
     }
+
+    public static String getFilePath(String relativePath) {
+        return System.getProperty("user.dir") + "\\" + relativePath.replace("/", "\\");
+    }
 }

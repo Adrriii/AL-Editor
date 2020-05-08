@@ -24,5 +24,10 @@ public class MoveElement extends Operation {
     public void Undo() {
         ((Element) state).Update(move_from);
     }
+
+    @Override
+    public boolean Doable() {
+        return true;
+    }
     
 }

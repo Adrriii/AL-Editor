@@ -35,5 +35,10 @@ public class CreateElement extends Operation {
     public void setLocation(Position location) {
         this.location = location;
     }
+
+    @Override
+    public boolean Doable() {
+        return App.model != null;
+    }
     
 }

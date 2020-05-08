@@ -1,5 +1,8 @@
 package editor.userinterface.javafximpl;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import editor.application.App;
@@ -12,6 +15,8 @@ import editor.domain.elementproperty.ColorProperty;
 import editor.domain.menu.TopMenu;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -26,6 +31,8 @@ public class JavaFXView implements View {
     private JavaFXViewToolbar toolbarView;
     private JavaFXViewTopMenu topMenuView;
 
+    private HashMap<String, Image> imageCache;
+
     public JavaFXView() {
         this.started = false;
 
@@ -38,7 +45,11 @@ public class JavaFXView implements View {
 
         this.JavaFXThread.start();
 
-        while(!JavaFXApplication.ready) {};
+        this.imageCache = new HashMap<>();
+
+        while (!JavaFXApplication.ready) {
+        }
+        ;
 
         this.started = true;
     }
@@ -68,6 +79,21 @@ public class JavaFXView implements View {
         mainView.Tick();
     }
 
+    private void loadImage(String path) {
+        if (imageCache.containsKey(path))
+            return;
+
+        try {
+            imageCache.put(path, new Image(new FileInputStream(path)));
+        } catch (FileNotFoundException e) {
+            System.out.println(path+" can't be found.");
+        }
+    }
+
+    public void clearImageCache() {
+        imageCache.clear();
+    }
+
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
         
@@ -90,6 +116,17 @@ public class JavaFXView implements View {
         text.setY(y);
 
         JavaFXApplication.addToRoot(text);
+    }
+
+    public void drawJavaFXImage(Image image, int x, int y, int width, int height) {
+        ImageView img = new ImageView(image);
+
+        img.setX(x);
+        img.setY(y);
+        img.setFitWidth(width);
+        img.setFitHeight(height);
+
+        JavaFXApplication.addToRoot(img);
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
@@ -117,6 +154,13 @@ public class JavaFXView implements View {
     @Override
     public void drawText(String text, int x, int y, int size) {
         drawJavaFXText(text, x, y, size);
+    }
+
+    @Override
+    public void drawImage(String path, int pos_x, int pos_y, int width, int height) {
+        loadImage(path);
+
+        drawJavaFXImage(imageCache.get(path), pos_x, pos_y, width, height);
     }
 
 }

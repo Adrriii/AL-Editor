@@ -7,5 +7,7 @@ public abstract class Operation {
     abstract public void Do();
 
     abstract public void Undo();
+
+    abstract public boolean Doable();
     
 }

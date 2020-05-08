@@ -62,5 +62,10 @@ public class GroupElements extends Operation {
             App.model.Select(out);
         });
     }
+
+    @Override
+    public boolean Doable() {
+        return true;
+    }
     
 }

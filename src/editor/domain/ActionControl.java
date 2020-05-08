@@ -2,6 +2,8 @@ package editor.domain;
 
 import java.util.Stack;
 
+import editor.application.App;
+
 public class ActionControl {
 
     private Stack<Operation> operations;
@@ -16,6 +18,7 @@ public class ActionControl {
         reversed.clear();
         operation.Do();
         operations.push(operation);
+        App.view.getTopMenuView().Update();
     }
 
     public void Undo() {
@@ -23,6 +26,7 @@ public class ActionControl {
         Operation toUndo = operations.pop();
         toUndo.Undo();
         reversed.push(toUndo);
+        App.view.getTopMenuView().Update();
     }
 
     public void Redo() {
@@ -30,10 +34,19 @@ public class ActionControl {
         Operation toRedo = reversed.pop();
         toRedo.Do();
         operations.push(toRedo);
+        App.view.getTopMenuView().Update();
     }
 
     public Operation peekLastOperation() {
         return operations.peek();
+    }
+
+    public boolean CanUndo() {
+        return !operations.empty();
+    }
+
+    public boolean CanRedo() {
+        return !reversed.empty() && reversed.peek().Doable();
     }
     
 }

@@ -218,7 +218,7 @@ public class AppController {
                 // Holding click
             }
         }
-
+        
         if(left_clicked) {
             left_clicked = false; // Consume event
 
@@ -227,6 +227,11 @@ public class AppController {
                 return;
             } else if (!(App.model.getInteractionMenu() == null)) {
                 App.model.setInteractionMenu(null);
+                return;
+            }
+
+            if(inTopMenu) {
+                App.model.getTopMenu().onClick(pos_x, pos_y);
                 return;
             }
                 
