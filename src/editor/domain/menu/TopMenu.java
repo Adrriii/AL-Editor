@@ -42,6 +42,8 @@ public class TopMenu extends Menu {
         this.background = new Rectangle(pos.x, pos.y, width, height, 211, 211, 211, 255);
         this.elements = new ArrayList<>();
     
+        addElement(new TopMenuSave(elementWidth, elementHeight));
+        addElement(new TopMenuSaveNew(elementWidth, elementHeight));
         addElement(new TopMenuUndo(elementWidth, elementHeight));
         addElement(new TopMenuRedo(elementWidth, elementHeight));
     }
