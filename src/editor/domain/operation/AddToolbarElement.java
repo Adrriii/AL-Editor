@@ -18,12 +18,17 @@ public class AddToolbarElement extends Operation {
     @Override
     public void Do() {
         created = App.model.getToolbar().addElement(toAdd);
+
+        (new SaveToolbar()).Do();
     }
 
     @Override
     public void Undo() {
-        if(created != null)
+        if(created != null) {
             App.model.getToolbar().removeElement(created);
+
+            (new SaveToolbar()).Do();
+        }
     }
 
     @Override

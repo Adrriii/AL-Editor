@@ -23,7 +23,7 @@ public class TopMenu extends Menu {
     
     public TopMenu() {
         super();
-        
+
         Attach(App.view.getTopMenuView());
 
         this.pos.x = 0;
@@ -48,7 +48,7 @@ public class TopMenu extends Menu {
         addElement(new TopMenuUndo(elementWidth, elementHeight));
         addElement(new TopMenuRedo(elementWidth, elementHeight));
     }
-    
+
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;

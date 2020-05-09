@@ -3,12 +3,7 @@ package editor.domain;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public abstract class Element extends Drawable implements IControllable, Serializable {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+public abstract class Element extends Drawable implements IControllable {
 
     public HashMap<String, ElementProperty> properties;
 
@@ -86,5 +81,10 @@ public abstract class Element extends Drawable implements IControllable, Seriali
 
     public void setSelected(boolean state) {
         selected = state;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+ ": " + super.toString();
     }
 }

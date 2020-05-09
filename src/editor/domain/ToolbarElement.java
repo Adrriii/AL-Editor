@@ -30,4 +30,9 @@ public class ToolbarElement extends Drawable {
         this.element.Draw(pos, this.parent.getElementSideSize(), this.parent.getElementSideSize());
     }
 
+    @Override
+    public String toString() {
+        return "Tool "+ this.element.toString();
+    }
+
 }

@@ -7,12 +7,7 @@ import java.util.Optional;
 import editor.application.App;
 import editor.domain.element.Rectangle;
 
-public class Canvas extends Drawable implements Serializable {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+public class Canvas extends Drawable {
 
     private ArrayList<Element> elements;
 

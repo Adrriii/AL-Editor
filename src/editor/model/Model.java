@@ -7,6 +7,7 @@ import editor.application.App;
 import editor.domain.*;
 import editor.domain.element.Rectangle;
 import editor.domain.menu.*;
+import editor.domain.operation.LoadToolbar;
 
 public class Model {
 
@@ -40,8 +41,8 @@ public class Model {
         this.running = true;
 
         this.canvas = new Canvas();
-        this.toolbar = new Toolbar();
         this.topMenu = new TopMenu();
+        (new LoadToolbar()).Do();
 
         this.selected = new HashSet<>();
         this.selectionRectangle = null;
@@ -53,30 +54,20 @@ public class Model {
 
     public void SetCanvas(Canvas canvas) {
         this.canvas = canvas;
-        this.toolbar = new Toolbar();
-        this.topMenu = new TopMenu();
 
         this.selected = new HashSet<>();
         this.selectionRectangle = null;
 
-        this.canvas.Notify();
-        this.toolbar.Notify();
-        this.topMenu.Notify();
-
+        Resize(width,height);
         App.view.Update();
     }
 
     public void SetToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
-        this.topMenu = new TopMenu();
 
-        this.selected = new HashSet<>();
-        this.selectionRectangle = null;
+        System.out.println("Loaded toolbar with "+toolbar.getToolbarElements().size()+" tools");
 
-        this.canvas.Notify();
-        this.toolbar.Notify();
-        this.topMenu.Notify();
-
+        Resize(width,height);
         App.view.Update();
     }
 

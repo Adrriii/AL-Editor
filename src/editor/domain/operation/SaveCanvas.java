@@ -23,7 +23,7 @@ public class SaveCanvas extends Operation {
     public void Do() {
         if (AppController.currentCanvasPath != null) { // Can save
             try {
-                FileOutputStream f = new FileOutputStream(new File(AppController.currentCanvasPath));
+                FileOutputStream f = new FileOutputStream(new File(AppController.currentCanvasPath), false);
                 ObjectOutputStream o = new ObjectOutputStream(f);
                 o.writeObject(App.model.getCanvas());
             

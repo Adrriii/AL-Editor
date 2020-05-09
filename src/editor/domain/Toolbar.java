@@ -8,12 +8,7 @@ import editor.application.App;
 import editor.domain.element.Rectangle;
 import javafx.scene.paint.Color;
 
-public class Toolbar extends Drawable implements Serializable {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+public class Toolbar extends Drawable {
 
     private ArrayList<ToolbarElement> toolbarElements;
 
@@ -41,7 +36,12 @@ public class Toolbar extends Drawable implements Serializable {
 
         this.background = new Rectangle(0, 0, width, height, 80, 80, 80, 255);
     }
-    
+
+    public void LoadDefaultTools() {
+        addElement(new Rectangle(130,160));
+        addElement(new Rectangle(190,130, 255, 0, 0));
+    }    
+
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;
@@ -111,6 +111,19 @@ public class Toolbar extends Drawable implements Serializable {
             iter.next().Draw(new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
             curr_y += width;
         }
+    }
+
+    @Override
+    public String toString() {
+        String str = super.toString();
+
+        Iterator<ToolbarElement> iter = getToolbarElements().iterator();
+
+        while(iter.hasNext()) {
+            str += "\n" + iter.next().toString();
+        }
+
+        return str;
     }
 
 }

@@ -21,19 +21,17 @@ public class SaveToolbar extends Operation {
 
     @Override
     public void Do() {
-        if (AppController.currentToolbarPath != null) { // Can save
             try {
-                FileOutputStream f = new FileOutputStream(new File(AppController.currentToolbarPath));
+                FileOutputStream f = new FileOutputStream(new File(".ale-tool"), false);
                 ObjectOutputStream o = new ObjectOutputStream(f);
                 o.writeObject(App.model.getToolbar());
             
                 o.close();
                 f.close();
             } catch (IOException e) {
-                System.out.println("Could not open "+AppController.currentToolbarPath);
+                System.out.println("Could not open .ale-tool");
                 e.printStackTrace();
             }
-        }
     }
 
     @Override

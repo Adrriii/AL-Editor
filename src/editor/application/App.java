@@ -26,9 +26,6 @@ public class App {
         App.model.init();
 
         App.appController = new AppController();
-
-        App.model.getToolbar().addElement(new Rectangle(130,160));
-        App.model.getToolbar().addElement(new Rectangle(190,130, 255, 0, 0));
         
         ready = true;
 

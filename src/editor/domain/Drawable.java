@@ -1,21 +1,26 @@
 package editor.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import editor.application.App;
 import editor.userinterface.ViewScope;
 
-public abstract class Drawable {
+public abstract class Drawable implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     public Position pos;
 
     public int width = 0;
     public int height = 0;
 
-    protected ArrayList<ViewScope> views;
+    public transient ArrayList<ViewScope> views;
 
     public Drawable() {
-        views = new ArrayList<ViewScope>();
         pos = new Position(0,0);
     }
 
@@ -30,14 +35,17 @@ public abstract class Drawable {
     abstract public void Draw(Position ref);
 
     public void Attach(ViewScope view) {
+        if(views == null) views = new ArrayList<>();
         views.add(view);
     }
 
     public void Detach(ViewScope view) {
+        if(views == null) views = new ArrayList<>();
         views.remove(view);
     }
 
     public void Notify() {
+        if(views == null) views = new ArrayList<>();
         views.forEach(view -> view.Update());
     }
     
@@ -51,6 +59,11 @@ public abstract class Drawable {
                  pos.y + height <= ry ||
                  pos.x >= rx + rwidth || 
                  pos.y >= ry + rheight); 
+    }
+
+    @Override
+    public String toString() {
+         return "x: "+pos.x+" y: "+pos.y+" w: "+width+" h: "+height;
     }
 
 }

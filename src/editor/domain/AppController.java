@@ -20,7 +20,6 @@ public class AppController {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
-    static public String currentToolbarPath;
     static public String currentCanvasPath;
     static public ActionControl actionControl;
 
@@ -62,7 +61,6 @@ public class AppController {
         heldKeys = new HashMap<>();
 
         currentCanvasPath = null;
-        currentToolbarPath = ".ale-tool";
 
         heldKeys.put("CONTROL", false);
         heldKeys.put("SHIFT", false);
@@ -201,7 +199,7 @@ public class AppController {
 
                     if(draggingElement != null) {
                         draggingElement.Update(new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel)));
-                        App.view.getToolbarView().Update();
+                        App.view.getToolbarView().Update(); // Sometimes it hovers on the toolbar
                     }
                 } else if (inToolbar) {
 
@@ -333,7 +331,6 @@ public class AppController {
                     App.model.setInteractionMenu(new ElementInteractionMenu(pos_x, pos_y,found.get()));
                     return;
                 } else {
-                    System.out.println("f");
                     App.model.DeselectAll();
                     App.view.getCanvasView().Update();
                 }
