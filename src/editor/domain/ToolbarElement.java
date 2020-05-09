@@ -1,6 +1,8 @@
 package editor.domain;
 
-public class ToolbarElement extends Drawable implements ISerializable {
+import java.io.Serializable;
+
+public class ToolbarElement extends Drawable {
 
     private Toolbar parent;
     private Element element;

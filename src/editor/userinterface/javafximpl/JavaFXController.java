@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class JavaFXController implements Controller {
 
@@ -109,6 +111,26 @@ public class JavaFXController implements Controller {
 
     public void NotifyHeight(int newHeight) {
         App.appController.NotifyHeight(newHeight);
+    }
+
+    @Override
+    public String getChosenSaveFile() {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setInitialFileName("myCanvas.ale");
+        fileChooser.setSelectedExtensionFilter(new ExtensionFilter("AL-Editor Canvas","*.ale"));
+
+        return fileChooser.showSaveDialog(JavaFXApplication.stage).getAbsolutePath();
+    }
+
+    @Override
+    public String getChosenFile() {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setInitialFileName("myCanvas.ale");
+        fileChooser.setSelectedExtensionFilter(new ExtensionFilter("AL-Editor Canvas","*.ale"));
+
+        return fileChooser.showOpenDialog(JavaFXApplication.stage).getAbsolutePath();
     }
 
 }

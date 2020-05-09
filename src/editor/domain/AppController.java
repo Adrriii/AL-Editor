@@ -20,6 +20,8 @@ public class AppController {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
+    static public String currentToolbarPath;
+    static public String currentCanvasPath;
     static public ActionControl actionControl;
 
     private HashMap<String, Boolean> heldKeys;
@@ -58,6 +60,9 @@ public class AppController {
         topMenu = App.model.getTopMenu();
         actionControl = new ActionControl();
         heldKeys = new HashMap<>();
+
+        currentCanvasPath = null;
+        currentToolbarPath = ".ale-tool";
 
         heldKeys.put("CONTROL", false);
         heldKeys.put("SHIFT", false);
@@ -196,6 +201,7 @@ public class AppController {
 
                     if(draggingElement != null) {
                         draggingElement.Update(new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel)));
+                        App.view.getToolbarView().Update();
                     }
                 } else if (inToolbar) {
 
@@ -246,7 +252,7 @@ public class AppController {
             if(draggingElement != null) {
                 if(inToolbar) {
                     draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
-                    toolbar.addElement(draggingElement);
+                    actionControl.Do(new AddToolbarElement(draggingElement));
                 } else {
 
                     Position elementNextPosition = new Position(
@@ -280,11 +286,14 @@ public class AppController {
                             App.model.Deselect(holdElement);
                         }
                     }
-                    
-                    Element selected = App.model.getSelectedTool();
-                    if(selected != null) {
-                        App.model.addElement(selected,new Position(canvas_relative_x,canvas_relative_y));
-                    } else {
+                     
+                    if(App.model.getSelectedTool() != null) {
+                        CreateElement createElement = new CreateElement(
+                            App.model.getSelectedTool(),
+                            new Position(canvas_relative_x,canvas_relative_y)
+                        );
+
+                        actionControl.Do(createElement);
                         App.view.getCanvasView().Update();
                     }
                 }

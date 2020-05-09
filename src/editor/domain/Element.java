@@ -1,10 +1,16 @@
 package editor.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public abstract class Element extends Drawable implements ISerializable, IControllable {
+public abstract class Element extends Drawable implements IControllable, Serializable {
 
-    public HashMap<String,ElementProperty> properties;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    public HashMap<String, ElementProperty> properties;
 
     protected boolean selected = false;
 

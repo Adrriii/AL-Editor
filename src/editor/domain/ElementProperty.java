@@ -1,5 +1,12 @@
 package editor.domain;
 
-public class ElementProperty {
+import java.io.Serializable;
+
+public class ElementProperty implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
 }

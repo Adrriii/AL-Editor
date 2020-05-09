@@ -51,6 +51,35 @@ public class Model {
         this.topMenu.Notify();
     }
 
+    public void SetCanvas(Canvas canvas) {
+        this.canvas = canvas;
+        this.toolbar = new Toolbar();
+        this.topMenu = new TopMenu();
+
+        this.selected = new HashSet<>();
+        this.selectionRectangle = null;
+
+        this.canvas.Notify();
+        this.toolbar.Notify();
+        this.topMenu.Notify();
+
+        App.view.Update();
+    }
+
+    public void SetToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+        this.topMenu = new TopMenu();
+
+        this.selected = new HashSet<>();
+        this.selectionRectangle = null;
+
+        this.canvas.Notify();
+        this.toolbar.Notify();
+        this.topMenu.Notify();
+
+        App.view.Update();
+    }
+
     public void Update() {
         
     }

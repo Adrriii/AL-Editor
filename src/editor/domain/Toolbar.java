@@ -1,5 +1,6 @@
 package editor.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -7,7 +8,12 @@ import editor.application.App;
 import editor.domain.element.Rectangle;
 import javafx.scene.paint.Color;
 
-public class Toolbar extends Drawable implements ISerializable {
+public class Toolbar extends Drawable implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<ToolbarElement> toolbarElements;
 
@@ -46,13 +52,41 @@ public class Toolbar extends Drawable implements ISerializable {
         return element_padding;
     }
 
-    public void addElement(Element element) {
-        toolbarElements.add(new ToolbarElement(this,
-                element, 
-                this.pos.x + this.element_padding, 
-                this.pos.y + this.element_padding + (this.element_height + this.element_padding) * toolbarElements.size(), 
-                this.element_height
-            ));
+    public ToolbarElement addElement(Element element) {
+        ToolbarElement created = new ToolbarElement(this,
+            element, 
+            this.pos.x + this.element_padding, 
+            this.pos.y + this.element_padding + (this.element_height + this.element_padding) * toolbarElements.size(), 
+            this.element_height
+        );
+
+        toolbarElements.add(created);
+
+        Notify();
+
+        return created;
+    }
+
+    public void removeElement(ToolbarElement element) {
+
+        boolean move = false;
+
+        Iterator<ToolbarElement> iter = getToolbarElements().iterator();
+
+        while(iter.hasNext()) {
+            ToolbarElement now = iter.next();
+            
+            if(move) {
+                now.pos.y -= this.element_height + this.element_padding;
+            }
+
+            if(now == element) {
+                move = true;
+            }
+        }
+        
+
+        toolbarElements.remove(element);
 
         Notify();
     }

@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 public class JavaFXApplication extends Application implements Runnable {
 
-    static volatile private Group root;
-    static volatile private Scene scene;
-    static volatile private Stage stage;
+    static volatile public Group root;
+    static volatile public Scene scene;
+    static volatile public Stage stage;
 
     static volatile public boolean ready = false;
     static volatile public boolean update = true;
