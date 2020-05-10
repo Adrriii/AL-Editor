@@ -15,7 +15,10 @@ public class TopMenuUndo extends TopMenuElement {
     @Override
     public void Draw(Position ref) {
         if(AppController.actionControl.CanUndo()) {
-            App.view.drawImage(App.getFilePath("assets/img/undo.png"), ref.x, ref.y, width, height);
+            if(!isClicked(App.appController.CurrentMousePos())) 
+                App.view.drawImage(App.getFilePath("assets/img/undo.png"), ref.x, ref.y, width, height);
+            else
+                App.view.drawImage(App.getFilePath("assets/img/undo_hover.png"), ref.x, ref.y, width, height);
         } else {
             App.view.drawImage(App.getFilePath("assets/img/undo_grey.png"), ref.x, ref.y, width, height);
         }

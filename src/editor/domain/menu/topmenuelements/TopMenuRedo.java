@@ -15,7 +15,10 @@ public class TopMenuRedo extends TopMenuElement {
     @Override
     public void Draw(Position ref) {
         if(AppController.actionControl.CanRedo()) {
-            App.view.drawImage(App.getFilePath("assets/img/redo.png"), ref.x, ref.y, width, height);
+            if(!isClicked(App.appController.CurrentMousePos())) 
+                App.view.drawImage(App.getFilePath("assets/img/redo.png"), ref.x, ref.y, width, height);
+            else
+                App.view.drawImage(App.getFilePath("assets/img/redo_hover.png"), ref.x, ref.y, width, height);
         } else {
             App.view.drawImage(App.getFilePath("assets/img/redo_grey.png"), ref.x, ref.y, width, height);
         }

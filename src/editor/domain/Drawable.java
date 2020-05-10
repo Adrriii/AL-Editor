@@ -53,12 +53,21 @@ public abstract class Drawable implements Serializable {
         return x > pos.x && x < pos.x + width && y > pos.y && y < pos.y + height;
     }
     
+    public boolean isClicked(Position click) {
+        return click.x > pos.x && click.x < pos.x + width && click.y > pos.y && click.y < pos.y + height;
+    }
+    
     public boolean intersects(int rx, int ry, int rwidth, int rheight) {
 
         return !(pos.x + width <= rx ||
                  pos.y + height <= ry ||
                  pos.x >= rx + rwidth || 
                  pos.y >= ry + rheight); 
+    }
+    
+    public boolean intersects(Position pos, int rwidth, int rheight) {
+
+        return intersects(pos.x, pos.y, rwidth, rheight);
     }
 
     @Override

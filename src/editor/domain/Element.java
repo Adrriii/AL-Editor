@@ -1,9 +1,13 @@
 package editor.domain;
 
-import java.io.Serializable;
 import java.util.HashMap;
 
 public abstract class Element extends Drawable implements IControllable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     public HashMap<String, ElementProperty> properties;
 
@@ -86,5 +90,14 @@ public abstract class Element extends Drawable implements IControllable {
     @Override
     public String toString() {
         return this.getClass().getSimpleName()+ ": " + super.toString();
+    }
+    
+    @Override
+    public boolean isClicked(Position pos) {
+        return super.isClicked(pos);
+    }
+    
+    public boolean isClicked(int x, int y) {
+        return isClicked(new Position(x, y));
     }
 }

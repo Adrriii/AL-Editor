@@ -5,6 +5,11 @@ import java.util.Iterator;
 
 public class ElementGroup extends Element {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     private ArrayList<Element> elements;
 
     private Position furthest;
@@ -157,6 +162,8 @@ public class ElementGroup extends Element {
 
     @Override
     public boolean isClicked(Position pos) {
+        if (!super.isClicked(pos)) return false;
+
         Iterator<Element> iter = elements.iterator();
         while(iter.hasNext()) {
             Element nex = iter.next();

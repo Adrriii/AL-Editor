@@ -70,4 +70,9 @@ public class Rectangle extends Polygon {
         App.view.drawRectangle(this, pos.x, pos.y, scale < 1 ? scale : 1);
 
     }
+    
+    @Override
+    public boolean isClicked(int x, int y) {
+        return x > pos.x && x < pos.x + width && y > pos.y && y < pos.y + height;
+    }
 }

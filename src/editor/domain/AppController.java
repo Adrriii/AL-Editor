@@ -129,6 +129,10 @@ public class AppController {
         // System.out.println("selecting: "+selecting);
         // System.out.println("clickedOnHoldElement: "+clickedOnHoldElement);
 
+        if(inTopMenu) { // Hover over elements
+            App.view.getTopMenuView().Update();
+        }
+
         if(left) {
             if(inInteractionMenu) {
                 return;
@@ -137,7 +141,7 @@ public class AppController {
             if(draggingElement == null && readyToDrag && holdElement == null) {
                 // Find the clicked element before dragging
                 Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
-
+                
                 if(found.isPresent()) {
                     SelectHoldElement(found.get());
                 }
@@ -377,5 +381,9 @@ public class AppController {
             default:
                 break;
         }
+    }
+
+    public Position CurrentMousePos() {
+        return new Position(pos_x, pos_y);
     }
 }

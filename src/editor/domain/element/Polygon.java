@@ -51,10 +51,4 @@ public class Polygon extends Element {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public boolean isClicked(Position pos) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 }

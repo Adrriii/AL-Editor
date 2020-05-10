@@ -14,7 +14,10 @@ public class TopMenuSaveNew extends TopMenuElement {
 
     @Override
     public void Draw(Position ref) {
-        App.view.drawImage(App.getFilePath("assets/img/save_new.png"), ref.x, ref.y, width, height);
+        if(!isClicked(App.appController.CurrentMousePos())) 
+            App.view.drawImage(App.getFilePath("assets/img/save_new.png"), ref.x, ref.y, width, height);
+        else
+            App.view.drawImage(App.getFilePath("assets/img/save_new_hover.png"), ref.x, ref.y, width, height);
     }
 
     @Override

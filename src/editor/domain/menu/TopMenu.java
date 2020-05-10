@@ -61,12 +61,12 @@ public class TopMenu extends Menu {
 
     public void addElement(TopMenuElement element) {
         element.pos.x = nextPosX + elementPaddingX;
-        element.pos.y = pos.y;
-        nextPosX = element.pos.x + element.width + elementPaddingX;
+        element.pos.y = pos.y + elementPaddingY;
+        nextPosX = element.pos.x + element.width;
 
         this.elements.add(element);
 
-        this.width += element.width + elementPaddingX;
+        this.width = nextPosX - pos.x;
     }
 
     public void removeElement(TopMenuElement element) {
