@@ -14,6 +14,7 @@ public class Toolbar extends Drawable {
     private static final long serialVersionUID = 1L;
 
     private ArrayList<ToolbarElement> toolbarElements;
+    private DeleteElementTool deleteElementTool;
 
     private Rectangle background;
 
@@ -33,6 +34,8 @@ public class Toolbar extends Drawable {
         this.width = 75; // Constant
         this.height = 600 - this.pos.y; // Resizable
 
+        this.deleteElementTool = new DeleteElementTool(new Position(pos.x + element_padding, this.height - pos.y - 2*element_padding) , element_height, element_height);
+
         this.element_padding = 10;
 
         this.element_height = this.width - this.element_padding * 2;
@@ -49,6 +52,8 @@ public class Toolbar extends Drawable {
         this.width = width;
         this.height = height;
         this.background.Update(this.pos, width, height);
+
+        this.deleteElementTool = new DeleteElementTool(new Position(pos.x + element_padding, this.height - pos.y - 2*element_padding) , element_height, element_height);
     }
 
     public int getElementPadding() {
@@ -114,6 +119,8 @@ public class Toolbar extends Drawable {
             iter.next().Draw(new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
             curr_y += width;
         }
+
+        this.deleteElementTool.Draw();
     }
 
     @Override
@@ -127,6 +134,10 @@ public class Toolbar extends Drawable {
         }
 
         return str;
+    }
+
+    public DeleteElementTool getDeleteElementTool() {
+        return deleteElementTool;
     }
 
 }

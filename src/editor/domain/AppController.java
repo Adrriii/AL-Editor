@@ -249,8 +249,12 @@ public class AppController {
 
             if(draggingElement != null) {
                 if(inToolbar) {
-                    draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
-                    actionControl.Do(new AddToolbarElement(draggingElement));
+                    if(App.model.getToolbar().getDeleteElementTool().isClicked(pos_x, pos_y)) {
+                        actionControl.Do(new DeleteElement(draggingElement, draggingElement.pos));
+                    } else {
+                        draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
+                        actionControl.Do(new AddToolbarElement(draggingElement));
+                    }
                 } else {
 
                     Position elementNextPosition = new Position(
