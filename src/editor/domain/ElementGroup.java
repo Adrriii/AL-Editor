@@ -7,6 +7,8 @@ public class ElementGroup extends Element {
 
     private ArrayList<Element> elements;
 
+    private Position furthest;
+
     public ElementGroup() {
         super();
 
@@ -14,6 +16,8 @@ public class ElementGroup extends Element {
 
         width = 0;
         height = 0;
+
+        furthest = new Position(0,0);
     }
 
     @Override
@@ -122,12 +126,20 @@ public class ElementGroup extends Element {
                 pos.y = element.pos.y;
             }
 
-            if(width == 0 || element.pos.x + element.getSurfaceWidth() - pos.x > width) {
-                width = element.pos.x + element.getSurfaceWidth() - pos.x;
+            if(furthest.x == 0 || element.pos.x + element.width > furthest.x) {
+                furthest.x = element.pos.x + element.width;
             }
 
-            if(height == 0 || element.pos.y + element.getSurfaceHeight() - pos.y > height) {
-                height = element.pos.y + element.getSurfaceHeight() - pos.y;
+            if(furthest.y == 0 || element.pos.y + element.height > furthest.y) {
+                furthest.y = element.pos.y + element.height;
+            }
+
+            if(width == 0 || furthest.x - pos.x > width) {
+                width = furthest.x - pos.x;
+            }
+
+            if(height == 0 || furthest.y - pos.y > height) {
+                height = furthest.y - pos.y;
             }
         });
         
@@ -147,7 +159,8 @@ public class ElementGroup extends Element {
     public boolean isClicked(Position pos) {
         Iterator<Element> iter = elements.iterator();
         while(iter.hasNext()) {
-            if(iter.next().isClicked(pos)) return true;
+            Element nex = iter.next();
+            if(nex.isClicked(pos)) return true;
         }
         return false;
     }
