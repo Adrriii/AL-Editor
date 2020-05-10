@@ -162,13 +162,21 @@ public class ElementGroup extends Element {
 
     @Override
     public boolean isClicked(Position pos) {
-        if (!super.isClicked(pos)) return false;
-
+        return intersects(pos, 1, 1);
+    }
+    
+    @Override
+    public boolean intersects(int rx, int ry, int rwidth, int rheight) {
         Iterator<Element> iter = elements.iterator();
         while(iter.hasNext()) {
             Element nex = iter.next();
-            if(nex.isClicked(pos)) return true;
+            if(nex.intersects(rx, ry, rwidth, rheight)) return true;
         }
         return false;
+    }
+    
+    @Override
+    public boolean intersects(Position pos, int rwidth, int rheight) {
+        return intersects(pos.x, pos.y, rwidth, rheight);
     }
 }

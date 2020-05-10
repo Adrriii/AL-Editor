@@ -33,6 +33,13 @@ public class Canvas extends Drawable {
         this.background = new Rectangle(0, 0, width, height, 255, 255, 255, 255);
     }
 
+    @Override
+    public void Reattach() {
+        super.Reattach();
+        Attach(App.view.getCanvasView());
+        this.elements.forEach(element -> element.Reattach(App.view.getCanvasView()));
+    }
+
     public ArrayList<Element> getElements() {
         return new ArrayList<Element>(elements);
     }

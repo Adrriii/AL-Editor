@@ -53,6 +53,12 @@ public class TopMenu extends Menu {
         addElement(new TopMenuRedo(elementWidth, elementHeight));
     }
 
+    @Override
+    public void Reattach() {
+        super.Reattach();
+        Attach(App.view.getTopMenuView());
+    }
+
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;

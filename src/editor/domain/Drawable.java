@@ -43,6 +43,15 @@ public abstract class Drawable implements Serializable {
         views.remove(view);
     }
 
+    public void Reattach() {
+        views = new ArrayList<>();
+    }
+
+    public void Reattach(ViewScope view) {
+        Reattach();
+        Attach(view);
+    }
+
     public void Notify() {
         if(views == null) views = new ArrayList<>();
         views.forEach(view -> view.Update());

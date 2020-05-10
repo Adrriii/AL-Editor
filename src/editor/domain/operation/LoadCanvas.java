@@ -24,6 +24,7 @@ public class LoadCanvas extends Operation {
                 FileInputStream f = new FileInputStream(new File(AppController.currentCanvasPath));
                 ObjectInputStream o = new ObjectInputStream(f);
                 App.model.SetCanvas((Canvas) o.readObject());
+                App.model.getCanvas().Reattach();
                 
                 o.close();
                 f.close();

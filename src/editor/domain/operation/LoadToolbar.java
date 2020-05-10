@@ -23,6 +23,7 @@ public class LoadToolbar extends Operation {
             FileInputStream f = new FileInputStream(new File(".ale-tool"));
             ObjectInputStream o = new ObjectInputStream(f);
             App.model.SetToolbar((Toolbar) o.readObject());
+            App.model.getToolbar().Reattach();
             System.out.println("Loaded Toolbar");
             System.out.println(App.model.getToolbar().toString());
             o.close();

@@ -43,6 +43,12 @@ public class Toolbar extends Drawable {
         this.background = new Rectangle(0, 0, width, height, 80, 80, 80, 255);
     }
 
+    @Override
+    public void Reattach() {
+        super.Reattach();
+        Attach(App.view.getToolbarView());
+    }
+
     public void LoadDefaultTools() {
         addElement(new Rectangle(130,160));
         addElement(new Rectangle(190,130, 255, 0, 0));
