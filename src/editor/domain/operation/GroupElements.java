@@ -8,7 +8,6 @@ import editor.domain.Element;
 import editor.domain.ElementGroup;
 import editor.domain.InvalidCompositeAddition;
 import editor.domain.Operation;
-import editor.domain.Position;
 
 public class GroupElements extends Operation {
 

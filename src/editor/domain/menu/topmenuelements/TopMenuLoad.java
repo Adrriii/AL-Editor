@@ -8,6 +8,11 @@ import editor.domain.operation.LoadCanvas;
 
 public class TopMenuLoad extends TopMenuElement {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public TopMenuLoad(int width, int height) {
         super(width, height);
     }

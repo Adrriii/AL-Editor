@@ -1,9 +1,11 @@
 package editor.domain;
 
-import java.io.Serializable;
-
 public class ToolbarElement extends Drawable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Toolbar parent;
     private Element element;
 

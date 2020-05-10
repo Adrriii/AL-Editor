@@ -3,16 +3,9 @@ package editor.userinterface.javafximpl;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import editor.application.App;
-import editor.domain.Canvas;
-import editor.domain.Element;
-import editor.domain.Toolbar;
-import editor.domain.ToolbarElement;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
-import editor.domain.menu.TopMenu;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import javafx.scene.image.Image;
@@ -23,7 +16,6 @@ import javafx.scene.text.Text;
 
 public class JavaFXView implements View {
 
-    private boolean started;
     private Thread JavaFXThread;
 
     private JavaFXViewMain mainView;
@@ -34,7 +26,6 @@ public class JavaFXView implements View {
     private HashMap<String, Image> imageCache;
 
     public JavaFXView() {
-        this.started = false;
 
         this.JavaFXThread = new Thread(new JavaFXApplication());
 
@@ -50,8 +41,6 @@ public class JavaFXView implements View {
         while (!JavaFXApplication.ready) {
         }
         ;
-
-        this.started = true;
     }
 
     @Override

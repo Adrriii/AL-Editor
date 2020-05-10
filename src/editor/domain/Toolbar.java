@@ -1,14 +1,17 @@
 package editor.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import editor.application.App;
 import editor.domain.element.Rectangle;
-import javafx.scene.paint.Color;
 
 public class Toolbar extends Drawable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<ToolbarElement> toolbarElements;
 

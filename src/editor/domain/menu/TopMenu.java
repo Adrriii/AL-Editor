@@ -11,6 +11,10 @@ import editor.domain.menu.topmenuelements.*;
 
 public class TopMenu extends Menu {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Rectangle background;
     private ArrayList<TopMenuElement> elements;
 

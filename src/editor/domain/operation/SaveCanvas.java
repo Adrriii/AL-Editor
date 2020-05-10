@@ -1,16 +1,13 @@
 package editor.domain.operation;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import editor.application.App;
 import editor.domain.AppController;
-import editor.domain.Element;
 import editor.domain.Operation;
-import editor.domain.Position;
 
 public class SaveCanvas extends Operation {
 

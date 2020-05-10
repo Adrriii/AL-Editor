@@ -9,6 +9,10 @@ import editor.domain.menu.InteractionMenu;
 
 public class ElementInteractionMenu extends InteractionMenu {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     protected Element element;
 
     public ElementInteractionMenu(int x, int y, Element element) {
@@ -29,6 +33,7 @@ public class ElementInteractionMenu extends InteractionMenu {
             this.addInteraction(new DegroupElementsInteraction((ElementGroup) element));
         }
         this.addInteraction(new ColorChangeInteraction(element));
+        this.addInteraction(new DeleteElementInteraction(element));
     }
 
 }

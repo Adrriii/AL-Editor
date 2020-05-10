@@ -9,6 +9,11 @@ import editor.domain.elementproperty.ColorProperty;
 
 public class Polygon extends Element {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public Polygon() {
         super();
 

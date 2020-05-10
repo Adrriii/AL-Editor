@@ -9,6 +9,11 @@ import editor.domain.Position;
 
 public abstract class InteractionMenu extends Menu {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     protected ArrayList<Interaction> interactions;
 
     private int interaction_pos_y;

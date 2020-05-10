@@ -7,6 +7,10 @@ import editor.domain.element.Rectangle;
 
 public abstract class Interaction extends Drawable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Rectangle background;
     private String label;
 

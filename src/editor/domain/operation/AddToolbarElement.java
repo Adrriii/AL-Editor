@@ -3,7 +3,6 @@ package editor.domain.operation;
 import editor.application.App;
 import editor.domain.Element;
 import editor.domain.Operation;
-import editor.domain.Position;
 import editor.domain.ToolbarElement;
 
 public class AddToolbarElement extends Operation {

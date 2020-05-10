@@ -3,6 +3,10 @@ package editor.domain.elementproperty;
 import editor.domain.ElementProperty;
 
 public class ColorProperty extends ElementProperty {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     public int r;
     public int g;
     public int b;

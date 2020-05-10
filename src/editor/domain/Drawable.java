@@ -3,7 +3,6 @@ package editor.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import editor.application.App;
 import editor.userinterface.ViewScope;
 
 public abstract class Drawable implements Serializable {

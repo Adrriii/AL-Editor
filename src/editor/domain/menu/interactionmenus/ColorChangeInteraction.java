@@ -4,6 +4,11 @@ import editor.domain.Element;
 
 public class ColorChangeInteraction extends ElementInteraction {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public ColorChangeInteraction(Element element) {
         super("Change color", element);
     }

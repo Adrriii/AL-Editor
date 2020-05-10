@@ -37,6 +37,11 @@ public class ActionControl {
         App.view.getTopMenuView().Update();
     }
 
+    public void Clear() {
+        operations.clear();
+        reversed.clear();
+    }
+
     public Operation peekLastOperation() {
         return operations.peek();
     }

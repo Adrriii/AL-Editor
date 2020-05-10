@@ -6,6 +6,11 @@ import editor.domain.elementproperty.ColorProperty;
 
 public class Rectangle extends Polygon {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public Rectangle(int x, int y, int width, int height, int r, int g, int b, int a) {
         super();
         

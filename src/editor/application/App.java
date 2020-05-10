@@ -1,7 +1,6 @@
 package editor.application;
 
 import editor.domain.AppController;
-import editor.domain.element.Rectangle;
 import editor.model.Model;
 import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;

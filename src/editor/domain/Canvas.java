@@ -1,6 +1,5 @@
 package editor.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -8,6 +7,11 @@ import editor.application.App;
 import editor.domain.element.Rectangle;
 
 public class Canvas extends Drawable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<Element> elements;
 

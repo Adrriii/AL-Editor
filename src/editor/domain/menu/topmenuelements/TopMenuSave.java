@@ -8,6 +8,11 @@ import editor.domain.operation.SaveCanvas;
 
 public class TopMenuSave extends TopMenuElement {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public TopMenuSave(int width, int height) {
         super(width, height);
     }

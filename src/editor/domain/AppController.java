@@ -1,13 +1,9 @@
 package editor.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Optional;
-import java.util.Stack;
 
 import editor.application.App;
-import editor.domain.menu.InteractionMenu;
 import editor.domain.menu.TopMenu;
 import editor.domain.menu.interactionmenus.ElementInteractionMenu;
 import editor.domain.operation.*;
@@ -359,6 +355,21 @@ public class AppController {
         heldKeys.put(key, true);
 
         switch(key) {
+            case "S":
+                if(heldKeys.get("CONTROL") == true) {
+                    if(heldKeys.get("SHIFT") == true) {
+                        AppController.currentCanvasPath = App.controller.getChosenSaveFile();
+                    }
+                    (new SaveCanvas()).Do();
+                }
+                break;
+            case "O":
+                if(heldKeys.get("CONTROL") == true) {
+                    AppController.currentCanvasPath = App.controller.getChosenFile();
+                    (new LoadCanvas()).Do();
+                    actionControl.Clear();
+                }
+                break;
             case "Z":
                 if(heldKeys.get("CONTROL") == true) {
                     actionControl.Undo();

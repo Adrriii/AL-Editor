@@ -5,11 +5,14 @@ import java.util.HashSet;
 import editor.application.App;
 import editor.domain.AppController;
 import editor.domain.Element;
-import editor.domain.ElementGroup;
-import editor.domain.InvalidCompositeAddition;
 import editor.domain.operation.GroupElements;
 
 public class GroupElementsInteraction extends ElementInteraction {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     public GroupElementsInteraction(Element element) {
         super("Group", element);
