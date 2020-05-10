@@ -1,5 +1,8 @@
 package editor.domain;
 
+import editor.application.App;
+import editor.domain.element.Rectangle;
+
 public class ToolbarElement extends Drawable {
 
     /**
@@ -8,6 +11,8 @@ public class ToolbarElement extends Drawable {
     private static final long serialVersionUID = 1L;
     private Toolbar parent;
     private Element element;
+    private int border_width;
+    private int padding;
 
     public ToolbarElement(Toolbar parent, Element element, int pos_x, int pos_y, int side) {
         this.parent = parent;
@@ -17,6 +22,9 @@ public class ToolbarElement extends Drawable {
         this.height = side;
         this.element = element.Clone();
         this.element.Update(new Position(0, 0));
+
+        border_width = 2;
+        padding = 2;
     }
 
     public Element cloneElement() {
@@ -29,6 +37,8 @@ public class ToolbarElement extends Drawable {
 
     @Override
     public void Draw(Position pos) {
+        App.view.drawRectangle(new Rectangle(pos.x-border_width-padding, pos.y-border_width-padding, width+border_width*2+padding*2, height+border_width*2+padding*2,0,0,0));
+        App.view.drawRectangle(new Rectangle(pos.x-padding, pos.y-padding, width+padding*2, height+padding*2,255,255,255));
         this.element.Draw(pos, this.parent.getElementSideSize(), this.parent.getElementSideSize());
     }
 

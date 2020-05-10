@@ -25,7 +25,8 @@ public class LoadCanvas extends Operation {
                 ObjectInputStream o = new ObjectInputStream(f);
                 App.model.SetCanvas((Canvas) o.readObject());
                 App.model.getCanvas().Reattach();
-                
+                App.view.getCanvasView().Update();
+
                 o.close();
                 f.close();
             } catch (IOException e) {

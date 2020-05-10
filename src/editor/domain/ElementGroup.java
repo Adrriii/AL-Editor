@@ -76,7 +76,7 @@ public class ElementGroup extends Element {
 
     @Override
     public void Draw(Position pos) {
-        this.elements.forEach(element -> element.Draw(new Position(pos.x - this.pos.x + element.pos.x, pos.y - this.pos.y +  element.pos.y)));
+        Draw(pos, width, height);
     }
 
     @Override
