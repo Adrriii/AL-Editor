@@ -1,6 +1,7 @@
 package editor.domain;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Element extends Drawable implements IControllable {
 
@@ -19,7 +20,11 @@ public abstract class Element extends Drawable implements IControllable {
     public Element(HashMap<String,ElementProperty> properties) {
         super();
 
-        this.properties = new HashMap<>(properties);
+        this.properties = new HashMap<>();
+
+        for(Map.Entry<String, ElementProperty> entry : properties.entrySet()) {
+            this.properties.put(entry.getKey(), entry.getValue().Clone());
+        }
     }
 
     public Element() {

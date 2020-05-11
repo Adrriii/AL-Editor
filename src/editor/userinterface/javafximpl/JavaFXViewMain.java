@@ -27,6 +27,7 @@ public class JavaFXViewMain implements ViewScope {
 
         if(!invalidated) return;
 
+        App.model.getControls().forEach(control -> control.Draw());
         if (App.model.getInteractionMenu() != null) App.model.getInteractionMenu().Draw();
 
         invalidated = false;

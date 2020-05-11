@@ -18,4 +18,9 @@ public class ColorProperty extends ElementProperty {
         this.b = b;
         this.a = a;
     }
+
+    @Override
+    public ElementProperty Clone() {
+        return new ColorProperty(r, g, b, a);
+    }
 }

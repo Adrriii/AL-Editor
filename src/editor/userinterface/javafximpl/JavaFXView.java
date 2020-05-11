@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+import editor.domain.Position;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
 import editor.userinterface.View;
@@ -75,7 +76,7 @@ public class JavaFXView implements View {
         try {
             imageCache.put(path, new Image(new FileInputStream(path)));
         } catch (FileNotFoundException e) {
-            System.out.println(path+" can't be found.");
+            System.out.println(path + " can't be found.");
         }
     }
 
@@ -85,14 +86,14 @@ public class JavaFXView implements View {
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
-        
-        JavaFXRectangle.setX(pos_x); 
+
+        JavaFXRectangle.setX(pos_x);
         JavaFXRectangle.setY(pos_y);
         JavaFXRectangle.setWidth(width * scale);
         JavaFXRectangle.setHeight(height * scale);
 
         JavaFXRectangle.setFill(color);
-        
+
         JavaFXApplication.addToRoot(JavaFXRectangle);
 
     }
@@ -125,7 +126,8 @@ public class JavaFXView implements View {
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y, double scale) {
         ColorProperty colors = (ColorProperty) rectangle.properties.get("color");
 
-        drawJavaFXRectangle(pos_x, pos_y, rectangle.width, rectangle.height, new Color(colors.r / 255.0,colors.g / 255.0,colors.b / 255.0,colors.a / 255.0), scale);
+        drawJavaFXRectangle(pos_x, pos_y, rectangle.width, rectangle.height,
+                new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0), scale);
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y) {

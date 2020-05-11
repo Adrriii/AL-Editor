@@ -1,5 +1,6 @@
 package editor.userinterface;
 
+import editor.domain.Position;
 import editor.domain.element.Rectangle;
 
 public interface View {

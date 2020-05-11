@@ -10,12 +10,15 @@ public class App {
     public static View view;
     public static Controller controller;
     public static AppController appController;
+    public static ControlFactory controlFactory;
     public static Model model;
     public static boolean ready;
 
     public static void main(String args[]) {
 
         ready = false;
+
+        App.controlFactory = new JavaFXControlFactory();
 
         UserInterface ui = new JavaFXUI();
         App.view = ui.GetView();

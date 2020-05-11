@@ -12,4 +12,9 @@ public class IntegerProperty extends ElementProperty {
     public IntegerProperty(int value) {
         this.value = value;
     }
+
+    @Override
+    public ElementProperty Clone() {
+        return new IntegerProperty(value);
+    }
 }

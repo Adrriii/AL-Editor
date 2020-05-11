@@ -1,0 +1,54 @@
+package editor.userinterface.javafximpl.control;
+
+import editor.application.App;
+import editor.domain.Position;
+import editor.domain.control.Button;
+import editor.domain.control.ColorPicker;
+import editor.domain.elementproperty.ColorProperty;
+import editor.userinterface.javafximpl.JavaFXApplication;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.paint.Color;
+
+public class JavaFXColorPicker extends ColorPicker {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    private Dialog<Color> dial;
+    private javafx.scene.control.ColorPicker fxColorPicker;
+
+    @Override
+    public void Draw(Position pos) {
+    }
+
+    @Override
+    public void show() {
+        fxColorPicker = new javafx.scene.control.ColorPicker();
+    }
+
+    @Override
+    public void setColor(ColorProperty color) {
+        fxColorPicker.setValue(new Color(color.r / 255.0,color.g / 255.0,color.b / 255.0, color.a / 255.0));
+    }
+
+    @Override
+    public ColorProperty getColor() {
+        dial = new Dialog<>();
+        
+        dial.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.OK, ButtonType.CANCEL);
+
+        dial.getDialogPane().setContent(fxColorPicker);
+        dial.showAndWait();
+        
+        Color fxColor = fxColorPicker.getValue();
+        ColorProperty color = new ColorProperty((int) (fxColor.getRed() * 255), (int) (fxColor.getGreen() * 255), (int) (fxColor.getBlue() * 255), (int) (fxColor.getOpacity() * 255));
+
+        return color;
+    }
+
+}

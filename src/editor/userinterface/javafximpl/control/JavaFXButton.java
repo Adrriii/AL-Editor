@@ -16,4 +16,10 @@ public class JavaFXButton extends Button {
 
     }
 
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

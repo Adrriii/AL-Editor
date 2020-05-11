@@ -19,6 +19,7 @@ public class Model {
 
     private Rectangle selectionRectangle;
     private HashSet<Element> selected;
+    private ArrayList<Control> controls;
 
     private boolean running;
 
@@ -46,6 +47,8 @@ public class Model {
 
         this.selected = new HashSet<>();
         this.selectionRectangle = null;
+
+        this.controls = new ArrayList<>();
 
         this.canvas.Notify();
         this.toolbar.Notify();
@@ -181,5 +184,19 @@ public class Model {
 
     public InteractionMenu getInteractionMenu() {
         return this.currentInteraction;
+    }
+
+    public void AddControl(Control control) {
+        this.controls.add(control);
+        App.view.getMainView().Update();
+    }
+
+    public void RemoveControl(Control control) {
+        this.controls.remove(control);
+        App.view.getMainView().Update();
+    }
+
+    public ArrayList<Control> getControls() {
+        return controls;
     }
 }
