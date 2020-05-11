@@ -169,7 +169,7 @@ public class AppController {
                         dragging_from_toolbar = false;
                         
                         CreateElement createElement = new CreateElement(
-                            App.model.getSelectedTool(),
+                            App.model.getSelectedTool().getElement(),
                             new Position(canvas_relative_x,canvas_relative_y)
                         );
 
@@ -213,9 +213,11 @@ public class AppController {
                             App.model.setSelectedTool(null);
                             readyToDrag = false;
                         } else {
-                            App.model.setSelectedTool(found.get().getElement());
+                            App.model.setSelectedTool(found.get());
                             dragging_from_toolbar = true;
                         }
+                    } else {
+                        App.view.getToolbarView().Update();
                     }
                 }
             } else {
@@ -247,9 +249,11 @@ public class AppController {
                 return;
             }
 
+            boolean onBin = App.model.getToolbar().getDeleteElementTool().isClicked(pos_x, pos_y);
+
             if(draggingElement != null) {
                 if(inToolbar) {
-                    if(App.model.getToolbar().getDeleteElementTool().isClicked(pos_x, pos_y)) {
+                    if(onBin) {
                         actionControl.Do(new DeleteElement(draggingElement, new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel)));
                     } else {
                         draggingElement.Update(new Position(select_start_x - drag_x_elem_rel, select_start_y - drag_y_elem_rel));
@@ -291,7 +295,7 @@ public class AppController {
                      
                     if(App.model.getSelectedTool() != null) {
                         CreateElement createElement = new CreateElement(
-                            App.model.getSelectedTool(),
+                            App.model.getSelectedTool().getElement(),
                             new Position(canvas_relative_x,canvas_relative_y)
                         );
 
@@ -301,15 +305,20 @@ public class AppController {
                 }
     
                 if(inToolbar) {
-                    // Find an element to select, or, select nothing
-                    Optional<ToolbarElement> found = toolbar.getToolbarElements()
-                                                            .stream().filter(element -> element.isClicked(pos_x, pos_y))
-                                                            .findFirst();
-    
-                    if(!found.isPresent()) {
-                        App.model.setSelectedTool(null);
+                    if(dragging_from_toolbar && onBin && App.model.getSelectedTool() != null) {
+                        dragging_from_toolbar = false;
+                        actionControl.Do(new DeleteToolbarElement(App.model.getSelectedTool()));
                     } else {
-                        App.model.setSelectedTool(found.get().getElement());
+                        // Find an element to select, or, select nothing
+                        Optional<ToolbarElement> found = toolbar.getToolbarElements()
+                                                                .stream().filter(element -> element.isClicked(pos_x, pos_y))
+                                                                .findFirst();
+        
+                        if(!found.isPresent()) {
+                            App.model.setSelectedTool(null);
+                        } else {
+                            App.model.setSelectedTool(found.get());
+                        }
                     }
                 }
 

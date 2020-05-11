@@ -15,7 +15,7 @@ public class Model {
     private Toolbar toolbar;
     private TopMenu topMenu;
 
-    private Element selectedTool;
+    private ToolbarElement selectedTool;
 
     private Rectangle selectionRectangle;
     private HashSet<Element> selected;
@@ -95,11 +95,11 @@ public class Model {
         return this.topMenu;
     }
 
-    public void setSelectedTool(Element element) {
+    public void setSelectedTool(ToolbarElement element) {
         this.selectedTool = element;
     }
 
-    public Element getSelectedTool() {
+    public ToolbarElement getSelectedTool() {
         return selectedTool;
     }
 
