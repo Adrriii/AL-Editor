@@ -7,6 +7,7 @@ import java.util.HashMap;
 import editor.domain.Position;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
+import editor.domain.elementproperty.RoundedBorderProperty;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import javafx.scene.image.Image;
@@ -84,13 +85,15 @@ public class JavaFXView implements View {
         imageCache.clear();
     }
 
-    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale) {
+    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale, RoundedBorderProperty border) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
 
         JavaFXRectangle.setX(pos_x);
         JavaFXRectangle.setY(pos_y);
         JavaFXRectangle.setWidth(width * scale);
         JavaFXRectangle.setHeight(height * scale);
+        JavaFXRectangle.setArcWidth(border.w * scale);
+        JavaFXRectangle.setArcHeight(border.h * scale);
 
         JavaFXRectangle.setFill(color);
 
@@ -120,14 +123,15 @@ public class JavaFXView implements View {
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
-        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1);
+        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1, new RoundedBorderProperty(0,0));
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y, double scale) {
         ColorProperty colors = (ColorProperty) rectangle.properties.get("color");
 
         drawJavaFXRectangle(pos_x, pos_y, rectangle.width, rectangle.height,
-                new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0), scale);
+                new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0), scale,
+                (RoundedBorderProperty) rectangle.properties.get("roundedborders"));
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y) {

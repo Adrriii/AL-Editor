@@ -9,27 +9,28 @@ import editor.application.App;
 import editor.domain.Element;
 import editor.domain.ElementProperty;
 import editor.domain.Operation;
-import editor.domain.elementproperty.ColorProperty;
 
-public class ChangeElementColor extends Operation {
+public class ChangeElementProperty extends Operation {
 
+    protected String propertyName;
     protected ElementProperty from;
     protected ElementProperty to;
 
-    public ChangeElementColor(Element element, ColorProperty from, ColorProperty to) {
+    public ChangeElementProperty(Element element, String propertyName, ElementProperty from, ElementProperty to) {
         state = element;
+        this.propertyName = propertyName;
         this.from = from.Clone();
         this.to = to.Clone();
     }
 
     @Override
     public void Do() {
-        ((Element) state).properties.put("color", to);
+        ((Element) state).properties.put(propertyName, to);
     }
 
     @Override
     public void Undo() {
-        ((Element) state).properties.put("color", from);
+        ((Element) state).properties.put(propertyName, from);
     }
 
     @Override

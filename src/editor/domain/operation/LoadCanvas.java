@@ -27,7 +27,6 @@ public class LoadCanvas extends Operation {
                 App.model.getCanvas().Reattach();
                 App.view.getCanvasView().Update();
                 System.out.println("Loaded Canvas");
-                System.out.println(App.model.getCanvas());
 
                 o.close();
                 f.close();

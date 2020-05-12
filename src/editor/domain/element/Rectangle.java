@@ -3,6 +3,7 @@ package editor.domain.element;
 import editor.application.App;
 import editor.domain.Position;
 import editor.domain.elementproperty.ColorProperty;
+import editor.domain.elementproperty.RoundedBorderProperty;
 
 public class Rectangle extends Polygon {
 
@@ -11,7 +12,7 @@ public class Rectangle extends Polygon {
      */
     private static final long serialVersionUID = 1L;
 
-    public Rectangle(int x, int y, int width, int height, int r, int g, int b, int a) {
+    public Rectangle(int x, int y, int width, int height, int r, int g, int b, int a, double w, double h) {
         super();
         
         this.pos.x = x;
@@ -20,14 +21,19 @@ public class Rectangle extends Polygon {
         this.height = height;
 
         properties.put("color",new ColorProperty(r,g,b,a));
+        properties.put("roundedborders",new RoundedBorderProperty(h,w));
     }
 
-    public Rectangle(int x, int y, int width, int height, int r, int g, int b) {
-        this(x,y,width,height,r,g,b,255);
+    public Rectangle(int x, int y, int width, int height, int r, int g, int b, int a) {
+        this(x,y,width,height,r,g,b,a,0,0);
     }
 
     public Rectangle(int width, int height, int r, int g, int b, int a) {
         this(0,0,width,height,r,g,b,a);
+    }
+
+    public Rectangle(int x, int y, int width, int height, int r, int g, int b) {
+        this(x,y,width,height,r,g,b,255);
     }
 
     public Rectangle(int width, int height, int r, int g, int b) {
@@ -45,7 +51,10 @@ public class Rectangle extends Polygon {
     @Override
     public Rectangle Clone() {
         ColorProperty colors = getColorProperty();
-        Rectangle newElement = new Rectangle(pos.x, pos.y, width, height, colors.r, colors.g, colors.b, colors.a);
+        Rectangle newElement = new Rectangle(pos.x, pos.y, width, height, 
+            colors.r, colors.g, colors.b, colors.a,
+            ((RoundedBorderProperty) properties.get("roundedborders")).w,
+            ((RoundedBorderProperty) properties.get("roundedborders")).h);
         return newElement;
     }
 
@@ -66,7 +75,9 @@ public class Rectangle extends Polygon {
                     pos.x, 
                     pos.y, 
                     width + 10 + Math.min(0,pos.x-App.model.getCanvas().pos.x-5), 
-                    height + 10 + Math.min(0,pos.y-App.model.getCanvas().pos.y-5), 0, 0, 255, 100),
+                    height + 10 + Math.min(0,pos.y-App.model.getCanvas().pos.y-5), 0, 0, 255, 100,
+                    ((RoundedBorderProperty) properties.get("roundedborders")).w,
+                    ((RoundedBorderProperty) properties.get("roundedborders")).h),
                 selectionRectangleX, 
                 selectionRectangleY
             );
