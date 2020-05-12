@@ -1,16 +1,8 @@
 package editor.domain.operation;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
-import editor.application.App;
 import editor.domain.Element;
-import editor.domain.ElementProperty;
 import editor.domain.Operation;
 import editor.domain.Position;
-import editor.domain.elementproperty.ColorProperty;
 
 public class ChangeElementSize extends Operation {
 

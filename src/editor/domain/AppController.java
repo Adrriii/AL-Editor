@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Optional;
 
 import editor.application.App;
-import editor.domain.menu.TopMenu;
 import editor.domain.menu.interactionmenus.ElementInteractionMenu;
 import editor.domain.operation.*;
 

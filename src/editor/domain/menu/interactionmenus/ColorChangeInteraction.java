@@ -20,7 +20,6 @@ public class ColorChangeInteraction extends ElementInteraction {
 
     @Override
     public void onClick() {
-        System.out.println("Change color");
 
         ColorPicker colorPicker = App.controlFactory.GetColorPicker();
 

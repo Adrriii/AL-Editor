@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.UnaryOperator;
 
-import editor.application.App;
 import editor.domain.Position;
 import editor.domain.control.InputBoxes;
-import editor.domain.elementproperty.ColorProperty;
-import editor.userinterface.javafximpl.JavaFXApplication;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;

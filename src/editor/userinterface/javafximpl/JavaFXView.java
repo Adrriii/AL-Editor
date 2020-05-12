@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
-import editor.domain.Position;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
 import editor.domain.elementproperty.RoundedBorderProperty;

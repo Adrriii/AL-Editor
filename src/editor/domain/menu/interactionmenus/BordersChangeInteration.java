@@ -15,12 +15,11 @@ public class BordersChangeInteration extends ElementInteraction {
     private static final long serialVersionUID = 1L;
 
     public BordersChangeInteration(Element element) {
-        super("Change corners rounding", element);
+        super("Change corners", element);
     }
 
     @Override
     public void onClick() {
-        System.out.println("Change corners rounding");
 
         String[] labels = {"Arc width: ", "Arc height: "};
         Integer[] values = {(int) ((RoundedBorderProperty) element.properties.get("roundedborders")).w, 

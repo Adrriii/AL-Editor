@@ -20,7 +20,6 @@ public class DimensionChangeInteraction extends ElementInteraction {
 
     @Override
     public void onClick() {
-        System.out.println("Change size");
 
         String[] labels = {"Width: ", "Height: "};
         Integer[] values = {element.width, element.height};
