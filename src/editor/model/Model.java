@@ -68,8 +68,6 @@ public class Model {
     public void SetToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
 
-        System.out.println("Loaded toolbar with "+toolbar.getToolbarElements().size()+" tools");
-
         Resize(width,height);
         App.view.Update();
     }

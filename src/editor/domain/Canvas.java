@@ -81,7 +81,15 @@ public class Canvas extends Drawable {
     }
 
     public Optional<Element> getElementAt(int x, int y) {
+        System.out.println(this);
         return this.elements.stream().filter(element -> element.isClicked(x, y)).findFirst();
+    }
+
+    @Override
+    public String toString() {
+        String str = "Canvas";
+        for(Element elem: elements) str += "\n" + elem.toString();
+        return str;
     }
 
 }

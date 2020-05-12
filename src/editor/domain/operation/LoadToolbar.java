@@ -25,7 +25,6 @@ public class LoadToolbar extends Operation {
             App.model.SetToolbar((Toolbar) o.readObject());
             App.model.getToolbar().Reattach();
             System.out.println("Loaded Toolbar");
-            System.out.println(App.model.getToolbar().toString());
             o.close();
             f.close();
         } catch (IOException e) {

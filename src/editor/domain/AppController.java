@@ -12,10 +12,6 @@ public class AppController {
 
     private final int drag_start_dist = 4;
 
-    private Canvas canvas;
-    private Toolbar toolbar;
-    private TopMenu topMenu;
-
     static public String currentCanvasPath;
     static public ActionControl actionControl;
 
@@ -50,9 +46,6 @@ public class AppController {
     private int select_start_y;
 
     public AppController() {
-        canvas = App.model.getCanvas();
-        toolbar = App.model.getToolbar();
-        topMenu = App.model.getTopMenu();
         actionControl = new ActionControl();
         heldKeys = new HashMap<>();
 
@@ -110,8 +103,8 @@ public class AppController {
     public void UpdateMouse() {
 
         
-        int canvas_relative_x = Math.max(0, pos_x - canvas.pos.x);
-        int canvas_relative_y = Math.max(0, pos_y - canvas.pos.y);
+        int canvas_relative_x = Math.max(0, pos_x - App.model.getCanvas().pos.x);
+        int canvas_relative_y = Math.max(0, pos_y - App.model.getCanvas().pos.y);
         
         boolean inCanvas = App.model.getCanvas().isClicked(pos_x, pos_y);
         boolean inToolbar = App.model.getToolbar().isClicked(pos_x, pos_y);
@@ -136,7 +129,7 @@ public class AppController {
 
             if(draggingElement == null && readyToDrag && holdElement == null) {
                 // Find the clicked element before dragging
-                Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
+                Optional<Element> found = App.model.getCanvas().getElementAt(canvas_relative_x, canvas_relative_y);
                 
                 if(found.isPresent()) {
                     SelectHoldElement(found.get());
@@ -205,7 +198,7 @@ public class AppController {
 
                     if(!dragging_from_toolbar) {
                         // Find an element to select and drag, or, select nothing
-                        Optional<ToolbarElement> found = toolbar.getToolbarElements()
+                        Optional<ToolbarElement> found = App.model.getToolbar().getToolbarElements()
                                                                 .stream().filter(element -> element.isClicked(pos_x, pos_y))
                                                                 .findFirst();
         
@@ -311,7 +304,7 @@ public class AppController {
                         actionControl.Do(new DeleteToolbarElement(App.model.getSelectedTool()));
                     } else {
                         // Find an element to select, or, select nothing
-                        Optional<ToolbarElement> found = toolbar.getToolbarElements()
+                        Optional<ToolbarElement> found = App.model.getToolbar().getToolbarElements()
                                                                 .stream().filter(element -> element.isClicked(pos_x, pos_y))
                                                                 .findFirst();
         
@@ -338,7 +331,7 @@ public class AppController {
             right_clicked = false;
 
             if(inCanvas) {
-                Optional<Element> found = canvas.getElementAt(canvas_relative_x, canvas_relative_y);
+                Optional<Element> found = App.model.getCanvas().getElementAt(canvas_relative_x, canvas_relative_y);
 
                 if(found.isPresent()) {
                     App.model.Select(found.get());
