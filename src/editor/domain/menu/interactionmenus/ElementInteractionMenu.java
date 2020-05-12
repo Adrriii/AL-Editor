@@ -33,6 +33,7 @@ public class ElementInteractionMenu extends InteractionMenu {
             this.addInteraction(new DegroupElementsInteraction((ElementGroup) element));
         }
         this.addInteraction(new ColorChangeInteraction(element));
+        this.addInteraction(new DimensionChangeInteraction(element));
         this.addInteraction(new DeleteElementInteraction(element));
     }
 

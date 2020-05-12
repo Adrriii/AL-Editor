@@ -29,6 +29,11 @@ public class JavaFXColorPicker extends ColorPicker {
     @Override
     public void show() {
         fxColorPicker = new javafx.scene.control.ColorPicker();
+        dial = new Dialog<>();
+        
+        dial.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.OK, ButtonType.CANCEL);
+
+        dial.getDialogPane().setContent(fxColorPicker);
     }
 
     @Override
@@ -38,11 +43,6 @@ public class JavaFXColorPicker extends ColorPicker {
 
     @Override
     public ColorProperty getColor() {
-        dial = new Dialog<>();
-        
-        dial.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.OK, ButtonType.CANCEL);
-
-        dial.getDialogPane().setContent(fxColorPicker);
         dial.showAndWait();
         
         Color fxColor = fxColorPicker.getValue();
