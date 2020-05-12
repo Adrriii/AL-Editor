@@ -3,6 +3,10 @@ package editor.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import editor.application.App;
+import editor.domain.menu.Interaction;
+import editor.domain.menu.interactionmenus.*;
+
 public class ElementGroup extends Element {
 
     /**
@@ -62,6 +66,17 @@ public class ElementGroup extends Element {
         });
 
         return group;
+    }
+
+    @Override
+    public ArrayList<Interaction> getAvailableInteractions() {
+        ArrayList<Interaction> list = super.getAvailableInteractions();
+        
+        if (new ArrayList<Element>(App.model.getSelectedElements()).size() == 1) {
+            list.add(new DegroupElementsInteraction(this));
+        }
+
+        return list;
     }
 
     @Override

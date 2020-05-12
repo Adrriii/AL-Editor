@@ -1,7 +1,12 @@
 package editor.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import editor.application.App;
+import editor.domain.menu.Interaction;
+import editor.domain.menu.interactionmenus.*;
 
 public abstract class Element extends Drawable implements IControllable {
 
@@ -48,6 +53,20 @@ public abstract class Element extends Drawable implements IControllable {
     abstract public int getSurfaceWidth();
 
     abstract public int getSurfaceHeight();
+
+    public ArrayList<Interaction> getAvailableInteractions() {
+        ArrayList<Interaction> list = new ArrayList<>();
+        
+        if(new ArrayList<Element>(App.model.getSelectedElements()).size() > 1) {
+            list.add(new GroupElementsInteraction(this));
+        } 
+
+        list.add(new ColorChangeInteraction(this));
+        list.add(new DimensionChangeInteraction(this));
+        list.add(new DeleteElementInteraction(this));
+
+        return list;
+    }
 
     public Position Update(Position new_pos, int width, int height) {
         if(new_pos.x > min_x) {

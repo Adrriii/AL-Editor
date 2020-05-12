@@ -1,9 +1,13 @@
 package editor.domain.element;
 
+import java.util.ArrayList;
+
 import editor.application.App;
 import editor.domain.Position;
 import editor.domain.elementproperty.ColorProperty;
 import editor.domain.elementproperty.RoundedBorderProperty;
+import editor.domain.menu.Interaction;
+import editor.domain.menu.interactionmenus.*;
 
 public class Rectangle extends Polygon {
 
@@ -48,6 +52,7 @@ public class Rectangle extends Polygon {
         this(0,0,width,height,0,0,0,255);
     }
 
+
     @Override
     public Rectangle Clone() {
         ColorProperty colors = getColorProperty();
@@ -56,6 +61,15 @@ public class Rectangle extends Polygon {
             ((RoundedBorderProperty) properties.get("roundedborders")).w,
             ((RoundedBorderProperty) properties.get("roundedborders")).h);
         return newElement;
+    }
+
+    @Override
+    public ArrayList<Interaction> getAvailableInteractions() {
+        ArrayList<Interaction> list = super.getAvailableInteractions();
+        
+        list.add(new BordersChangeInteration(this));
+
+        return list;
     }
 
     @Override

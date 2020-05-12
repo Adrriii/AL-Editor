@@ -1,11 +1,7 @@
 package editor.domain.menu.interactionmenus;
 
-import java.util.ArrayList;
-
-import editor.application.App;
 import editor.domain.Element;
-import editor.domain.ElementGroup;
-import editor.domain.element.Rectangle;
+import editor.domain.menu.Interaction;
 import editor.domain.menu.InteractionMenu;
 
 public class ElementInteractionMenu extends InteractionMenu {
@@ -26,19 +22,9 @@ public class ElementInteractionMenu extends InteractionMenu {
 
     @Override
     protected void SetInteractions() {
-        
-        if(new ArrayList<Element>(App.model.getSelectedElements()).size() > 1) {
-            this.addInteraction(new GroupElementsInteraction(element));
-        } 
-        if (new ArrayList<Element>(App.model.getSelectedElements()).size() == 1 && element.getClass().isAssignableFrom(ElementGroup.class)) {
-            this.addInteraction(new DegroupElementsInteraction((ElementGroup) element));
+        for(Interaction inter : element.getAvailableInteractions()) {
+            addInteraction(inter);
         }
-        if (element.getClass().isAssignableFrom(Rectangle.class)) {
-            this.addInteraction(new BordersChangeInteration(element));
-        }
-        this.addInteraction(new ColorChangeInteraction(element));
-        this.addInteraction(new DimensionChangeInteraction(element));
-        this.addInteraction(new DeleteElementInteraction(element));
     }
 
 }
