@@ -106,8 +106,16 @@ public class Polygon extends Element {
     }
 
     @Override
-    public boolean intersects(Position pos, int rwidth, int rheight) {
-        return isClicked(pos.x,pos.y) || isClicked(pos.x + rwidth,pos.y) || isClicked(pos.x,pos.y + rheight) || isClicked(pos.x + rwidth,pos.y + rheight);
+    public boolean intersects(int rx, int ry, int rwidth, int rheight) {
+        if(isClicked(rx,ry) || isClicked(rx + rwidth,ry) || isClicked(rx,ry + rheight) || isClicked(rx + rwidth,ry + rheight)) return true;
+
+        for(Position p : points) {
+            if(!(p.x + pos.x + width <= rx ||
+                p.y + pos.y + height <= ry ||
+                p.x + pos.x >= rx + rwidth || 
+                p.y + pos.y >= ry + rheight)) return true;
+        }
+        return false;
     }
 
     @Override
