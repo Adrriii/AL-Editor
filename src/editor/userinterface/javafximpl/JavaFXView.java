@@ -9,6 +9,7 @@ import editor.domain.elementproperty.ColorProperty;
 import editor.domain.elementproperty.RoundedBorderProperty;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
+import editor.userinterface.views.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -19,10 +20,10 @@ public class JavaFXView implements View {
 
     private Thread JavaFXThread;
 
-    private JavaFXViewMain mainView;
-    private JavaFXViewCanvas canvasView;
-    private JavaFXViewToolbar toolbarView;
-    private JavaFXViewTopMenu topMenuView;
+    private ViewMain mainView;
+    private ViewCanvas canvasView;
+    private ViewToolbar toolbarView;
+    private ViewTopMenu topMenuView;
 
     private HashMap<String, Image> imageCache;
 
@@ -30,10 +31,10 @@ public class JavaFXView implements View {
 
         this.JavaFXThread = new Thread(new JavaFXApplication());
 
-        this.mainView = new JavaFXViewMain();
-        this.canvasView = new JavaFXViewCanvas();
-        this.toolbarView = new JavaFXViewToolbar();
-        this.topMenuView = new JavaFXViewTopMenu();
+        this.mainView = new ViewMain();
+        this.canvasView = new ViewCanvas();
+        this.toolbarView = new ViewToolbar();
+        this.topMenuView = new ViewTopMenu();
 
         this.JavaFXThread.start();
 

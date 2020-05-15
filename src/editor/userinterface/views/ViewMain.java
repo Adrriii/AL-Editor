@@ -1,9 +1,9 @@
-package editor.userinterface.javafximpl;
+package editor.userinterface.views;
 
 import editor.application.App;
 import editor.userinterface.ViewScope;
 
-public class JavaFXViewMain implements ViewScope {
+public class ViewMain implements ViewScope {
 
     public boolean invalidated = true;
 

@@ -1,10 +1,10 @@
-package editor.userinterface.javafximpl;
+package editor.userinterface.views;
 
 import editor.application.App;
 import editor.domain.menu.TopMenu;
 import editor.userinterface.ViewScope;
 
-public class JavaFXViewTopMenu implements ViewScope {
+public class ViewTopMenu implements ViewScope {
 
     public boolean invalidated = true;
 

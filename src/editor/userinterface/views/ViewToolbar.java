@@ -1,10 +1,10 @@
-package editor.userinterface.javafximpl;
+package editor.userinterface.views;
 
 import editor.application.App;
 import editor.domain.Toolbar;
 import editor.userinterface.ViewScope;
 
-public class JavaFXViewToolbar implements ViewScope {
+public class ViewToolbar implements ViewScope {
 
     public boolean invalidated = true;
 
