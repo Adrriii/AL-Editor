@@ -70,11 +70,17 @@ public class ElementGroup extends Element {
 
     @Override
     public ArrayList<Interaction> getAvailableInteractions() {
-        ArrayList<Interaction> list = super.getAvailableInteractions();
+        ArrayList<Interaction> list = new ArrayList<>();
         
+        
+        if(new ArrayList<Element>(App.model.getSelectedElements()).size() > 1) {
+            list.add(new GroupElementsInteraction(this));
+        } 
         if (new ArrayList<Element>(App.model.getSelectedElements()).size() == 1) {
             list.add(new DegroupElementsInteraction(this));
         }
+
+        list.add(new DeleteElementInteraction(this));
 
         return list;
     }

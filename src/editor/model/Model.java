@@ -155,6 +155,7 @@ public class Model {
     public void Select(Element element) {
         this.selected.add(element);
         element.setSelected(true);
+        this.canvas.SetOnTop(element);
     }
 
     public void Deselect(Element element) {

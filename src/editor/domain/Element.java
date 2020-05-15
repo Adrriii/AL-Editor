@@ -62,7 +62,6 @@ public abstract class Element extends Drawable implements IControllable {
         } 
 
         list.add(new ColorChangeInteraction(this));
-        list.add(new DimensionChangeInteraction(this));
         list.add(new DeleteElementInteraction(this));
 
         return list;

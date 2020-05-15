@@ -72,6 +72,7 @@ public class Rectangle extends Element {
     public ArrayList<Interaction> getAvailableInteractions() {
         ArrayList<Interaction> list = super.getAvailableInteractions();
         
+        list.add(new DimensionChangeInteraction(this));
         list.add(new BordersChangeInteration(this));
 
         return list;

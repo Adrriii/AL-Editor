@@ -171,7 +171,7 @@ public class AppController {
                         dropped_from_toolbar = true;
 
                         App.model.DeselectAll();
-                        draggingElement.setSelected(true);
+                        App.model.Select(draggingElement);
                         App.model.setSelectedTool(null);
                     }
 
@@ -353,7 +353,7 @@ public class AppController {
         holdElement = element;
         clickedOnHoldElement = holdElement.isSelected();
         App.model.DeselectAll();
-        holdElement.setSelected(true);
+        App.model.Select(holdElement);
         App.view.getCanvasView().Update();
     }
 

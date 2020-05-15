@@ -6,6 +6,7 @@ import java.util.Iterator;
 import editor.application.App;
 import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
+import editor.domain.element.RegularPolygon;
 
 public class Toolbar extends Drawable {
 
@@ -60,6 +61,8 @@ public class Toolbar extends Drawable {
         points.add(new Position(80,50));
         points.add(new Position(10,40));
         addElement(new Polygon(points));
+
+        addElement(new RegularPolygon(70, 4));
     }    
 
     public void Resize(int width, int height) {
@@ -131,7 +134,7 @@ public class Toolbar extends Drawable {
 
         while(iter.hasNext()) {
             iter.next().Draw(new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
-            curr_y += width;
+            curr_y += element_height + getElementPadding();
         }
 
         this.deleteElementTool.Draw();

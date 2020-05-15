@@ -59,7 +59,7 @@ public class Polygon extends Element {
     }
 
     @Override
-    public Polygon Clone() {
+    public Element Clone() {
         Polygon newElement = new Polygon(properties, points);
         newElement.pos.x = pos.x;
         newElement.pos.y = pos.y;
@@ -107,7 +107,10 @@ public class Polygon extends Element {
 
     @Override
     public boolean intersects(int rx, int ry, int rwidth, int rheight) {
-        if(isClicked(rx,ry) || isClicked(rx + rwidth,ry) || isClicked(rx,ry + rheight) || isClicked(rx + rwidth,ry + rheight)) return true;
+        if(isClicked(rx, ry) ||
+            isClicked(rx + rwidth, ry) ||
+            isClicked(rx, ry + rheight) ||
+            isClicked(rx + rwidth, ry + rheight)) return true;
 
         for(Position p : points) {
             if(!(p.x + pos.x + width <= rx ||
