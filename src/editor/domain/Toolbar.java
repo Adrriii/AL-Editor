@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import editor.application.App;
+import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 
 public class Toolbar extends Drawable {
@@ -52,6 +53,13 @@ public class Toolbar extends Drawable {
     public void LoadDefaultTools() {
         addElement(new Rectangle(130,160));
         addElement(new Rectangle(190,130, 255, 0, 0));
+        
+        ArrayList<Position> points = new ArrayList<Position>();
+        points.add(new Position(0,0));
+        points.add(new Position(75,10));
+        points.add(new Position(80,50));
+        points.add(new Position(10,40));
+        addElement(new Polygon(points));
     }    
 
     public void Resize(int width, int height) {

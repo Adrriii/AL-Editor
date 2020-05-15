@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
 import editor.domain.elementproperty.RoundedBorderProperty;
@@ -85,7 +86,8 @@ public class JavaFXView implements View {
         imageCache.clear();
     }
 
-    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale, RoundedBorderProperty border) {
+    public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale,
+            RoundedBorderProperty border) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
 
         JavaFXRectangle.setX(pos_x);
@@ -123,7 +125,7 @@ public class JavaFXView implements View {
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
-        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1, new RoundedBorderProperty(0,0));
+        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1, new RoundedBorderProperty(0, 0));
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y, double scale) {
@@ -156,6 +158,21 @@ public class JavaFXView implements View {
         loadImage(path);
 
         drawJavaFXImage(imageCache.get(path), pos_x, pos_y, width, height);
+    }
+
+    @Override
+    public void drawPolygon(Polygon polygon, int pos_x, int pos_y, double scale) {
+        javafx.scene.shape.Polygon poly = new javafx.scene.shape.Polygon();
+
+        polygon.getPoints().forEach(polypoint -> {
+            poly.getPoints().add(pos_x + polypoint.x * scale);
+            poly.getPoints().add(pos_y + polypoint.y * scale);
+        });
+
+        ColorProperty colors = polygon.getColorProperty();
+        poly.setFill(new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0));
+
+        JavaFXApplication.addToRoot(poly);
     }
 
 }

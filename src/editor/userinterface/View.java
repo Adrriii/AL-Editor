@@ -1,5 +1,6 @@
 package editor.userinterface;
 
+import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 
 public interface View {
@@ -15,6 +16,7 @@ public interface View {
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y);
     public void drawRectangle(Rectangle rectangle, double scale);
     public void drawRectangle(Rectangle rectangle);
+    public void drawPolygon(Polygon polygon, int pos_x, int pos_y, double scale);
     public void drawImage(String path, int pos_x, int pos_y, int width, int height);
     public void drawText(String text, int x, int y, int size);
 

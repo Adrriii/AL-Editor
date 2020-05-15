@@ -3,13 +3,14 @@ package editor.domain.element;
 import java.util.ArrayList;
 
 import editor.application.App;
+import editor.domain.Element;
 import editor.domain.Position;
 import editor.domain.elementproperty.ColorProperty;
 import editor.domain.elementproperty.RoundedBorderProperty;
 import editor.domain.menu.Interaction;
 import editor.domain.menu.interactionmenus.*;
 
-public class Rectangle extends Polygon {
+public class Rectangle extends Element {
 
     /**
      *
@@ -50,6 +51,10 @@ public class Rectangle extends Polygon {
 
     public Rectangle(int width, int height) {
         this(0,0,width,height,0,0,0,255);
+    }
+
+    public ColorProperty getColorProperty() {
+        return (ColorProperty) properties.get("color");
     }
 
 
@@ -104,5 +109,15 @@ public class Rectangle extends Polygon {
     @Override
     public boolean isClicked(int x, int y) {
         return x > pos.x && x < pos.x + width && y > pos.y && y < pos.y + height;
+    }
+
+    @Override
+    public int getSurfaceWidth() {
+        return width;
+    }
+
+    @Override
+    public int getSurfaceHeight() {
+        return height;
     }
 }
