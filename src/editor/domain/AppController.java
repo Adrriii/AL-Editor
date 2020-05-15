@@ -149,7 +149,7 @@ public class AppController {
 
                         App.model.getCanvas().getElements().forEach(element -> {
                             if(element.intersects(sr_x, sr_y, sr_width, sr_height)) {
-                                App.model.Select(element);
+                                App.model.Select(element, true);
                             } else {
                                 App.model.Deselect(element);
                             }

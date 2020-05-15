@@ -153,9 +153,13 @@ public class Model {
     }
 
     public void Select(Element element) {
+        Select(element, false);
+    }
+
+    public void Select(Element element, boolean keepOrder) {
         this.selected.add(element);
         element.setSelected(true);
-        this.canvas.SetOnTop(element);
+        if (!keepOrder) this.canvas.SetOnTop(element);
     }
 
     public void Deselect(Element element) {
