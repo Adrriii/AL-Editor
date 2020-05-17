@@ -8,7 +8,7 @@
             "type": "java",
             "name": "Debug (Launch)-JUnitCore<editor>",
             "request": "launch",
-            "mainClass": "org.junit.runner.JUnitCore",
+            "mainClass": "tests.Tests",
             "projectName": "editor"
         },
         {
