@@ -1,5 +1,6 @@
 package editor.domain.menu.interactionmenus;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import editor.application.App;
@@ -20,7 +21,7 @@ public class GroupElementsInteraction extends ElementInteraction {
 
     @Override
     public void onClick() {
-        HashSet<Element> selected = App.model.getSelectedElements();
+        ArrayList<Element> selected = App.model.getSelectedElements();
 
         AppController.actionControl.Do(new GroupElements(selected));
         

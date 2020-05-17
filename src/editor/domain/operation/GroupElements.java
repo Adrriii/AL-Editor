@@ -1,7 +1,6 @@
 package editor.domain.operation;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import editor.application.App;
 import editor.domain.Element;
@@ -11,10 +10,10 @@ import editor.domain.Operation;
 
 public class GroupElements extends Operation {
 
-    protected HashSet<Element> selected;
+    protected ArrayList<Element> selected;
     protected ElementGroup group;
 
-    public GroupElements(HashSet<Element> selected) {
+    public GroupElements(ArrayList<Element> selected) {
         this.selected = selected;
     }
 
@@ -40,15 +39,13 @@ public class GroupElements extends Operation {
 
     @Override
     public void Undo() {
-        selected = new HashSet<>();
-        ArrayList<Element> elements = new ArrayList<>(((ElementGroup) group).getElements());
-
+        ArrayList<Element> selected = new ArrayList<>();
         group.Detach(App.view.getCanvasView());
         App.model.getCanvas().removeElement(group);
         
         App.model.DeselectAll();
 
-        elements.forEach(out -> {
+        new ArrayList<Element>(group.getElements()).forEach(out -> {
             try {
                 group.Remove(out);
             }

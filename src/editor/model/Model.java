@@ -18,7 +18,7 @@ public class Model {
     private ToolbarElement selectedTool;
 
     private Rectangle selectionRectangle;
-    private HashSet<Element> selected;
+    private ArrayList<Element> selected;
     private ArrayList<Control> controls;
 
     private boolean running;
@@ -45,7 +45,7 @@ public class Model {
         this.topMenu = new TopMenu();
         (new LoadToolbar()).Do();
 
-        this.selected = new HashSet<>();
+        this.selected = new ArrayList<>();
         this.selectionRectangle = null;
 
         this.controls = new ArrayList<>();
@@ -58,7 +58,7 @@ public class Model {
     public void SetCanvas(Canvas canvas) {
         this.canvas = canvas;
 
-        this.selected = new HashSet<>();
+        this.selected = new ArrayList<>();
         this.selectionRectangle = null;
 
         Resize(width,height);
@@ -157,8 +157,17 @@ public class Model {
     }
 
     public void Select(Element element, boolean keepOrder) {
+        ArrayList<Element> nselect = new ArrayList<>();
         this.selected.add(element);
         element.setSelected(true);
+
+        // Preserve elements order
+        for(Element el : canvas.getElements()) {
+            if(this.selected.contains(el)) {
+                nselect.add(el);
+            }
+        }
+        this.selected = nselect;
         if (!keepOrder) this.canvas.SetOnTop(element);
     }
 
@@ -176,7 +185,7 @@ public class Model {
         new ArrayList<Element>(this.selected).forEach(element -> Deselect(element));
     }
  
-    public HashSet<Element> getSelectedElements() {
+    public ArrayList<Element> getSelectedElements() {
         return this.selected;
     }
 
