@@ -18,14 +18,14 @@ public class ChangeElementRotation extends Operation {
     public void Do() {
         Element obj = ((Element) state);
         obj.rotation = v2;
-        obj.Update(obj.pos,obj.pos.x,obj.pos.y);
+        obj.Update(obj.pos,obj.width,obj.height);
     }
 
     @Override
     public void Undo() {
         Element obj = ((Element) state);
         obj.rotation = v1;
-        obj.Update(obj.pos,obj.pos.x,obj.pos.y);
+        obj.Update(obj.pos,obj.width,obj.height);
     }
 
     @Override
