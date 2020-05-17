@@ -14,9 +14,9 @@ public class ElementGroup extends Element {
      */
     private static final long serialVersionUID = 1L;
 
-    private ArrayList<Element> elements;
+    public ArrayList<Element> elements;
 
-    private Position furthest;
+    public Position furthest;
 
     public ElementGroup() {
         super();
@@ -64,6 +64,8 @@ public class ElementGroup extends Element {
                 e.printStackTrace();
             }
         });
+
+        group.furthest = furthest;
 
         return group;
     }

@@ -66,6 +66,8 @@ public class Rectangle extends Element {
             ((RoundedBorderProperty) properties.get("roundedborders")).w,
             ((RoundedBorderProperty) properties.get("roundedborders")).h);
             
+        newElement.min_x = min_x;
+        newElement.min_y = min_y;
         newElement.rotation = rotation;
         return newElement;
     }

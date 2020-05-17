@@ -267,8 +267,10 @@ public class AppController {
                             )
                         );
                     } else {
-                        ((CreateElement) actionControl.peekLastOperation()).setLocation(elementNextPosition);
-                        dropped_from_toolbar = false;
+                        try {
+                            ((CreateElement) actionControl.peekLastOperation()).setLocation(elementNextPosition);
+                            dropped_from_toolbar = false;
+                        } catch(Exception e) {}
                     }
                 }
 
