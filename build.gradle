@@ -1,0 +1,45 @@
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+version = '1.0'
+
+description = """Graphical shape editor"""
+
+sourceSets {
+   main {
+      java {
+         srcDir 'src/editor'
+      }
+   }
+	
+   test {
+      java {
+         srcDir 'src/tests'
+      }
+   }
+}
+
+mainClassName = 'editor.application.App'
+
+jar {
+  manifest { 
+    attributes "Main-Class": "$mainClassName"
+  }  
+
+  from {
+    configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	testCompile 'junit:junit:4.12'
+	implementation files('src/libs/junit-4.13.jar')
+	implementation files('src/libs/javafx-base-11.jar')
+	implementation files('src/libs/javafx-controls-11.jar')
+	implementation files('src/libs/javafx-graphics-11.jar')
+}
