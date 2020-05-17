@@ -87,7 +87,7 @@ public class JavaFXView implements View {
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color, double scale,
-            RoundedBorderProperty border) {
+            RoundedBorderProperty border, int rotation) {
         javafx.scene.shape.Rectangle JavaFXRectangle = new javafx.scene.shape.Rectangle();
 
         JavaFXRectangle.setX(pos_x);
@@ -96,6 +96,7 @@ public class JavaFXView implements View {
         JavaFXRectangle.setHeight(height * scale);
         JavaFXRectangle.setArcWidth(border.w * scale);
         JavaFXRectangle.setArcHeight(border.h * scale);
+        JavaFXRectangle.setRotate(rotation);
 
         JavaFXRectangle.setFill(color);
 
@@ -125,7 +126,7 @@ public class JavaFXView implements View {
     }
 
     public void drawJavaFXRectangle(int pos_x, int pos_y, int width, int height, Color color) {
-        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1, new RoundedBorderProperty(0, 0));
+        drawJavaFXRectangle(pos_x, pos_y, width, height, color, 1, new RoundedBorderProperty(0, 0), 0);
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y, double scale) {
@@ -133,7 +134,7 @@ public class JavaFXView implements View {
 
         drawJavaFXRectangle(pos_x, pos_y, rectangle.width, rectangle.height,
                 new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0), scale,
-                (RoundedBorderProperty) rectangle.properties.get("roundedborders"));
+                (RoundedBorderProperty) rectangle.properties.get("roundedborders"), rectangle.rotation);
     }
 
     public void drawRectangle(Rectangle rectangle, int pos_x, int pos_y) {
@@ -168,6 +169,8 @@ public class JavaFXView implements View {
             poly.getPoints().add(pos_x + polypoint.x * scale);
             poly.getPoints().add(pos_y + polypoint.y * scale);
         });
+
+        poly.setRotate(polygon.rotation);
 
         ColorProperty colors = polygon.getColorProperty();
         poly.setFill(new Color(colors.r / 255.0, colors.g / 255.0, colors.b / 255.0, colors.a / 255.0));

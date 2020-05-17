@@ -65,6 +65,8 @@ public class Rectangle extends Element {
             colors.r, colors.g, colors.b, colors.a,
             ((RoundedBorderProperty) properties.get("roundedborders")).w,
             ((RoundedBorderProperty) properties.get("roundedborders")).h);
+            
+        newElement.rotation = rotation;
         return newElement;
     }
 
@@ -90,14 +92,18 @@ public class Rectangle extends Element {
             int selectionRectangleX = Math.max(App.model.getCanvas().pos.x,pos.x-5);
             int selectionRectangleY = Math.max(App.model.getCanvas().pos.y,pos.y-5);
             
+            Rectangle selecRec = new Rectangle(
+                pos.x, 
+                pos.y, 
+                width + 10 + Math.min(0,pos.x-App.model.getCanvas().pos.x-5), 
+                height + 10 + Math.min(0,pos.y-App.model.getCanvas().pos.y-5), 0, 0, 255, 100,
+                ((RoundedBorderProperty) properties.get("roundedborders")).w,
+                ((RoundedBorderProperty) properties.get("roundedborders")).h);
+
+            selecRec.rotation = rotation;
+
             App.view.drawRectangle(
-                new Rectangle(
-                    pos.x, 
-                    pos.y, 
-                    width + 10 + Math.min(0,pos.x-App.model.getCanvas().pos.x-5), 
-                    height + 10 + Math.min(0,pos.y-App.model.getCanvas().pos.y-5), 0, 0, 255, 100,
-                    ((RoundedBorderProperty) properties.get("roundedborders")).w,
-                    ((RoundedBorderProperty) properties.get("roundedborders")).h),
+                selecRec,
                 selectionRectangleX, 
                 selectionRectangleY
             );

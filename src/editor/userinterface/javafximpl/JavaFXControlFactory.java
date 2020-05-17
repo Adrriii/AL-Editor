@@ -16,4 +16,21 @@ public class JavaFXControlFactory implements ControlFactory {
         return new JavaFXInputBoxes(labels);
     }
 
+    @Override
+    public Slider GetSlider(String text, int value, int lower, int upper) {
+        return new JavaFXSlider(text, value, lower, upper);
+    }
+
+    @Override
+    public Slider GetSlider(String text, int lower, int upper) {
+        return new JavaFXSlider(text, lower, upper);
+    }
+
+    @Override
+    public Slider GetSlider(String text) {
+        return new JavaFXSlider(text);
+    }
+
+    
+
 }

@@ -1,7 +1,6 @@
 package editor.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import editor.application.App;
 import editor.domain.*;

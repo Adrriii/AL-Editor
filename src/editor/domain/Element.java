@@ -22,6 +22,8 @@ public abstract class Element extends Drawable implements IControllable {
     protected int min_x = 0;
     protected int min_y = 0;
 
+    public int rotation = 0;
+
     public Element(HashMap<String,ElementProperty> properties) {
         super();
 
@@ -62,6 +64,7 @@ public abstract class Element extends Drawable implements IControllable {
         } 
 
         list.add(new ColorChangeInteraction(this));
+        list.add(new RotationChangeInteraction(this));
         list.add(new DeleteElementInteraction(this));
 
         return list;

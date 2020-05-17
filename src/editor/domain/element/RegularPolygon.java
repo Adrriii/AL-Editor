@@ -28,6 +28,7 @@ public class RegularPolygon extends Polygon {
     public Element Clone() {
         RegularPolygon newpoly = new RegularPolygon(width/2, ((SidesCountProperty) properties.get("sidescount")).count);
         newpoly.properties = new HashMap<>(properties);
+        newpoly.rotation = rotation;
         return newpoly;
     }
 

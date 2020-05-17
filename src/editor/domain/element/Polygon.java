@@ -67,6 +67,7 @@ public class Polygon extends Element {
         newElement.height = height;
         newElement.min_x = min_x;
         newElement.min_y = min_y;
+        newElement.rotation = rotation;
 
         return newElement;
     }
@@ -124,18 +125,9 @@ public class Polygon extends Element {
     @Override
     public void Draw(Position pos, double scale) {
         if(isSelected()) {
-            int selectionRectangleX = Math.max(App.model.getCanvas().pos.x,pos.x-5);
-            int selectionRectangleY = Math.max(App.model.getCanvas().pos.y,pos.y-5);
-            
-            App.view.drawRectangle(
-                new Rectangle(
-                    pos.x, 
-                    pos.y, 
-                    width + 10 + Math.min(0,pos.x-App.model.getCanvas().pos.x-5), 
-                    height + 10 + Math.min(0,pos.y-App.model.getCanvas().pos.y-5), 0, 0, 255, 100),
-                selectionRectangleX, 
-                selectionRectangleY
-            );
+            Polygon selecPoly = (Polygon) this.Clone();
+            selecPoly.properties.put("color", new ColorProperty(0, 0, 255, 100));
+            App.view.drawPolygon(selecPoly, pos.x - 5, pos.y - 5, scale*1.07);
         }
         
         App.view.drawPolygon(this, pos.x, pos.y, scale);
