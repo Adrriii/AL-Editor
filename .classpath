@@ -3,8 +3,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="src/libs/javafx-8.9.2.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/javafx-base-11.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/javafx-controls-11.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/javafx-graphics-11.jar"/>
+	<classpathentry kind="lib" path="src/libs/javafx-base-11.jar"/>
+	<classpathentry kind="lib" path="src/libs/javafx-controls-11.jar"/>
+	<classpathentry kind="lib" path="src/libs/javafx-graphics-11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
