@@ -11,6 +11,8 @@ public abstract class Interaction extends Drawable {
      *
      */
     private static final long serialVersionUID = 1L;
+    private int border_width = 2;
+    private Rectangle border;
     private Rectangle background;
     private String label;
 
@@ -23,9 +25,10 @@ public abstract class Interaction extends Drawable {
         this.pos.y = 0;
 
         this.width = 150;
-        this.height = 25;
+        this.height = 27;
 
-        this.background = new Rectangle(pos.x, pos.y, width, height, 211, 211, 211, 255);
+        this.background = new Rectangle(pos.x, pos.y, width, height, 231, 231, 231, 255);
+        this.border = new Rectangle(pos.x, pos.y, width + border_width * 2, height + border_width * 2, 30, 30, 30, 255);
         this.label = label;
     }
 
@@ -33,6 +36,7 @@ public abstract class Interaction extends Drawable {
 
     @Override
     public void Draw(Position pos) {
+        App.view.drawRectangle(this.border, pos.x - border_width, pos.y - border_width);
         App.view.drawRectangle(this.background, pos.x, pos.y);
         App.view.drawText(this.label, pos.x, pos.y + this.fontSize, this.fontSize);
     }

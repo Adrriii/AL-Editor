@@ -222,7 +222,6 @@ public class AppController {
 
             if(inInteractionMenu) {
                 App.model.getInteractionMenu().onClick(pos_x, pos_y);
-                App.model.setInteractionMenu(null);
                 return;
             } else if (!(App.model.getInteractionMenu() == null)) {
                 App.model.setInteractionMenu(null);
