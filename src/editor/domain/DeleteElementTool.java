@@ -38,9 +38,9 @@ public class DeleteElementTool extends Element {
     @Override
     public void Draw(Position ref, int fit_width, int fit_height) {
         if(!isClicked(App.appController.CurrentMousePos())) 
-            App.view.drawImage(App.getFilePath("assets/img/bin.png"), ref.x, ref.y, fit_width, fit_height);
+            App.view.drawImage("assets/img/bin.png", ref.x, ref.y, fit_width, fit_height);
         else
-            App.view.drawImage(App.getFilePath("assets/img/bin_hover.png"), ref.x, ref.y, fit_width, fit_height);
+            App.view.drawImage("assets/img/bin_hover.png", ref.x, ref.y, fit_width, fit_height);
     }
     
 }

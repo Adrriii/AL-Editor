@@ -1,9 +1,9 @@
 package editor.userinterface.javafximpl;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+import editor.application.App;
 import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 import editor.domain.elementproperty.ColorProperty;
@@ -76,7 +76,7 @@ public class JavaFXView implements View {
             return;
 
         try {
-            imageCache.put(path, new Image(new FileInputStream(path)));
+            imageCache.put(path, new Image(App.load(path)));
         } catch (FileNotFoundException e) {
             System.out.println(path + " can't be found.");
         }

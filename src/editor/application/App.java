@@ -1,5 +1,8 @@
 package editor.application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import editor.domain.AppController;
 import editor.model.Model;
 import editor.userinterface.*;
@@ -30,7 +33,7 @@ public class App {
         App.model.init();
 
         App.appController = new AppController();
-        
+
         ready = true;
 
         while (model.isRunning()) {
@@ -45,10 +48,22 @@ public class App {
     }
 
     public static String getFilePath(String relativePath) {
-        if(App.win_env) {
+        if (App.win_env) {
             return System.getProperty("user.dir") + "\\" + relativePath.replace("/", "\\");
         } else {
             return System.getProperty("user.dir") + "/" + relativePath.replace("\\", "/");
+        }
+    }
+
+    public static FileInputStream load(String path) throws FileNotFoundException {
+        try {
+            return new FileInputStream(App.getFilePath(path));
+        } catch (FileNotFoundException e) {
+            if(App.win_env) {
+                App.win_env = false;
+                return App.load(path);
+            }
+            throw e;
         }
     }
 }

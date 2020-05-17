@@ -20,11 +20,11 @@ public class TopMenuRedo extends TopMenuElement {
     public void Draw(Position ref) {
         if(AppController.actionControl.CanRedo()) {
             if(!isClicked(App.appController.CurrentMousePos())) 
-                App.view.drawImage(App.getFilePath("assets/img/redo.png"), ref.x, ref.y, width, height);
+                App.view.drawImage("assets/img/redo.png", ref.x, ref.y, width, height);
             else
-                App.view.drawImage(App.getFilePath("assets/img/redo_hover.png"), ref.x, ref.y, width, height);
+                App.view.drawImage("assets/img/redo_hover.png", ref.x, ref.y, width, height);
         } else {
-            App.view.drawImage(App.getFilePath("assets/img/redo_grey.png"), ref.x, ref.y, width, height);
+            App.view.drawImage("assets/img/redo_grey.png", ref.x, ref.y, width, height);
         }
     }
 
