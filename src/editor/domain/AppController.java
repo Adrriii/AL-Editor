@@ -278,21 +278,12 @@ public class AppController {
                     // Clicking in canvas adds the selected element
                     if(holdElement == null) {
                         App.model.DeselectAll();
+                        App.view.getCanvasView().Update();
                     } else {
                         if(clickedOnHoldElement) {
                             clickedOnHoldElement = false;
                             App.model.Deselect(holdElement);
                         }
-                    }
-                     
-                    if(App.model.getSelectedTool() != null) {
-                        CreateElement createElement = new CreateElement(
-                            App.model.getSelectedTool().getElement(),
-                            new Position(canvas_relative_x,canvas_relative_y)
-                        );
-
-                        actionControl.Do(createElement);
-                        App.view.getCanvasView().Update();
                     }
                 }
     
