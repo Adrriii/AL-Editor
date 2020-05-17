@@ -14,6 +14,8 @@ public class App {
     public static Model model;
     public static boolean ready;
 
+    public static boolean win_env = true;
+
     public static void main(String args[]) {
 
         ready = false;
@@ -43,6 +45,10 @@ public class App {
     }
 
     public static String getFilePath(String relativePath) {
-        return System.getProperty("user.dir") + "\\" + relativePath.replace("/", "\\");
+        if(App.win_env) {
+            return System.getProperty("user.dir") + "\\" + relativePath.replace("/", "\\");
+        } else {
+            return System.getProperty("user.dir") + "/" + relativePath.replace("\\", "/");
+        }
     }
 }

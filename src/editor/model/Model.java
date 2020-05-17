@@ -42,7 +42,13 @@ public class Model {
 
         this.canvas = new Canvas();
         this.topMenu = new TopMenu();
-        (new LoadToolbar()).Do();
+        
+        try {
+            (new LoadToolbar()).Do();
+        } catch(Exception e) {
+            App.win_env = false;
+            (new LoadToolbar()).Do();
+        }
 
         this.selected = new ArrayList<>();
         this.selectionRectangle = null;
