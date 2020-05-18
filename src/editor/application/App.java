@@ -19,6 +19,7 @@ public class App {
     public static boolean ready;
 
     public static boolean win_env = true;
+    public static String tools = ".ale-tool";
 
     public static void main(String args[]) {
 
@@ -26,6 +27,7 @@ public class App {
 
         UserInterface ui;
         if(args.length > 0 && args[0] == "tests") {
+            App.tools = ".ale-tool-test";
             App.controlFactory = new TestControlFactory();
             ui = new TestUI();
         } else {

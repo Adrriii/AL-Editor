@@ -199,3 +199,5 @@ hs_err_pid*
 .gradle/
 
 build/
+
+.ale-tool-test

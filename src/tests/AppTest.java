@@ -8,6 +8,7 @@ import editor.application.App;
 import editor.domain.AppController;
 import editor.domain.Position;
 import editor.domain.element.Rectangle;
+import editor.domain.operation.AddToolbarElement;
 import editor.domain.operation.MoveElement;
 
 public class AppTest {
@@ -74,5 +75,47 @@ public class AppTest {
         AppController.actionControl.Redo(); // Don't redo the 40,40 action !
         assertTrue(obj.pos.x == 10);
         assertTrue(obj.pos.y == 10);
+    }
+
+    @Test
+    public void ToolbarTest() {
+        AppStart();
+
+        // Clear
+        while(App.model.getToolbar().getToolbarElements().size() > 0) {
+            App.model.getToolbar().removeElement(App.model.getToolbar().getToolbarElements().get(0));
+        }
+
+        Rectangle obj = new Rectangle(1, 2);
+        
+        AppController.actionControl.Do(new AddToolbarElement(obj));
+        AppController.actionControl.Do(new AddToolbarElement(obj));
+
+        assertTrue(App.model.getToolbar().getToolbarElements().get(0).getElement() != obj); // Element cloned
+
+        App.model.setSelectedTool(App.model.getToolbar().getToolbarElements().get(0));
+
+        assertTrue(App.model.getToolbar().getToolbarElements().get(0) == App.model.getSelectedTool()); // Tool selected
+
+        AppController.actionControl.Undo();
+
+        assertTrue(App.model.getToolbar().getToolbarElements().size() == 1);
+
+        AppController.actionControl.Redo();
+
+        assertTrue(App.model.getToolbar().getToolbarElements().size() == 2);
+
+        AppController.actionControl.Undo();
+        AppController.actionControl.Undo();
+
+        assertTrue(App.model.getToolbar().getToolbarElements().size() == 0);
+
+        AppController.actionControl.Undo();
+
+        assertTrue(App.model.getToolbar().getToolbarElements().size() == 0);
+        
+        AppController.actionControl.Redo();
+
+        assertTrue(App.model.getToolbar().getToolbarElements().size() == 1);
     }
 }

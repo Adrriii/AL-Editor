@@ -21,7 +21,7 @@ sourceSets {
 
 test {
     useJUnit()
-
+   testLogging.showStandardStreams = true
     maxHeapSize = '1G'
 }
 

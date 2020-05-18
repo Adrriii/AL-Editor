@@ -20,11 +20,10 @@ public class LoadToolbar extends Operation {
     public void Do() {
 
         try {
-            FileInputStream f = new FileInputStream(new File(".ale-tool"));
+            FileInputStream f = new FileInputStream(new File(App.tools));
             ObjectInputStream o = new ObjectInputStream(f);
             App.model.SetToolbar((Toolbar) o.readObject());
             App.model.getToolbar().Reattach();
-            System.out.println("Loaded Toolbar");
             o.close();
             f.close();
         } catch (IOException e) {
@@ -33,7 +32,7 @@ public class LoadToolbar extends Operation {
             App.model.getToolbar().LoadDefaultTools();
             (new SaveToolbar()).Do();
         } catch (ClassNotFoundException e) {
-            System.out.println("Invalid file .ale-tool");
+            System.out.println("Invalid file "+App.tools);
             e.printStackTrace();
         }
     }

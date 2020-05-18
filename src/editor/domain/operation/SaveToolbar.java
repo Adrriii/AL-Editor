@@ -18,14 +18,14 @@ public class SaveToolbar extends Operation {
     @Override
     public void Do() {
             try {
-                FileOutputStream f = new FileOutputStream(new File(".ale-tool"), false);
+                FileOutputStream f = new FileOutputStream(new File(App.tools), false);
                 ObjectOutputStream o = new ObjectOutputStream(f);
                 o.writeObject(App.model.getToolbar());
             
                 o.close();
                 f.close();
             } catch (IOException e) {
-                System.out.println("Could not open .ale-tool");
+                System.out.println("Could not open "+App.tools);
                 e.printStackTrace();
             }
     }
