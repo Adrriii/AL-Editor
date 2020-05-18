@@ -11,8 +11,8 @@ public class MoveElement extends Operation {
 
     public MoveElement(Element element, Position from, Position to) {
         state = element;
-        move_from = from;
-        move_to = to;
+        move_from = new Position(from.x, from.y);
+        move_to = new Position(to.x, to.y);
     }
 
     @Override
