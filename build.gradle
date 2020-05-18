@@ -14,9 +14,15 @@ sourceSets {
    }
    test {
       java {
-         srcDir 'tests'
+         srcDir 'src/tests'
       }
    }
+}
+
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
 }
 
 mainClassName = 'editor.application.App'
