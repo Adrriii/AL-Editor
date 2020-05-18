@@ -9,13 +9,12 @@ description = """Graphical shape editor"""
 sourceSets {
    main {
       java {
-         srcDir 'src/editor'
+         srcDir 'src'
       }
    }
-	
    test {
       java {
-         srcDir 'src/tests'
+         srcDir 'tests'
       }
    }
 }

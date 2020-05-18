@@ -106,11 +106,11 @@ public class JavaFXController implements Controller {
     }
 
     public void NotifyWidth(int newWidth) {
-        App.appController.NotifyWidth(newWidth);
+        if(App.appController != null) App.appController.NotifyWidth(newWidth);
     }
 
     public void NotifyHeight(int newHeight) {
-        App.appController.NotifyHeight(newHeight);
+        if(App.appController != null) App.appController.NotifyHeight(newHeight);
     }
 
     @Override
