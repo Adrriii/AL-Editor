@@ -7,6 +7,7 @@ import editor.domain.AppController;
 import editor.model.Model;
 import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;
+import editor.userinterface.testimpl.*;
 
 public class App {
 
@@ -23,9 +24,15 @@ public class App {
 
         ready = false;
 
-        App.controlFactory = new JavaFXControlFactory();
+        UserInterface ui;
+        if(args.length > 0 && args[0] == "tests") {
+            App.controlFactory = new TestControlFactory();
+            ui = new TestUI();
+        } else {
+            App.controlFactory = new JavaFXControlFactory();
+            ui = new JavaFXUI();
+        }
 
-        UserInterface ui = new JavaFXUI();
         App.view = ui.GetView();
         App.controller = ui.GetController();
         App.model = new Model();
@@ -36,13 +43,15 @@ public class App {
 
         ready = true;
 
-        while (model.isRunning()) {
-            App.model.Update();
+        if(args.length == 0 || args[0] != "tests") {
+            while (model.isRunning()) {
+                App.model.Update();
 
-            try {
-                Thread.sleep(16); // 60 fps, need to process delta time to make it better
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                try {
+                    Thread.sleep(16); // 60 fps, need to process delta time to make it better
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
