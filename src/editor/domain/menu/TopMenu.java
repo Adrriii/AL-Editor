@@ -9,11 +9,14 @@ import editor.domain.Position;
 import editor.domain.element.Rectangle;
 import editor.domain.menu.topmenuelements.*;
 
+/**
+* Holds all elements and behaviors of the top menu.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TopMenu extends Menu {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private Rectangle background;
     private ArrayList<TopMenuElement> elements;

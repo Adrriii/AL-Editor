@@ -8,6 +8,12 @@ import editor.domain.element.Rectangle;
 import editor.domain.menu.*;
 import editor.domain.operation.LoadToolbar;
 
+/**
+* Holds the application's memory representation.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class Model {
 
     private Canvas canvas;

@@ -8,6 +8,12 @@ import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 import editor.domain.element.RegularPolygon;
 
+/**
+* Holds all elements and behaviors of the toolbar.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class Toolbar extends Drawable {
 
     /**

@@ -5,11 +5,14 @@ import editor.domain.Drawable;
 import editor.domain.Position;
 import editor.domain.element.Rectangle;
 
+/**
+* A visible area that will trigger an action on click.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public abstract class Interaction extends Drawable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private int border_width = 2;
     private Rectangle border;

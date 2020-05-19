@@ -3,7 +3,6 @@ package editor.userinterface.javafximpl;
 import java.util.HashMap;
 
 import editor.application.App;
-import editor.domain.AppController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,6 +15,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+* Hosts all the logic required to run a JavaFX Application.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXApplication extends Application implements Runnable {
 
     static volatile public Group root;

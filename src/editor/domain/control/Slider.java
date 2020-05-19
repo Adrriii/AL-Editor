@@ -2,15 +2,26 @@ package editor.domain.control;
 
 import editor.domain.Control;
 
+/**
+* Defines the needed methods for a Slider.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public abstract class Slider extends Control {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     protected String text;
     protected int value, lower, upper;
 
+    /**
+    * Sets the basic properties of a Slider.
+    * 
+    * @param text The label text to be displayed.
+    * @param value The starting value of the slider.
+    * @param lower The minimum value of the slider.
+    * @param upper The maximum value of the slider.
+    */
     public Slider(String text, int value, int lower, int upper) {
         this.text = text;
         this.value = value;

@@ -6,6 +6,12 @@ import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import editor.userinterface.views.*;
 
+/**
+* Does nothing, only serves during unit tests.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TestView implements View {
 
     private ViewMain mainView;

@@ -7,11 +7,14 @@ import editor.application.App;
 import editor.domain.Menu;
 import editor.domain.Position;
 
+/**
+* A menu listing interactions from top to bottom.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public abstract class InteractionMenu extends Menu {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     protected ArrayList<Interaction> interactions;

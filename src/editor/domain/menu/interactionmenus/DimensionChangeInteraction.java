@@ -7,11 +7,14 @@ import editor.domain.Position;
 import editor.domain.control.InputBoxes;
 import editor.domain.operation.ChangeElementSize;
 
+/**
+* An Interaction aiming at changing the dimensions an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class DimensionChangeInteraction extends ElementInteraction {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public DimensionChangeInteraction(Element element) {

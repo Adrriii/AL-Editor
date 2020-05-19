@@ -9,6 +9,13 @@ import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;
 import editor.userinterface.testimpl.*;
 
+/**
+* This is the entry class of the application.
+* The main method can be called with {"tests"} to initialize only.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class App {
 
     public static View view;
@@ -23,6 +30,11 @@ public class App {
 
     public static int callcount = 0;
 
+    /**
+    * This is the entry method of the application.
+    * 
+    * @param args Insert the string "tests" to perform basic init only.
+    */
     public static void main(String args[]) {
 
         ready = false;
@@ -66,6 +78,12 @@ public class App {
         }
     }
 
+
+    /**
+    * Returns a correctly formatted absolute path depending on the currently detected platform.
+    * 
+    * @param relativePath A path relative to the current application's execution directory.
+    */
     public static String getFilePath(String relativePath) {
         if (App.win_env) {
             return System.getProperty("user.dir") + "\\" + relativePath.replace("/", "\\");
@@ -74,6 +92,11 @@ public class App {
         }
     }
 
+    /**
+    * Returns a FileInputStream (or null) from a path relative to the current application's execution directory.
+    * 
+    * @param relativePath A path relative to the current application's execution directory.
+    */
     public static FileInputStream load(String path) throws FileNotFoundException {
         try {
             return new FileInputStream(App.getFilePath(path));

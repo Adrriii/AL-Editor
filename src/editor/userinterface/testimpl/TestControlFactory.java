@@ -4,6 +4,12 @@ import editor.userinterface.ControlFactory;
 import editor.domain.control.*;
 import editor.userinterface.javafximpl.control.*;
 
+/**
+* Provides dummy controls
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TestControlFactory implements ControlFactory {
 
     @Override

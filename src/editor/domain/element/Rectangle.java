@@ -10,11 +10,14 @@ import editor.domain.elementproperty.RoundedBorderProperty;
 import editor.domain.menu.Interaction;
 import editor.domain.menu.interactionmenus.*;
 
+/**
+* An Element that can be represented by a surface.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class Rectangle extends Element {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public Rectangle(int x, int y, int width, int height, int r, int g, int b, int a, double w, double h) {

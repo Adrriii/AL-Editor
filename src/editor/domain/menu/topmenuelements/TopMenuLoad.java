@@ -6,11 +6,14 @@ import editor.domain.Position;
 import editor.domain.menu.TopMenuElement;
 import editor.domain.operation.LoadCanvas;
 
+/**
+* A button that triggers the loading of a new whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TopMenuLoad extends TopMenuElement {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public TopMenuLoad(int width, int height) {

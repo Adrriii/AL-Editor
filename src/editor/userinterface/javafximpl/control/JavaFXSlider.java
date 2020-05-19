@@ -7,11 +7,14 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+/**
+* An implementation of the Slider in JavaFX.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXSlider extends Slider {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Dialog<javafx.scene.control.Slider> dial;

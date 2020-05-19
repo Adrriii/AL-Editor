@@ -4,6 +4,13 @@ import editor.application.App;
 import editor.domain.Element;
 import editor.domain.Position;
 
+
+/**
+* An operation aiming at removing an element from the whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class DeleteElement extends CreateElement {
 
     public DeleteElement(Element pattern, Position location) {

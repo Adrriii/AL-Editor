@@ -17,6 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+* Allows the application to draw in a JavaFX stage.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXView implements View {
 
     private Thread JavaFXThread;

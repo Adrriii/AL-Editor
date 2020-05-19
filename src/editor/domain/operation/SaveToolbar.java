@@ -8,9 +8,13 @@ import java.io.ObjectOutputStream;
 import editor.application.App;
 import editor.domain.Operation;
 
+/**
+* An operation aiming at saving the toolbar to a file.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class SaveToolbar extends Operation {
-
-
 
     public SaveToolbar() {
     }

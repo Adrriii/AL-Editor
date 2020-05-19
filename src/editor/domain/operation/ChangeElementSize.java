@@ -4,6 +4,13 @@ import editor.domain.Element;
 import editor.domain.Operation;
 import editor.domain.Position;
 
+
+/**
+* An operation aiming at changing the size of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ChangeElementSize extends Operation {
 
     protected Position v1;

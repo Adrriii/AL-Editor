@@ -10,6 +10,13 @@ import editor.domain.AppController;
 import editor.domain.Canvas;
 import editor.domain.Operation;
 
+
+/**
+* An operation aiming at loading a whiteboard from a file.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class LoadCanvas extends Operation {
 
 

@@ -2,11 +2,14 @@ package editor.domain;
 
 import editor.application.App;
 
+/**
+* A special tool allowing to destroy an element
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class DeleteElementTool extends Element {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public DeleteElementTool(Position pos, int width, int height) {

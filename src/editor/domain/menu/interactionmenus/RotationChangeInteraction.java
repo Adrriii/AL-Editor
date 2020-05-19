@@ -6,11 +6,14 @@ import editor.domain.Element;
 import editor.domain.control.Slider;
 import editor.domain.operation.ChangeElementRotation;
 
+/**
+* An Interaction aiming at changing the rotation of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class RotationChangeInteraction extends ElementInteraction {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public RotationChangeInteraction(Element element) {

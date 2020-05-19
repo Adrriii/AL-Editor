@@ -2,19 +2,22 @@ package editor.domain.elementproperty;
 
 import editor.domain.ElementProperty;
 
-public class SidesCountProperty extends ElementProperty {
-    /**
-     *
-     */
+/**
+* An integer property representing an amount of sides.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
+public class SidesCountProperty extends IntegerProperty {
+
     private static final long serialVersionUID = 1L;
-    public int count;
 
     public SidesCountProperty(int count) {
-        this.count = count;
+        super(count);
     }
 
     @Override
     public ElementProperty Clone() {
-        return new SidesCountProperty(count);
+        return new SidesCountProperty(value);
     }
 }

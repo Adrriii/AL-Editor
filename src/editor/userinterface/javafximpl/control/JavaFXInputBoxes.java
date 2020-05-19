@@ -15,11 +15,15 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
+/**
+* An implementation of InputBoxes in JavaFX.
+* Each String passed in the constructor will add another Input Box.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXInputBoxes extends InputBoxes {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Dialog<Color> dial;

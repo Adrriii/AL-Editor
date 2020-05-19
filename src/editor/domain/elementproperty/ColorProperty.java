@@ -2,10 +2,14 @@ package editor.domain.elementproperty;
 
 import editor.domain.ElementProperty;
 
+/**
+* A Color belonging to an Element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ColorProperty extends ElementProperty {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     public int r;
     public int g;

@@ -9,11 +9,14 @@ import editor.domain.elementproperty.SidesCountProperty;
 import editor.domain.menu.Interaction;
 import editor.domain.menu.interactionmenus.SidesCountChangeInteraction;
 
+/**
+* A Polygon with a number of sides equal by length.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class RegularPolygon extends Polygon {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public RegularPolygon(int radius, int sides) {
@@ -26,7 +29,7 @@ public class RegularPolygon extends Polygon {
 
     @Override
     public Element Clone() {
-        RegularPolygon newpoly = new RegularPolygon(width/2, ((SidesCountProperty) properties.get("sidescount")).count);
+        RegularPolygon newpoly = new RegularPolygon(width/2, ((SidesCountProperty) properties.get("sidescount")).value);
         newpoly.properties = new HashMap<>(properties);
         newpoly.pos.x = pos.x;
         newpoly.pos.y = pos.y;
@@ -46,7 +49,7 @@ public class RegularPolygon extends Polygon {
     }
 
     public void UpdateSides() {
-        int count = ((SidesCountProperty) properties.get("sidescount")).count;
+        int count = ((SidesCountProperty) properties.get("sidescount")).value;
 
         // inspired from https://stackoverflow.com/a/49550853
         double angleStep = Math.PI * 2 / (double) count;

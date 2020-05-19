@@ -5,6 +5,12 @@ import editor.domain.Element;
 import editor.domain.Operation;
 import editor.domain.ToolbarElement;
 
+/**
+* An operation aiming at adding a new tool to the toolbar.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class AddToolbarElement extends Operation {
 
     protected Element toAdd;

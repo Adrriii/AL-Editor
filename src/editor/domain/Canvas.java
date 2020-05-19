@@ -6,11 +6,15 @@ import java.util.Optional;
 import editor.application.App;
 import editor.domain.element.Rectangle;
 
+
+/**
+* Holds all elements and behaviors of the whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class Canvas extends Drawable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private ArrayList<Element> elements;

@@ -4,11 +4,14 @@ import editor.domain.Element;
 import editor.domain.menu.Interaction;
 import editor.domain.menu.InteractionMenu;
 
+/**
+* An Interaction Menu composed solely of Element Interactions.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ElementInteractionMenu extends InteractionMenu {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     protected Element element;
 

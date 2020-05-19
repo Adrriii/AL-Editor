@@ -4,6 +4,12 @@ import editor.userinterface.ControlFactory;
 import editor.domain.control.*;
 import editor.userinterface.javafximpl.control.*;
 
+/**
+* Allows to fetch all implemented Controls with JavaFX.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXControlFactory implements ControlFactory {
 
     @Override

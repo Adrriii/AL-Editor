@@ -7,6 +7,12 @@ import editor.application.App;
 import editor.domain.menu.interactionmenus.ElementInteractionMenu;
 import editor.domain.operation.*;
 
+/**
+* Controls the model according to user input.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class AppController {
 
     private final int drag_start_dist = 4;
@@ -44,6 +50,9 @@ public class AppController {
     private int select_start_x;
     private int select_start_y;
 
+    /**
+    * Creates the app controller.
+    */
     public AppController() {
         actionControl = new ActionControl();
         heldKeys = new HashMap<>();
@@ -55,6 +64,12 @@ public class AppController {
         heldKeys.put("ALT", false);
     }
 
+    /**
+    * Updates the model on a left mouse press
+    *
+    * @param x The x screen position
+    * @param y The y screen position
+    */
     public void NotifyMouseLeftPress(int x, int y) {
         left = true;
         left_pos_x = x;
@@ -62,6 +77,12 @@ public class AppController {
         NotifyMousePos(x, y);
     }
 
+    /**
+    * Updates the model on a left mouse release
+    *
+    * @param x The x screen position
+    * @param y The y screen position
+    */
     public void NotifyMouseLeftRelease(int x, int y) {
         left = false;
         left_clicked = true;
@@ -70,6 +91,12 @@ public class AppController {
         NotifyMousePos(x, y);
     }
 
+    /**
+    * Updates the model on a right mouse press
+    *
+    * @param x The x screen position
+    * @param y The y screen position
+    */
     public void NotifyMouseRightPress(int x, int y) {
         right = true;
         right_pos_x = x;
@@ -77,6 +104,12 @@ public class AppController {
         NotifyMousePos(x, y);
     }
 
+    /**
+    * Updates the model on a right mouse release
+    *
+    * @param x The x screen position
+    * @param y The y screen position
+    */
     public void NotifyMouseRightRelease(int x, int y) {
         right = false;
         right_clicked = true;
@@ -85,21 +118,40 @@ public class AppController {
         NotifyMousePos(x, y);
     }
 
+    /**
+    * Updates the model on a mouse movement
+    *
+    * @param x The x screen position
+    * @param y The y screen position
+    */
     public void NotifyMousePos(int x, int y) {
         pos_x = x;
         pos_y = y;
         UpdateMouse();
     }
 
+    /**
+    * Updates the model when resizing the window
+    *
+    * @param newWidth The new width of the model
+    */
     public void NotifyWidth(int newWidth) {
         App.model.Resize(newWidth, App.model.height);
     }
 
+    /**
+    * Updates the model when resizing the window
+    *
+    * @param newWidth The new height of the model
+    */
     public void NotifyHeight(int newHeight) {
         App.model.Resize(App.model.width, newHeight);
     }
 
-    public void UpdateMouse() {
+    /**
+    * Updates the model after any mouse event
+    */
+    private void UpdateMouse() {
 
         
         int canvas_relative_x = Math.max(0, pos_x - App.model.getCanvas().pos.x);
@@ -109,13 +161,6 @@ public class AppController {
         boolean inToolbar = App.model.getToolbar().isClicked(pos_x, pos_y);
         boolean inTopMenu = App.model.getTopMenu().isClicked(pos_x, pos_y);
         boolean inInteractionMenu = App.model.getInteractionMenu() == null ? false : App.model.getInteractionMenu().isClicked(pos_x, pos_y);
-
-        // System.out.println("----------------------------");
-        // System.out.println("readyToDrag: "+readyToDrag);
-        // System.out.println("dragging: "+draggingElement);
-        // System.out.println("holdElement: "+holdElement);
-        // System.out.println("selecting: "+selecting);
-        // System.out.println("clickedOnHoldElement: "+clickedOnHoldElement);
 
         if(inTopMenu) { // Hover over elements
             App.view.getTopMenuView().Update();
@@ -350,6 +395,11 @@ public class AppController {
         App.view.getCanvasView().Update();
     }
 
+    /**
+    * Updates the model after any key press
+    *
+    * @param key The text representation of the pressed key
+    */
     public void NotifyKeyPressed(String key) {
         heldKeys.put(key, true);
 
@@ -384,6 +434,11 @@ public class AppController {
         }
     }
 
+    /**
+    * Updates the model after any key release
+    *
+    * @param key The text representation of the released key
+    */
     public void NotifyKeyReleased(String key) {
         heldKeys.put(key, false);
 
@@ -393,6 +448,9 @@ public class AppController {
         }
     }
 
+    /**
+    * Returns the latest known position of the mouse
+    */
     public Position CurrentMousePos() {
         return new Position(pos_x, pos_y);
     }

@@ -5,6 +5,13 @@ import editor.domain.Element;
 import editor.domain.Operation;
 import editor.domain.Position;
 
+
+/**
+* An operation aiming at adding a new element to the whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class CreateElement extends Operation {
 
     protected Element created;

@@ -5,11 +5,14 @@ import editor.domain.AppController;
 import editor.domain.Position;
 import editor.domain.menu.TopMenuElement;
 
+/**
+* A button that triggers the Redo action.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TopMenuRedo extends TopMenuElement {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public TopMenuRedo(int width, int height) {

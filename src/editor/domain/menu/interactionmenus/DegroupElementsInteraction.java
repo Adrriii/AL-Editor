@@ -5,11 +5,14 @@ import editor.domain.AppController;
 import editor.domain.ElementGroup;
 import editor.domain.operation.DeGroupElements;
 
+/**
+* An Interaction aiming at splitting an element group into its children.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class DegroupElementsInteraction extends ElementInteraction {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public DegroupElementsInteraction(ElementGroup element) {

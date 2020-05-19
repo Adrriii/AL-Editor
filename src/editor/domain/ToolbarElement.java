@@ -3,11 +3,14 @@ package editor.domain;
 import editor.application.App;
 import editor.domain.element.Rectangle;
 
+/**
+* A tool inside a toolbar, composed of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ToolbarElement extends Drawable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private Toolbar parent;
     private Element element;

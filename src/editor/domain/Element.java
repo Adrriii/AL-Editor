@@ -8,11 +8,14 @@ import editor.application.App;
 import editor.domain.menu.Interaction;
 import editor.domain.menu.interactionmenus.*;
 
-public abstract class Element extends Drawable implements IControllable {
+/**
+* A displayable object.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
+public abstract class Element extends Drawable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public HashMap<String, ElementProperty> properties;

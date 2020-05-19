@@ -6,11 +6,14 @@ import editor.domain.Position;
 import editor.domain.menu.TopMenuElement;
 import editor.domain.operation.SaveCanvas;
 
+/**
+* A button that triggers the saving of the whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TopMenuSave extends TopMenuElement {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public TopMenuSave(int width, int height) {

@@ -3,6 +3,13 @@ package editor.domain.operation;
 import editor.application.App;
 import editor.domain.ToolbarElement;
 
+
+/**
+* An operation aiming at removing a tool from the toolbar.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class DeleteToolbarElement extends AddToolbarElement {
 
     public DeleteToolbarElement(ToolbarElement toAdd) {

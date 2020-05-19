@@ -3,6 +3,13 @@ package editor.domain.operation;
 import editor.domain.Element;
 import editor.domain.Operation;
 
+
+/**
+* An operation aiming at changing the roation of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ChangeElementRotation extends Operation {
 
     protected int v1;

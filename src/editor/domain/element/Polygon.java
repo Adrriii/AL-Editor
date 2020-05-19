@@ -9,11 +9,14 @@ import editor.domain.ElementProperty;
 import editor.domain.Position;
 import editor.domain.elementproperty.ColorProperty;
 
+/**
+* An Element that can be represented by an Array of points.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class Polygon extends Element {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public ArrayList<Position> points;

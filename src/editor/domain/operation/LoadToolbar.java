@@ -9,9 +9,14 @@ import editor.application.App;
 import editor.domain.Operation;
 import editor.domain.Toolbar;
 
+
+/**
+* An operation aiming at loading a toolbar from a file.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class LoadToolbar extends Operation {
-
-
 
     public LoadToolbar() {
     }

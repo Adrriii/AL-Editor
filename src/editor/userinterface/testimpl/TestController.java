@@ -1,23 +1,16 @@
 package editor.userinterface.testimpl;
 
-import editor.domain.IControllable;
 import editor.userinterface.Controller;
 
+/**
+* Does nothing, only serves during unit tests.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class TestController implements Controller {
 
     public TestController() {
-    }
-
-    @Override
-    public void Attach(IControllable controllable) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void Detach(IControllable controllable) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

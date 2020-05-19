@@ -7,11 +7,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.paint.Color;
 
+/**
+* An implementation of the ColorPicker in JavaFX.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXColorPicker extends ColorPicker {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Dialog<Color> dial;

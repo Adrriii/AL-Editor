@@ -4,6 +4,12 @@ import editor.application.App;
 import editor.domain.menu.TopMenu;
 import editor.userinterface.ViewScope;
 
+/**
+* The top part of the window, containing some action buttons.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ViewTopMenu implements ViewScope {
 
     public boolean invalidated = true;
@@ -20,7 +26,6 @@ public class ViewTopMenu implements ViewScope {
         TopMenu topMenu = App.model.getTopMenu();
 
         topMenu.Draw(GetScopeName());
-        //drawJavaFXRectangle(menu.pos_x, menu.pos_y, menu.width, menu.height, Color.LIGHTGREY);
 
         invalidated = false;
     }

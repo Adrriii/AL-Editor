@@ -5,11 +5,14 @@ import java.util.ArrayList;
 
 import editor.userinterface.ViewScope;
 
+/**
+* Represents an object that can be displayed
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public abstract class Drawable implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public Position pos;

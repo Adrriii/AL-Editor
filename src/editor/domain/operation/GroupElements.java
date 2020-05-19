@@ -8,6 +8,13 @@ import editor.domain.ElementGroup;
 import editor.domain.InvalidCompositeAddition;
 import editor.domain.Operation;
 
+
+/**
+* An operation aiming at adding grouping multiple elements into one ElementGroup.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class GroupElements extends Operation {
 
     protected ArrayList<Element> selected;

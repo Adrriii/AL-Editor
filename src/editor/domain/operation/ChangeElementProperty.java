@@ -4,6 +4,13 @@ import editor.domain.Element;
 import editor.domain.ElementProperty;
 import editor.domain.Operation;
 
+
+/**
+* An operation aiming at changing any element's property.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ChangeElementProperty extends Operation {
 
     protected String propertyName;

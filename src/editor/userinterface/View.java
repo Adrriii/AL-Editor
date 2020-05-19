@@ -3,6 +3,12 @@ package editor.userinterface;
 import editor.domain.element.Polygon;
 import editor.domain.element.Rectangle;
 
+/**
+* Provides all interactions with the display.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public interface View {
 
     public void Update();

@@ -4,6 +4,12 @@ import editor.application.App;
 import editor.domain.Toolbar;
 import editor.userinterface.ViewScope;
 
+/**
+* The left part of the window, containing the available tools.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ViewToolbar implements ViewScope {
 
     public boolean invalidated = true;
@@ -20,9 +26,6 @@ public class ViewToolbar implements ViewScope {
         Toolbar toolbar = App.model.getToolbar();
 
         toolbar.Draw(GetScopeName());
-        // drawJavaFXRectangle(toolbar.pos_x, toolbar.pos_y, toolbar.width, toolbar.height, Color.GREY);
-
-        // drawToolbarElements(toolbar);
 
         invalidated = false;
     }

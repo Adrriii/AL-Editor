@@ -7,11 +7,14 @@ import editor.domain.control.ColorPicker;
 import editor.domain.elementproperty.ColorProperty;
 import editor.domain.operation.ChangeElementProperty;
 
+/**
+* An Interaction aiming at changing the color of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ColorChangeInteraction extends ElementInteraction {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public ColorChangeInteraction(Element element) {

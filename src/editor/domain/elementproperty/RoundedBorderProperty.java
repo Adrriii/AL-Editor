@@ -2,10 +2,15 @@ package editor.domain.elementproperty;
 
 import editor.domain.ElementProperty;
 
+/**
+* An Element's homogeneously rounded borders property.
+* Defined by an arc.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class RoundedBorderProperty extends ElementProperty {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     public double h;
     public double w;

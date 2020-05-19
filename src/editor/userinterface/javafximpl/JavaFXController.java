@@ -1,10 +1,8 @@
 package editor.userinterface.javafximpl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import editor.application.App;
-import editor.domain.IControllable;
 import editor.userinterface.Controller;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -13,25 +11,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+/**
+* Translates JavaFX events to what can be read by the application.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class JavaFXController implements Controller {
-
-    private ArrayList<IControllable> controllables;
 
     private HashMap<KeyCode, Boolean> heldKeys;
 
     public JavaFXController() {
-        controllables = new ArrayList<>();
         heldKeys = new HashMap<>();
-    }
-
-    @Override
-    public void Attach(IControllable controllable) {
-        controllables.add(controllable);
-    }
-
-    @Override
-    public void Detach(IControllable controllable) {
-        controllables.remove(controllable);
     }
 
     public void NotifyMouse(MouseEvent mouseEvent) {

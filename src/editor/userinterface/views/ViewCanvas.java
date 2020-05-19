@@ -4,6 +4,12 @@ import editor.application.App;
 import editor.domain.Canvas;
 import editor.userinterface.ViewScope;
 
+/**
+* The main part of the window, in which the whiteboard is contained.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ViewCanvas implements ViewScope {
 
     public boolean invalidated = true;

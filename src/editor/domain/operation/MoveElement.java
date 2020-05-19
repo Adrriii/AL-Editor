@@ -4,6 +4,12 @@ import editor.domain.Element;
 import editor.domain.Operation;
 import editor.domain.Position;
 
+/**
+* An operation aiming at moving an element inside the whiteboard.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class MoveElement extends Operation {
 
     protected Position move_from;

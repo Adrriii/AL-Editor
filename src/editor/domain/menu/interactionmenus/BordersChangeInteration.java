@@ -7,11 +7,14 @@ import editor.domain.control.InputBoxes;
 import editor.domain.elementproperty.RoundedBorderProperty;
 import editor.domain.operation.ChangeElementProperty;
 
+/**
+* An Interaction aiming at changing the borders rounding of an element.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class BordersChangeInteration extends ElementInteraction {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public BordersChangeInteration(Element element) {

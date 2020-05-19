@@ -9,9 +9,13 @@ import editor.application.App;
 import editor.domain.AppController;
 import editor.domain.Operation;
 
+/**
+* An operation aiming at saving the whiteboard to a file.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class SaveCanvas extends Operation {
-
-
 
     public SaveCanvas() {
     }

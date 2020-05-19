@@ -3,6 +3,12 @@ package editor.userinterface.views;
 import editor.application.App;
 import editor.userinterface.ViewScope;
 
+/**
+* The whole window, and floating elements.
+* 
+* @author Adrien Boitelle
+* @version 1.0
+*/
 public class ViewMain implements ViewScope {
 
     public boolean invalidated = true;
