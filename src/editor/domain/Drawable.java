@@ -23,15 +23,15 @@ public abstract class Drawable implements Serializable {
         pos = new Position(0,0);
     }
 
-    public void Draw() {
-        Draw(pos);
+    public void Draw(String viewName) {
+        Draw(viewName, pos);
     }
 
-    public void DrawRef(Position ref) {
-        Draw(ref);
+    public void DrawRef(String viewName, Position ref) {
+        Draw(viewName, ref);
     }
 
-    abstract public void Draw(Position ref);
+    abstract public void Draw(String viewName, Position ref);
 
     public void Attach(ViewScope view) {
         if(views == null) views = new ArrayList<>();

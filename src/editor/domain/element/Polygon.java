@@ -90,8 +90,8 @@ public class Polygon extends Element {
     }
 
     @Override
-    public void Draw(Position pos, int fit_width, int fit_height) {
-        Draw(pos,Math.min(fit_width / (double) getSurfaceWidth(), fit_height / (double) getSurfaceHeight()));
+    public void Draw(String viewName, Position pos, int fit_width, int fit_height) {
+        Draw(viewName, pos,Math.min(fit_width / (double) getSurfaceWidth(), fit_height / (double) getSurfaceHeight()));
     }
     
     @Override
@@ -123,13 +123,13 @@ public class Polygon extends Element {
     }
 
     @Override
-    public void Draw(Position pos, double scale) {
+    public void Draw(String viewName, Position pos, double scale) {
         if(isSelected()) {
             Polygon selecPoly = (Polygon) this.Clone();
             selecPoly.properties.put("color", new ColorProperty(0, 0, 255, 100));
-            App.view.drawPolygon(selecPoly, pos.x - 5, pos.y - 5, scale*1.07);
+            App.view.drawPolygon(viewName, selecPoly, pos.x - 5, pos.y - 5, scale*1.07);
         }
         
-        App.view.drawPolygon(this, pos.x, pos.y, scale);
+        App.view.drawPolygon(viewName, this, pos.x, pos.y, scale);
     }
 }

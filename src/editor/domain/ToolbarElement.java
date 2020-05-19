@@ -36,10 +36,10 @@ public class ToolbarElement extends Drawable {
     }
 
     @Override
-    public void Draw(Position pos) {
-        App.view.drawRectangle(new Rectangle(pos.x-border_width-padding, pos.y-border_width-padding, width+border_width*2+padding*2, height+border_width*2+padding*2,0,0,0));
-        App.view.drawRectangle(new Rectangle(pos.x-padding, pos.y-padding, width+padding*2, height+padding*2,255,255,255));
-        this.element.Draw(pos, this.parent.getElementSideSize(), this.parent.getElementSideSize());
+    public void Draw(String viewName, Position pos) {
+        App.view.drawRectangle(viewName, new Rectangle(pos.x-border_width-padding, pos.y-border_width-padding, width+border_width*2+padding*2, height+border_width*2+padding*2,0,0,0));
+        App.view.drawRectangle(viewName, new Rectangle(pos.x-padding, pos.y-padding, width+padding*2, height+padding*2,255,255,255));
+        this.element.Draw(viewName, pos, this.parent.getElementSideSize(), this.parent.getElementSideSize());
     }
 
     @Override

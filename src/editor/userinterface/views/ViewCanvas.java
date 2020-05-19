@@ -11,6 +11,7 @@ public class ViewCanvas implements ViewScope {
     @Override
     public void Update() {
         invalidated = true;
+        App.view.Clear(GetScopeName());
     }
 
     @Override
@@ -19,9 +20,14 @@ public class ViewCanvas implements ViewScope {
 
         Canvas canvas = App.model.getCanvas();
         
-        canvas.Draw();
+        canvas.Draw(GetScopeName());
 
         invalidated = false;
+    }
+
+    @Override
+    public String GetScopeName() {
+        return "canvas";
     }
 
 }

@@ -18,14 +18,14 @@ public class TopMenuSave extends TopMenuElement {
     }
 
     @Override
-    public void Draw(Position ref) {
+    public void Draw(String viewName, Position ref) {
         if (AppController.currentCanvasPath != null) { // Can save
             if(!isClicked(App.appController.CurrentMousePos())) 
-                App.view.drawImage("assets/img/save.png", ref.x, ref.y, width, height);
+                App.view.drawImage(viewName, "assets/img/save.png", ref.x, ref.y, width, height);
             else
-                App.view.drawImage("assets/img/save_hover.png", ref.x, ref.y, width, height);
+                App.view.drawImage(viewName, "assets/img/save_hover.png", ref.x, ref.y, width, height);
         } else {
-            App.view.drawImage("assets/img/save_grey.png", ref.x, ref.y, width, height);
+            App.view.drawImage(viewName, "assets/img/save_grey.png", ref.x, ref.y, width, height);
         }
     }
 

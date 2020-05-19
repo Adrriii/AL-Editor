@@ -18,7 +18,7 @@ public class JavaFXColorPicker extends ColorPicker {
     private javafx.scene.control.ColorPicker fxColorPicker;
 
     @Override
-    public void Draw(Position pos) {
+    public void Draw(String viewName, Position pos) {
     }
 
     @Override

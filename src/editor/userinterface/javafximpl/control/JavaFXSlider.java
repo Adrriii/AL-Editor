@@ -31,7 +31,7 @@ public class JavaFXSlider extends Slider {
     }
 
     @Override
-    public void Draw(Position pos) {
+    public void Draw(String viewName, Position pos) {
     }
 
     @Override

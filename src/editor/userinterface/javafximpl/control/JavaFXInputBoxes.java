@@ -32,7 +32,7 @@ public class JavaFXInputBoxes extends InputBoxes {
     }
 
     @Override
-    public void Draw(Position pos) {
+    public void Draw(String viewName, Position pos) {
     }
 
     @Override

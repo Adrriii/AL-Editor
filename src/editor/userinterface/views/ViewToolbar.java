@@ -11,6 +11,7 @@ public class ViewToolbar implements ViewScope {
     @Override
     public void Update() {
         invalidated = true;
+        App.view.Clear(GetScopeName());
     }
 
     @Override
@@ -18,12 +19,17 @@ public class ViewToolbar implements ViewScope {
         if(!invalidated) return;
         Toolbar toolbar = App.model.getToolbar();
 
-        toolbar.Draw();
+        toolbar.Draw(GetScopeName());
         // drawJavaFXRectangle(toolbar.pos_x, toolbar.pos_y, toolbar.width, toolbar.height, Color.GREY);
 
         // drawToolbarElements(toolbar);
 
         invalidated = false;
+    }
+
+    @Override
+    public String GetScopeName() {
+        return "toolbar";
     }
 
 }

@@ -192,6 +192,7 @@ public class AppController {
                     if(draggingElement != null) {
                         draggingElement.Update(new Position(Math.max(0,canvas_relative_x - drag_x_elem_rel), Math.max(0,canvas_relative_y - drag_y_elem_rel)));
                         App.view.getToolbarView().Update(); // Sometimes it hovers on the toolbar
+                        App.view.getTopMenuView().Update(); // Sometimes it hovers on the topmenu
                     }
                 } else if (inToolbar) {
 

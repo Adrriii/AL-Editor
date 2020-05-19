@@ -17,14 +17,14 @@ public class TopMenuUndo extends TopMenuElement {
     }
 
     @Override
-    public void Draw(Position ref) {
+    public void Draw(String viewName, Position ref) {
         if(AppController.actionControl.CanUndo()) {
             if(!isClicked(App.appController.CurrentMousePos())) 
-                App.view.drawImage("assets/img/undo.png", ref.x, ref.y, width, height);
+                App.view.drawImage(viewName, "assets/img/undo.png", ref.x, ref.y, width, height);
             else
-                App.view.drawImage("assets/img/undo_hover.png", ref.x, ref.y, width, height);
+                App.view.drawImage(viewName, "assets/img/undo_hover.png", ref.x, ref.y, width, height);
         } else {
-            App.view.drawImage("assets/img/undo_grey.png", ref.x, ref.y, width, height);
+            App.view.drawImage(viewName, "assets/img/undo_grey.png", ref.x, ref.y, width, height);
         }
     }
 

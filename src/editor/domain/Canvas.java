@@ -70,13 +70,13 @@ public class Canvas extends Drawable {
     }
 
     @Override
-    public void Draw(Position pos) {
-        App.view.drawRectangle(this.background, pos.x, pos.y);
+    public void Draw(String viewName, Position pos) {
+        App.view.drawRectangle(viewName, this.background, pos.x, pos.y);
 
-        getElements().forEach(element -> element.Draw(new Position(pos.x + element.pos.x, pos.y + element.pos.y)));
+        getElements().forEach(element -> element.Draw(viewName, new Position(pos.x + element.pos.x, pos.y + element.pos.y)));
 
         if(App.model.getSelectionRectangle() != null) {
-            App.model.getSelectionRectangle().Draw(new Position(pos.x + App.model.getSelectionRectangle().pos.x, pos.y + App.model.getSelectionRectangle().pos.y));
+            App.model.getSelectionRectangle().Draw(viewName, new Position(pos.x + App.model.getSelectionRectangle().pos.x, pos.y + App.model.getSelectionRectangle().pos.y));
         }
     }
 

@@ -98,16 +98,16 @@ public class ElementGroup extends Element {
     }
 
     @Override
-    public void Draw(Position pos) {
-        Draw(pos, width, height);
+    public void Draw(String viewName, Position pos) {
+        Draw(viewName, pos, width, height);
     }
 
     @Override
-    public void Draw(Position pos, int fit_width, int fit_height) {
+    public void Draw(String viewName, Position pos, int fit_width, int fit_height) {
         final double scale = Math.min(fit_width / (double) width, fit_height / (double) height);
         
         this.elements.forEach(element ->  {
-            element.Draw(new Position((int) (pos.x - this.pos.x + element.pos.x * scale),(int) (pos.y - this.pos.y +  element.pos.y * scale)), scale);
+            element.Draw(viewName, new Position((int) (pos.x - this.pos.x + element.pos.x * scale),(int) (pos.y - this.pos.y +  element.pos.y * scale)), scale);
         });
     }
 
@@ -129,10 +129,10 @@ public class ElementGroup extends Element {
             diff_y = min_y - pos.y;
             pos.y = min_y;
         }
-        final int dx = diff_x;
-        final int dy = diff_y;
         
-        this.elements.forEach(element -> element.Update(new Position(element.pos.x + dx, element.pos.y + dy)));
+        for(Element elem : this.elements) {
+            elem.Update(new Position(elem.pos.x + diff_x, elem.pos.y + diff_y));
+        }
         
         Update();
 

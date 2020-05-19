@@ -21,13 +21,20 @@ public class App {
     public static boolean win_env = true;
     public static String tools = ".ale-tool";
 
+    public static int callcount = 0;
+
     public static void main(String args[]) {
 
         ready = false;
 
         UserInterface ui;
+
         if(args.length > 0 && args[0] == "tests") {
-            App.tools = ".ale-tool-test";
+            // App started in test mode
+            
+            App.tools = ".ale-tool-test"; 
+            // Don't use the same tools for testing
+
             App.controlFactory = new TestControlFactory();
             ui = new TestUI();
         } else {
@@ -45,7 +52,8 @@ public class App {
 
         ready = true;
 
-        if(args.length == 0 || args[0] != "tests") {
+        // Don't start the app loop when testing
+        if(args.length == 0 || args[0] != "tests") { 
             while (model.isRunning()) {
                 App.model.Update();
 

@@ -20,7 +20,7 @@ public class AppTest {
 
         String[] args = new String[1];
         args[0] = "tests";
-
+        // Start the program in test mode
         App.main(args);
 
         started = true;
@@ -28,6 +28,7 @@ public class AppTest {
 
     @Test
     public void ModelTest() {
+        // Tries to intialize the model
         AppStart();
         
         assertTrue(App.model != null);
@@ -38,6 +39,7 @@ public class AppTest {
 
     @Test
     public void ActionControlTest() {
+        // Tests if the action manager (not the operations) is working as intended 
         AppStart();
 
         Rectangle obj = new Rectangle(1, 2);
@@ -79,6 +81,7 @@ public class AppTest {
 
     @Test
     public void ToolbarTest() {
+        // Tests if adding and removing toolbar elements works correctly
         AppStart();
 
         // Clear

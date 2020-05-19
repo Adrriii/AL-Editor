@@ -54,14 +54,14 @@ public abstract class InteractionMenu extends Menu {
     }
 
     @Override
-    public void Draw(Position pos) {
+    public void Draw(String viewName, Position pos) {
         int curr_y = pos.y;
 
         Iterator<Interaction> iter = interactions.iterator();
 
         while(iter.hasNext()) {
             Interaction item = iter.next();
-            item.Draw(new Position(pos.x, curr_y));
+            item.Draw(viewName, new Position(pos.x, curr_y));
             curr_y += item.height;
         }
     }

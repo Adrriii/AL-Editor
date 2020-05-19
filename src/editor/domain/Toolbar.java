@@ -125,19 +125,19 @@ public class Toolbar extends Drawable {
     }
 
     @Override
-    public void Draw(Position pos) {
-        App.view.drawRectangle(this.background, pos.x, pos.y);
+    public void Draw(String viewName, Position pos) {
+        App.view.drawRectangle(viewName, this.background, pos.x, pos.y);
 
         int curr_y = pos.y;
 
         Iterator<ToolbarElement> iter = getToolbarElements().iterator();
 
         while(iter.hasNext()) {
-            iter.next().Draw(new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
+            iter.next().Draw(viewName, new Position(pos.x + getElementPadding(), curr_y + getElementPadding()));
             curr_y += element_height + getElementPadding();
         }
 
-        this.deleteElementTool.Draw();
+        this.deleteElementTool.Draw(viewName);
     }
 
     @Override

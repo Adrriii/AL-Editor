@@ -83,12 +83,12 @@ public class Rectangle extends Element {
     }
 
     @Override
-    public void Draw(Position pos, int fit_width, int fit_height) {
-        Draw(pos,Math.min(fit_width / (double) getSurfaceWidth(), fit_height / (double) getSurfaceHeight()));
+    public void Draw(String viewName, Position pos, int fit_width, int fit_height) {
+        Draw(viewName, pos,Math.min(fit_width / (double) getSurfaceWidth(), fit_height / (double) getSurfaceHeight()));
     }
 
     @Override
-    public void Draw(Position pos , double scale) {
+    public void Draw(String viewName, Position pos , double scale) {
 
         if(isSelected()) {
             int selectionRectangleX = Math.max(App.model.getCanvas().pos.x,pos.x-5);
@@ -105,13 +105,14 @@ public class Rectangle extends Element {
             selecRec.rotation = rotation;
 
             App.view.drawRectangle(
+                viewName, 
                 selecRec,
                 selectionRectangleX, 
                 selectionRectangleY
             );
         }
 
-        App.view.drawRectangle(this, pos.x, pos.y, scale < 1 ? scale : 1);
+        App.view.drawRectangle(viewName, this, pos.x, pos.y, scale < 1 ? scale : 1);
 
     }
     

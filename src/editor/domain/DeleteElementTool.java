@@ -16,8 +16,8 @@ public class DeleteElementTool extends Element {
     }
 
     @Override
-    public void Draw(Position ref) {
-        Draw(ref,width,height);
+    public void Draw(String viewName, Position ref) {
+        Draw(viewName, ref,width,height);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class DeleteElementTool extends Element {
     }
 
     @Override
-    public void Draw(Position ref, int fit_width, int fit_height) {
+    public void Draw(String viewName, Position ref, int fit_width, int fit_height) {
         if(!isClicked(App.appController.CurrentMousePos())) 
-            App.view.drawImage("assets/img/bin.png", ref.x, ref.y, fit_width, fit_height);
+            App.view.drawImage(viewName, "assets/img/bin.png", ref.x, ref.y, fit_width, fit_height);
         else
-            App.view.drawImage("assets/img/bin_hover.png", ref.x, ref.y, fit_width, fit_height);
+            App.view.drawImage(viewName, "assets/img/bin_hover.png", ref.x, ref.y, fit_width, fit_height);
     }
     
 }

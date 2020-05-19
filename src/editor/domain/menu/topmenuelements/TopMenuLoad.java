@@ -18,11 +18,11 @@ public class TopMenuLoad extends TopMenuElement {
     }
 
     @Override
-    public void Draw(Position ref) {
+    public void Draw(String viewName, Position ref) {
         if(!isClicked(App.appController.CurrentMousePos())) 
-            App.view.drawImage("assets/img/load.png", ref.x, ref.y, width, height);
+            App.view.drawImage(viewName, "assets/img/load.png", ref.x, ref.y, width, height);
         else
-            App.view.drawImage("assets/img/load_hover.png", ref.x, ref.y, width, height);
+            App.view.drawImage(viewName, "assets/img/load_hover.png", ref.x, ref.y, width, height);
     }
 
     @Override

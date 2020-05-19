@@ -35,10 +35,10 @@ public abstract class Interaction extends Drawable {
     public abstract void onClick();
 
     @Override
-    public void Draw(Position pos) {
-        App.view.drawRectangle(this.border, pos.x - border_width, pos.y - border_width);
-        App.view.drawRectangle(this.background, pos.x, pos.y);
-        App.view.drawText(this.label, pos.x, pos.y + this.fontSize, this.fontSize);
+    public void Draw(String viewName, Position pos) {
+        App.view.drawRectangle(viewName, this.border, pos.x - border_width, pos.y - border_width);
+        App.view.drawRectangle(viewName, this.background, pos.x, pos.y);
+        App.view.drawText(viewName, this.label, pos.x, pos.y + this.fontSize, this.fontSize);
     }
 
 }

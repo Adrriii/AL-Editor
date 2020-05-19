@@ -10,6 +10,7 @@ public class ViewMain implements ViewScope {
     @Override
     public void Update() {
         invalidated = true;
+        App.view.Clear(GetScopeName());
     }
 
     @Override
@@ -27,10 +28,15 @@ public class ViewMain implements ViewScope {
 
         if(!invalidated) return;
 
-        App.model.getControls().forEach(control -> control.Draw());
-        if (App.model.getInteractionMenu() != null) App.model.getInteractionMenu().Draw();
+        App.model.getControls().forEach(control -> control.Draw(GetScopeName()));
+        if (App.model.getInteractionMenu() != null) App.model.getInteractionMenu().Draw(GetScopeName());
 
         invalidated = false;
+    }
+
+    @Override
+    public String GetScopeName() {
+        return "main";
     }
 
 }

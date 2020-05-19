@@ -85,8 +85,8 @@ public class TopMenu extends Menu {
     }
 
     @Override
-    public void Draw(Position pos) {
-        App.view.drawRectangle(this.background, pos.x, pos.y);
+    public void Draw(String viewName, Position pos) {
+        App.view.drawRectangle(viewName, this.background, pos.x, pos.y);
         
         int curr_x = pos.x;
 
@@ -94,7 +94,7 @@ public class TopMenu extends Menu {
 
         while(iter.hasNext()) {
             TopMenuElement item = iter.next();
-            item.Draw(new Position(curr_x + elementPaddingX, pos.y + elementPaddingY));
+            item.Draw(viewName, new Position(curr_x + elementPaddingX, pos.y + elementPaddingY));
             curr_x += item.width + elementPaddingX;
         }
     }

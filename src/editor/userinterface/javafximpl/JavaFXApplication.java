@@ -1,5 +1,7 @@
 package editor.userinterface.javafximpl;
 
+import java.util.HashMap;
+
 import editor.application.App;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 public class JavaFXApplication extends Application implements Runnable {
 
     static volatile public Group root;
+    static volatile public HashMap<String,Group> groups;
     static volatile public Scene scene;
     static volatile public Stage stage;
 
@@ -40,6 +43,7 @@ public class JavaFXApplication extends Application implements Runnable {
         });
 
         JavaFXApplication.root = new Group();
+        JavaFXApplication.groups = new HashMap<>();
         JavaFXApplication.scene = new Scene(root, 800, 600);
 
         JavaFXApplication.stage.setTitle("Editor");
@@ -88,9 +92,18 @@ public class JavaFXApplication extends Application implements Runnable {
         });
     }
 
-    static public void addToRoot(Node node) {
-        JavaFXApplication.root.getChildren().add(node);
+    static public void addToRoot(Node node, String group) {
+        if(!JavaFXApplication.groups.containsKey(group)) {
+            JavaFXApplication.groups.put(group, new Group());
+            JavaFXApplication.root.getChildren().add(JavaFXApplication.groups.get(group));
+        }
+
+        JavaFXApplication.groups.get(group).getChildren().add(node);
         JavaFXApplication.update = true;
+    }
+
+    static public void clearGroup(String group) {
+        if (JavaFXApplication.groups.containsKey(group)) JavaFXApplication.groups.get(group).getChildren().clear();
     }
 
     @Override

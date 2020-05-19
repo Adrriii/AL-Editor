@@ -94,15 +94,15 @@ public abstract class Element extends Drawable implements IControllable {
         return Update(new_pos, this.getSurfaceWidth(), this.getSurfaceHeight());
     }
 
-    abstract public void Draw(Position pos, int fit_width, int fit_height);
+    abstract public void Draw(String viewName, Position pos, int fit_width, int fit_height);
 
     @Override
-    public void Draw(Position pos) {
-        Draw(pos, 1);
+    public void Draw(String viewName, Position pos) {
+        Draw(viewName, pos, 1);
     }
     
-    public void Draw(Position pos, double scale) {
-        Draw(pos, (int) (width * scale), (int) (height * scale));
+    public void Draw(String viewName, Position pos, double scale) {
+        Draw(viewName, pos, (int) (width * scale), (int) (height * scale));
     }
 
     public boolean isSelected() {

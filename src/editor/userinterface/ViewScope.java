@@ -5,4 +5,6 @@ public interface ViewScope {
     public void Tick();
 
     public void Update();
+
+    public String GetScopeName();
 }
