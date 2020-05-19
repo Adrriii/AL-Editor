@@ -72,7 +72,6 @@ public class JavaFXApplication extends Application implements Runnable {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
             @Override 
             public void handle(MouseEvent e) { 
-                System.out.println(e.getEventType()+" "+(++App.callcount));
                 ((JavaFXController) App.controller).NotifyMouse(e);
             } 
         };  
