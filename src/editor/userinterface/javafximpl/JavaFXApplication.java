@@ -3,6 +3,7 @@ package editor.userinterface.javafximpl;
 import java.util.HashMap;
 
 import editor.application.App;
+import editor.domain.AppController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -71,10 +72,11 @@ public class JavaFXApplication extends Application implements Runnable {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
             @Override 
             public void handle(MouseEvent e) { 
+                System.out.println(e.getEventType()+" "+(++App.callcount));
                 ((JavaFXController) App.controller).NotifyMouse(e);
             } 
         };  
-        JavaFXApplication.scene.addEventFilter(MouseEvent.ANY, eventHandler);   
+        JavaFXApplication.stage.addEventHandler(MouseEvent.ANY, eventHandler);   
        
         EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>() { 
             @Override 
@@ -82,7 +84,7 @@ public class JavaFXApplication extends Application implements Runnable {
                 ((JavaFXController) App.controller).NotifyKeyboard(e);
             } 
         };  
-        JavaFXApplication.scene.addEventFilter(KeyEvent.ANY, keyEventHandler);   
+        JavaFXApplication.stage.addEventHandler(KeyEvent.ANY, keyEventHandler);   
 
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
             ((JavaFXController) App.controller).NotifyWidth(newVal.intValue());
@@ -98,6 +100,7 @@ public class JavaFXApplication extends Application implements Runnable {
             JavaFXApplication.root.getChildren().add(JavaFXApplication.groups.get(group));
         }
 
+        node.setMouseTransparent(true);
         JavaFXApplication.groups.get(group).getChildren().add(node);
         JavaFXApplication.update = true;
     }
