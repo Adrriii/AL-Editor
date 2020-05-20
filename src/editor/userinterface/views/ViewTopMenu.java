@@ -1,7 +1,7 @@
 package editor.userinterface.views;
 
 import editor.application.App;
-import editor.domain.menu.TopMenu;
+import editor.model.menu.TopMenu;
 import editor.userinterface.ViewScope;
 
 /**

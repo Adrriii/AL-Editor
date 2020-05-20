@@ -1,7 +1,7 @@
 package editor.userinterface.views;
 
 import editor.application.App;
-import editor.domain.Toolbar;
+import editor.model.Toolbar;
 import editor.userinterface.ViewScope;
 
 /**

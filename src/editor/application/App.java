@@ -3,7 +3,7 @@ package editor.application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import editor.domain.AppController;
+import editor.controller.AppController;
 import editor.model.Model;
 import editor.userinterface.*;
 import editor.userinterface.javafximpl.*;

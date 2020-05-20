@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.UnaryOperator;
 
-import editor.domain.Position;
-import editor.domain.control.InputBoxes;
+import editor.model.Position;
+import editor.controller.control.InputBoxes;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;

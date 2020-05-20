@@ -1,7 +1,7 @@
 package editor.userinterface;
 
-import editor.domain.element.Polygon;
-import editor.domain.element.Rectangle;
+import editor.model.element.Polygon;
+import editor.model.element.Rectangle;
 
 /**
 * Provides all interactions with the display.

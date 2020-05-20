@@ -1,7 +1,7 @@
 package editor.userinterface.testimpl;
 
-import editor.domain.element.Polygon;
-import editor.domain.element.Rectangle;
+import editor.model.element.Polygon;
+import editor.model.element.Rectangle;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import editor.userinterface.views.*;

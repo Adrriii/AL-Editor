@@ -1,8 +1,8 @@
 package editor.userinterface.javafximpl.control;
 
-import editor.domain.Position;
-import editor.domain.control.ColorPicker;
-import editor.domain.elementproperty.ColorProperty;
+import editor.model.Position;
+import editor.controller.control.ColorPicker;
+import editor.model.elementproperty.ColorProperty;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.paint.Color;

@@ -3,10 +3,11 @@ package editor.model;
 import java.util.ArrayList;
 
 import editor.application.App;
-import editor.domain.*;
-import editor.domain.element.Rectangle;
-import editor.domain.menu.*;
-import editor.domain.operation.LoadToolbar;
+import editor.model.*;
+import editor.model.element.Rectangle;
+import editor.model.menu.*;
+import editor.controller.Control;
+import editor.controller.operation.LoadToolbar;
 
 /**
 * Holds the application's memory representation.

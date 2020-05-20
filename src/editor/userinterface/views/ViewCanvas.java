@@ -1,7 +1,7 @@
 package editor.userinterface.views;
 
 import editor.application.App;
-import editor.domain.Canvas;
+import editor.model.Canvas;
 import editor.userinterface.ViewScope;
 
 /**

@@ -1,7 +1,7 @@
 package editor.userinterface.testimpl;
 
 import editor.userinterface.ControlFactory;
-import editor.domain.control.*;
+import editor.controller.control.*;
 import editor.userinterface.javafximpl.control.*;
 
 /**

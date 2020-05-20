@@ -7,13 +7,13 @@ import java.util.Optional;
 import org.junit.Test;
 
 import editor.application.App;
-import editor.domain.AppController;
-import editor.domain.Element;
-import editor.domain.Position;
-import editor.domain.element.Rectangle;
-import editor.domain.operation.AddToolbarElement;
-import editor.domain.operation.CreateElement;
-import editor.domain.operation.MoveElement;
+import editor.controller.AppController;
+import editor.model.Element;
+import editor.model.Position;
+import editor.model.element.Rectangle;
+import editor.controller.operation.AddToolbarElement;
+import editor.controller.operation.CreateElement;
+import editor.controller.operation.MoveElement;
 
 public class AppTest {
 

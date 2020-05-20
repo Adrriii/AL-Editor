@@ -1,6 +1,6 @@
 package editor.userinterface;
 
-import editor.domain.control.*;
+import editor.controller.control.*;
 
 /**
 * Defines a Factory that should provide for all required controls.

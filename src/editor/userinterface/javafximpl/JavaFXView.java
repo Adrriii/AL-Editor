@@ -4,10 +4,10 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 import editor.application.App;
-import editor.domain.element.Polygon;
-import editor.domain.element.Rectangle;
-import editor.domain.elementproperty.ColorProperty;
-import editor.domain.elementproperty.RoundedBorderProperty;
+import editor.model.element.Polygon;
+import editor.model.element.Rectangle;
+import editor.model.elementproperty.ColorProperty;
+import editor.model.elementproperty.RoundedBorderProperty;
 import editor.userinterface.View;
 import editor.userinterface.ViewScope;
 import editor.userinterface.views.*;
