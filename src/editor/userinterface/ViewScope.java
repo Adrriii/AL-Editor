@@ -1,16 +1,23 @@
 package editor.userinterface;
 
+import editor.application.App;
+
 /**
-* A part of the screen that can be redrawn independently from the others.
-* 
-* @author Adrien Boitelle
-* @version 1.0
-*/
-public interface ViewScope {
+ * A part of the screen that can be redrawn independently from the others.
+ * 
+ * @author Adrien Boitelle
+ * @version 1.0
+ */
+public abstract class ViewScope {
 
-    public void Tick();
+    public boolean invalidated = true;
 
-    public void Update();
+    public void Update() {
+        invalidated = true;
+        App.view.Clear(GetScopeName());
+    }
 
-    public String GetScopeName();
+    abstract public void Tick();
+
+    abstract public String GetScopeName();
 }

@@ -18,7 +18,7 @@ public class BordersChangeInteration extends ElementInteraction {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Interaction used to modify the RoundedBorders property of an Element.
+     * Initiate an interaction to modify the RoundedBorders property of an Element.
      * 
      * @param element The element in question
      */

@@ -10,14 +10,11 @@ import editor.userinterface.ViewScope;
 * @author Adrien Boitelle
 * @version 1.0
 */
-public class ViewCanvas implements ViewScope {
-
-    public boolean invalidated = true;
+public class ViewCanvas extends ViewScope {
 
     @Override
-    public void Update() {
-        invalidated = true;
-        App.view.Clear(GetScopeName());
+    public String GetScopeName() {
+        return "canvas";
     }
 
     @Override
@@ -29,11 +26,6 @@ public class ViewCanvas implements ViewScope {
         canvas.Draw(GetScopeName());
 
         invalidated = false;
-    }
-
-    @Override
-    public String GetScopeName() {
-        return "canvas";
     }
 
 }

@@ -495,6 +495,11 @@ public class AppController {
                     actionControl.Redo();
                 }
                 break;
+            case "A":
+                if(heldKeys.get("CONTROL") == true) {
+                    App.model.SelectAll();
+                }
+                break;
             default:
                 break;
         }

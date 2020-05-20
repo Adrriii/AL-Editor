@@ -10,14 +10,11 @@ import editor.userinterface.ViewScope;
 * @author Adrien Boitelle
 * @version 1.0
 */
-public class ViewTopMenu implements ViewScope {
-
-    public boolean invalidated = true;
+public class ViewTopMenu extends ViewScope {
 
     @Override
-    public void Update() {
-        invalidated = true;
-        App.view.Clear(GetScopeName());
+    public String GetScopeName() {
+        return "topmenu";
     }
 
     @Override
@@ -28,11 +25,6 @@ public class ViewTopMenu implements ViewScope {
         topMenu.Draw(GetScopeName());
 
         invalidated = false;
-    }
-
-    @Override
-    public String GetScopeName() {
-        return "topmenu";
     }
 
 }

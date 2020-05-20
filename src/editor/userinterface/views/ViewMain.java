@@ -5,18 +5,16 @@ import editor.userinterface.ViewScope;
 
 /**
 * The whole window, and floating elements.
+* Invalidating it causes all other scopes to be invaldiated as well.
 * 
 * @author Adrien Boitelle
 * @version 1.0
 */
-public class ViewMain implements ViewScope {
-
-    public boolean invalidated = true;
+public class ViewMain extends ViewScope {
 
     @Override
-    public void Update() {
-        invalidated = true;
-        App.view.Clear(GetScopeName());
+    public String GetScopeName() {
+        return "main";
     }
 
     @Override
@@ -38,11 +36,6 @@ public class ViewMain implements ViewScope {
         if (App.model.getInteractionMenu() != null) App.model.getInteractionMenu().Draw(GetScopeName());
 
         invalidated = false;
-    }
-
-    @Override
-    public String GetScopeName() {
-        return "main";
     }
 
 }
