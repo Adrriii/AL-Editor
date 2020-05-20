@@ -17,10 +17,19 @@ public class Canvas extends Drawable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The elements currently present in the whiteboard
+     */
     private ArrayList<Element> elements;
 
+    /**
+     * The background of the whiteboard. Should be white, obviously :)
+     */
     private Rectangle background;
 
+    /**
+     * Create a new empty canvas
+     */
     public Canvas() {
         super();
 
@@ -44,20 +53,41 @@ public class Canvas extends Drawable {
         this.elements.forEach(element -> element.Reattach(App.view.getCanvasView()));
     }
 
+    /**
+     * Obtain a copy of all the elements present in the whiteboard
+     * @return A list of Elements
+     */
     public ArrayList<Element> getElements() {
         return new ArrayList<Element>(elements);
     }
 
+    /**
+     * Remove an element from the whiteboard
+     * 
+     * @param element The element to remove
+     */
     public void removeElement(Element element) {
         this.elements.remove(element);
     }
 
+    /**
+     * Add an element to the whiteboard
+     * 
+     * @param element The element to add
+     */
     public void addElement(Element element) {
         element.Detach(App.view.getCanvasView());
         element.Attach(App.view.getCanvasView());
         this.elements.add(element);
     }
 
+    /**
+     * Create a new element inside the whiteboard
+     * 
+     * @param element The pattern to use
+     * @param pos The position to place the element
+     * @return The created element
+     */
     public Element newElement(Element element, Position pos) {
         Element newElement = element.Clone();
         newElement.Attach(App.view.getCanvasView());
@@ -67,6 +97,12 @@ public class Canvas extends Drawable {
         return newElement;
     }
     
+    /**
+     * Change the whiteboard's dimensions
+     * 
+     * @param width The new width
+     * @param height The new height
+     */
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;
@@ -84,10 +120,22 @@ public class Canvas extends Drawable {
         }
     }
 
+    /**
+     * Get the first element found at this position (Behind all elements)
+     * 
+     * @param x The x position
+     * @param y The y position
+     * @return An optional element
+     */
     public Optional<Element> getElementAt(int x, int y) {
         return this.elements.stream().filter(element -> element.isClicked(x, y)).findFirst();
     }
 
+    /**
+     * Set any element on top of all the others in the whiteboard (Drawn above/last)
+     * 
+     * @param element The element to elevate
+     */
     public void SetOnTop(Element element) {
         this.elements.remove(element);
         this.elements.add(element);

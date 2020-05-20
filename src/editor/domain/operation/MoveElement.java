@@ -12,9 +12,23 @@ import editor.domain.Position;
 */
 public class MoveElement extends Operation {
 
+    /**
+     * The previous position
+     */
     protected Position move_from;
+
+    /**
+     * The new position
+     */
     protected Position move_to;
 
+    /**
+     * Move an element from a position to a new one
+     * 
+     * @param element The element to move
+     * @param from The previous position
+     * @param to The new position
+     */
     public MoveElement(Element element, Position from, Position to) {
         state = element;
         move_from = new Position(from.x, from.y);

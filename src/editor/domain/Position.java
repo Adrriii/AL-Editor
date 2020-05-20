@@ -11,9 +11,17 @@ import java.io.Serializable;
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public int x;
-    public int y;
 
+    /**
+     * A vector
+     */
+    public int x, y;
+
+    /**
+     * Create a new vector
+     * @param x X position of the vector
+     * @param y Y position of the vector
+     */
     public Position(int x, int y) {
         this.x = x;
         this.y = y;

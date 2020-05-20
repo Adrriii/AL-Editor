@@ -12,9 +12,23 @@ import editor.domain.Operation;
 */
 public class ChangeElementRotation extends Operation {
 
+    /**
+     * The initial roation value
+     */
     protected int v1;
+    
+    /**
+     * The new roation value
+     */
     protected int v2;
 
+    /**
+     * Rotate an element from a value to another
+     * 
+     * @param element The element to rotate
+     * @param v1 The initial roation value
+     * @param v2 The new roation value
+     */
     public ChangeElementRotation(Element element, int v1, int v2) {
         state = element;
         this.v1 = v1;

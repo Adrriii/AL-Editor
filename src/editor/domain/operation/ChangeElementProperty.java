@@ -13,10 +13,29 @@ import editor.domain.Operation;
 */
 public class ChangeElementProperty extends Operation {
 
+    /**
+     * The name of the property that will be changed
+     */
     protected String propertyName;
+
+    /**
+     * The previous property
+     */
     protected ElementProperty from;
+
+    /**
+     * The new property
+     */
     protected ElementProperty to;
 
+    /**
+     * Alter the property of an element
+     * 
+     * @param element The element to change
+     * @param propertyName The name of the property
+     * @param from The previous property
+     * @param to The new property
+     */
     public ChangeElementProperty(Element element, String propertyName, ElementProperty from, ElementProperty to) {
         state = element;
         this.propertyName = propertyName;

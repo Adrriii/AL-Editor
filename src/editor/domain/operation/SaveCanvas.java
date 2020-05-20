@@ -17,6 +17,9 @@ import editor.domain.Operation;
 */
 public class SaveCanvas extends Operation {
 
+    /**
+     * Save the current whiteboard to a selected file
+     */
     public SaveCanvas() {
     }
 

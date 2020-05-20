@@ -17,10 +17,19 @@ public class ElementGroup extends Element {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The elements that compose this group
+     */
     public ArrayList<Element> elements;
 
+    /**
+     * The bottom right corner of this group
+     */
     public Position furthest;
 
+    /**
+     * Create an empty element group
+     */
     public ElementGroup() {
         super();
 
@@ -46,6 +55,10 @@ public class ElementGroup extends Element {
         UpdateReferencePos();
     }
 
+    /**
+     * Get all the elements composing this group
+     * @return A list of elements
+     */
     public ArrayList<Element> getElements() {
         return this.elements;
     }
@@ -147,6 +160,10 @@ public class ElementGroup extends Element {
         return Update(new_pos, width, height);
     }
 
+    /**
+     * Compute the current top left and bottom right positions of the group,
+     * as well as updating each element's minimum position.
+     */
     public void UpdateReferencePos() {
         this.elements.forEach(element -> {
             if(pos.x == 0 || element.pos.x < pos.x) {

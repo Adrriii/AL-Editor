@@ -13,6 +13,12 @@ import editor.domain.Position;
 */
 public class DeleteElement extends CreateElement {
 
+    /**
+     * Do the opposite of creating an element
+     * 
+     * @param pattern The element to destroy
+     * @param location The position of the element when it is destroyed
+     */
     public DeleteElement(Element pattern, Position location) {
         super(pattern, location);
         created = pattern;

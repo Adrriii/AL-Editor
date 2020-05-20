@@ -17,9 +17,19 @@ import editor.domain.Operation;
 */
 public class GroupElements extends Operation {
 
+    /**
+     * The elements that need to be grouped
+     */
     protected ArrayList<Element> selected;
+
+    /**
+     * The group that has been created
+     */
     protected ElementGroup group;
 
+    /**
+     * Group elements in a new ElementGroup
+     */
     public GroupElements(ArrayList<Element> selected) {
         this.selected = selected;
     }

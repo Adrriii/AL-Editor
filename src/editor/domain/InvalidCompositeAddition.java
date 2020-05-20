@@ -1,7 +1,7 @@
 package editor.domain;
 
 /**
-* Thrown when trying to perform an group operation on a non composite object.
+* Thrown when trying to perform a group operation on a non composite object.
 * 
 * @author Adrien Boitelle
 * @version 1.0

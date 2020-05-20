@@ -16,6 +16,9 @@ import editor.domain.Operation;
 */
 public class SaveToolbar extends Operation {
 
+    /**
+     * Save the current toolbar to the current temporary file
+     */
     public SaveToolbar() {
     }
 

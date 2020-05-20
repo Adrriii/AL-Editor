@@ -15,40 +15,106 @@ import editor.domain.operation.*;
 */
 public class AppController {
 
+    /**
+     * Defines how many pixels the mouse has to travel while
+     * being held to consider this a drag
+     */
     private final int drag_start_dist = 4;
 
+    /**
+     * The current saving location of the whiteboard
+     */
     static public String currentCanvasPath;
+
+    /**
+     * A helper to handle operations
+     */
     static public ActionControl actionControl;
 
+    /**
+     * Lists all the keys that have been pressed and not released
+     */
     private HashMap<String, Boolean> heldKeys;
 
+    /**
+     * Whether left is currently held
+     */
     private boolean left = false;
+
+    /**
+     * Whether left was recently released
+     */
     private boolean left_clicked = false;
-    private int left_pos_x = -1;
-    private int left_pos_y = -1;
 
+    /**
+     * Last known position of a left button event
+     */
+    private int left_pos_x = -1, left_pos_y = -1;
+
+    /**
+     * Whether right is currently held
+     */
     private boolean right = false;
+
+    /**
+     * Whether right was recently released
+     */
     private boolean right_clicked = false;
-    private int right_pos_x = -1;
-    private int right_pos_y = -1;
 
-    private int pos_x = 0;
-    private int pos_y = 0;
+    /**
+     * Last known position of a right button event
+     */
+    private int right_pos_x = -1, right_pos_y = -1;
 
+    /**
+     * Last known position of the mouse
+     */
+    private int pos_x = 0, pos_y = 0;
+
+    /**
+     * The element that is currently held by the user with left click
+     */
     private Element holdElement = null;
+
+    /**
+     * Whether the user just clicked on an already held element
+     */
     private boolean clickedOnHoldElement = false;
 
+    /**
+     * The element that is currently being dragged accross by the user
+     */
     private Element draggingElement = null;
-    private int drag_x_elem_rel;
-    private int drag_y_elem_rel;
+
+    /**
+     * The position relative to the currently dragged element's top left
+     */
+    private int drag_x_elem_rel, drag_y_elem_rel;
+
+    /**
+     * Whether the user has started dragging from the toolbar
+     */
     private boolean dragging_from_toolbar = false;
+
+    /**
+     * Whether the user just released an element from the toolbar
+     */
     private boolean dropped_from_toolbar = false;
 
+    /**
+     * Whether a dragging can be started at this time
+     */
     private boolean readyToDrag = true;
 
+    /**
+     * Whether the user is currently performing a rectangular selection
+     */
     private boolean selecting = false;
-    private int select_start_x;
-    private int select_start_y;
+
+    /**
+     * The starting position of a selection
+     */
+    private int select_start_x, select_start_y;
 
     /**
     * Creates the app controller.

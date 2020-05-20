@@ -18,6 +18,9 @@ import editor.domain.Toolbar;
 */
 public class LoadToolbar extends Operation {
 
+    /**
+     * Update the toolbar from the currently designed temporary file
+     */
     public LoadToolbar() {
     }
 

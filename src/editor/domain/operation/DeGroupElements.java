@@ -11,6 +11,11 @@ import editor.domain.ElementGroup;
 */
 public class DeGroupElements extends GroupElements {
 
+    /**
+     * Do the opposite of grouping elements
+     * 
+     * @param group An element group to split
+     */
     public DeGroupElements(ElementGroup group) {
         super(null);
         this.group = group;

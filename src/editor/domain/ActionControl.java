@@ -12,9 +12,19 @@ import editor.application.App;
 */
 public class ActionControl {
 
+    /**
+     * A Stack of the operations that have been Done
+     */
     private Stack<Operation> operations;
+
+    /**
+     * A Stack of the operations that have been Undone
+     */
     private Stack<Operation> reversed;
 
+    /**
+     * Initialize a new ActionControl with a clear history
+     */
     public ActionControl() {
         operations = new Stack<>();
         reversed = new Stack<>();
@@ -24,7 +34,7 @@ public class ActionControl {
     * Performs and operation and allows for it to be undone.
     * If some operations were still able to be redone, they will be lost.
     * 
-    @param operation The operation to be performed.
+    * @param operation The operation to be performed.
     */
     public void Do(Operation operation) {
         reversed.clear();

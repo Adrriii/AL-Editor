@@ -12,6 +12,11 @@ import editor.domain.ToolbarElement;
 */
 public class DeleteToolbarElement extends AddToolbarElement {
 
+    /**
+     * Do the opposite of adding a toolbar element
+     * 
+     * @param toAdd The toolbar element to delete
+     */
     public DeleteToolbarElement(ToolbarElement toAdd) {
         super(toAdd.getElement());
         created = toAdd;

@@ -14,9 +14,22 @@ import editor.domain.Position;
 */
 public class CreateElement extends Operation {
 
+    /**
+     * The element that has been created by the operation
+     */
     protected Element created;
+
+    /**
+     * Where the element has been placed while being created
+     */
     protected Position location;
 
+    /**
+     * Create a new element in the whiteboard 
+     * 
+     * @param pattern The element used as a pattern to create the new one
+     * @param location Where to position the new element on its creation
+     */
     public CreateElement(Element pattern, Position location) {
         this.created = pattern.Clone();
         this.location = location;

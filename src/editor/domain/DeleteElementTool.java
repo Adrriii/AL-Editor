@@ -12,6 +12,13 @@ public class DeleteElementTool extends Element {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Create a tool that will delete any element dragged to it
+     * 
+     * @param pos The position of the tool
+     * @param width The width of the tool
+     * @param height The height of the tool
+     */
     public DeleteElementTool(Position pos, int width, int height) {
         this.pos = pos;
         this.width = width;

@@ -11,8 +11,15 @@ import java.util.ArrayList;
 public abstract class Menu extends Drawable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * A list of controls available to the user in this menu
+     */
     protected ArrayList<Control> controls;
 
+    /**
+     * Create a new empty menu
+     */
     public Menu() {
         super();
         

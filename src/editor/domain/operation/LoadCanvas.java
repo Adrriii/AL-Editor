@@ -19,8 +19,9 @@ import editor.domain.Operation;
 */
 public class LoadCanvas extends Operation {
 
-
-
+    /**
+     * Load a new whiteboard from a file
+     */
     public LoadCanvas() {
     }
 
