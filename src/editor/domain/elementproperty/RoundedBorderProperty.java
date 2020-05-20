@@ -12,9 +12,18 @@ import editor.domain.ElementProperty;
 public class RoundedBorderProperty extends ElementProperty {
 
     private static final long serialVersionUID = 1L;
-    public double h;
-    public double w;
 
+    /**
+     * The arc width and height of the rounding
+     */
+    public double h, w;
+
+    /**
+     * Create a new RoundedBorder property defined by a width and a height
+     * 
+     * @param h The height of the arc (0 = no rounding)
+     * @param w The width of the arc (0 = no rounding)
+     */
     public RoundedBorderProperty(double h, double w) {
         this.h = h;
         this.w = w;

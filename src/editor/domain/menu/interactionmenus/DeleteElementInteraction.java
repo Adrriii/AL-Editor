@@ -14,6 +14,11 @@ public class DeleteElementInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to delete an Element.
+     * 
+     * @param element The element in question
+     */
     public DeleteElementInteraction(Element element) {
         super("Delete", element);
     }

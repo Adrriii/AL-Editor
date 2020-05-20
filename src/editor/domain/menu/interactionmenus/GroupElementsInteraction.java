@@ -17,6 +17,11 @@ public class GroupElementsInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to group Elements.
+     * 
+     * @param element The element in question
+     */
     public GroupElementsInteraction(Element element) {
         super("Group", element);
     }

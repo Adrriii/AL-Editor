@@ -15,6 +15,11 @@ public class DegroupElementsInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to group Elements.
+     * 
+     * @param element The element in question
+     */
     public DegroupElementsInteraction(ElementGroup element) {
         super("Degroup", element);
     }

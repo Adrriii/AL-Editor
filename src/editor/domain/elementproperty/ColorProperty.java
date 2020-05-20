@@ -11,11 +11,20 @@ import editor.domain.ElementProperty;
 public class ColorProperty extends ElementProperty {
 
     private static final long serialVersionUID = 1L;
-    public int r;
-    public int g;
-    public int b;
-    public int a;
 
+    /**
+     * The composition of this color
+     */
+    public int r, g, b, a;
+
+    /**
+     * Create a new Color property
+     * 
+     * @param r Red composition (0-255)
+     * @param g Green composition (0-255)
+     * @param b Blue composition (0-255)
+     * @param a Alpha channel (0-255)
+     */
     public ColorProperty(int r, int g, int b, int a) {
         this.r = r;
         this.g = g;

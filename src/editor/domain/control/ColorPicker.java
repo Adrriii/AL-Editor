@@ -11,12 +11,21 @@ import editor.domain.elementproperty.ColorProperty;
 */
 public abstract class ColorPicker extends Control {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Sets the colorpicker's displayed color
+     * 
+     * @param color A ColorProperty
+     */
     abstract public void setColor(ColorProperty color);
+
+    /**
+     * Returns the user's input value.
+     * Eventually hangs the program until the user responds.
+     * 
+     * @return A ColorProperty
+     */
     abstract public ColorProperty getColor();
 
 }

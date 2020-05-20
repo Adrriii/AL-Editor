@@ -19,9 +19,21 @@ public class Polygon extends Element {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * A list of points defining the Polygon, relative to the top left of the figure.
+     */
     public ArrayList<Position> points;
+
+    /**
+     * An internally processed list of the polygon's points relative to the window's top left.
+     */
     public ArrayList<Position> real_points;
 
+    /**
+     * Constructs a new black Polygon
+     * 
+     * @param points A list of points relative to the top left of the figure.
+     */
     public Polygon(ArrayList<Position> points) {
         super();
         properties.put("color",new ColorProperty(0,0,0,255));
@@ -29,10 +41,19 @@ public class Polygon extends Element {
         RefreshArea();
     }
 
+    /**
+     * Constructs an empty black Polygon (0 sides)
+     */
     public Polygon() {
         this(new ArrayList<>());
     }
 
+    /**
+     * Constructs a new Polygon according to a set of properties.
+     * 
+     * @param properties The properties the Polygon will take
+     * @param points A list of points relative to the top left of the figure.
+     */
     public Polygon(HashMap<String,ElementProperty> properties,ArrayList<Position> points ) {
         super(properties);
 
@@ -40,14 +61,17 @@ public class Polygon extends Element {
         RefreshArea();
     }
 
-    public ColorProperty getColorProperty() {
-        return (ColorProperty) properties.get("color");
-    }
-
+    /**
+     * Get the points defining this Polygon.
+     * @return A list of points
+     */
     public ArrayList<Position> getPoints() {
         return points;
     }
 
+    /**
+     * Reprocess the actual sizes of the polygon
+     */
     private void RefreshArea() {
         int max_x = 0;
         int max_y = 0;

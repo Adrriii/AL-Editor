@@ -14,13 +14,37 @@ import editor.domain.element.Rectangle;
 public abstract class Interaction extends Drawable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * The width of the border surrounding the interaction
+     */
     private int border_width = 2;
+
+    /**
+     * A rectangle drawn behind the interaction's background to create a border
+     */
     private Rectangle border;
+
+    /**
+     * A rectangle drawn behind the interaction's label to create a background
+     */
     private Rectangle background;
+
+    /**
+     * A label written on top of the interaction to indicate its purpose
+     */
     private String label;
 
+    /**
+     * The display size of the interaction's label
+     */
     public int fontSize = 18;
     
+    /**
+     * Create a new available interaction
+     * 
+     * @param label The text to display
+     */
     public Interaction(String label) {
         super();
 
@@ -35,6 +59,9 @@ public abstract class Interaction extends Drawable {
         this.label = label;
     }
 
+    /**
+     * Any action that will be performed when this interaction is clicked
+     */
     public abstract void onClick();
 
     @Override

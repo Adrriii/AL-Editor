@@ -17,6 +17,11 @@ public class DimensionChangeInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to resize an Element.
+     * 
+     * @param element The element in question
+     */
     public DimensionChangeInteraction(Element element) {
         super("Change size", element);
     }

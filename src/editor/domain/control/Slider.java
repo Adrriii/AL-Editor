@@ -37,7 +37,18 @@ public abstract class Slider extends Control {
         this(text, 50, 0, 100);
     }
 
+    /**
+     * Sets the default value of the slider's head.
+     * 
+     * @param value An integer value that should be bound to the sliders min and max
+     */
     abstract public void setValue(int value);
+
+    /**
+     * Get the user's input.
+     * 
+     * @return An integer value
+     */
     abstract public int getValue();
 
 }

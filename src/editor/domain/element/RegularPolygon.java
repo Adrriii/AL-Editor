@@ -19,6 +19,12 @@ public class RegularPolygon extends Polygon {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Create a new POlygon with equal sides
+     * 
+     * @param radius The radius of the polygon
+     * @param sides The amount of sides to generate
+     */
     public RegularPolygon(int radius, int sides) {
         super();
         properties.put("sidescount", new SidesCountProperty(sides));
@@ -48,12 +54,15 @@ public class RegularPolygon extends Polygon {
         return n;
     }
 
+    /**
+     * Update the points array of this polygon according to the sidescount property
+     */
     public void UpdateSides() {
         int count = ((SidesCountProperty) properties.get("sidescount")).value;
 
         // inspired from https://stackoverflow.com/a/49550853
         double angleStep = Math.PI * 2 / (double) count;
-        double angle = 0; // assumes one point is located directly beneat the center point
+        double angle = 0; // assumes one point is located directly beneath the center point
         getPoints().clear();
         for (int i = 0; i < count; i++, angle += angleStep) {
             getPoints().add(new Position(

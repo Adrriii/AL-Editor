@@ -16,6 +16,11 @@ public class RotationChangeInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to rotate an Element.
+     * 
+     * @param element The element in question
+     */
     public RotationChangeInteraction(Element element) {
         super("Rotate", element);
     }

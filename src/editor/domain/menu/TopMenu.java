@@ -10,7 +10,9 @@ import editor.domain.element.Rectangle;
 import editor.domain.menu.topmenuelements.*;
 
 /**
-* Holds all elements and behaviors of the top menu.
+* Holds all elements and behaviors of the top menu, horizontally.
+* It differs from the toolbar in the sense that it won't hold whiteboard elements.
+* It differs from an interaction menu in the sense that i won't display labels vertically.
 * 
 * @author Adrien Boitelle
 * @version 1.0
@@ -18,16 +20,30 @@ import editor.domain.menu.topmenuelements.*;
 public class TopMenu extends Menu {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * The background of the menu.
+     */
     private Rectangle background;
+
+    /**
+     * Elements that can be clicked inside the menu
+     */
     private ArrayList<TopMenuElement> elements;
 
+    /** 
+     * The x position that will be taken by the next element
+     */
     private int nextPosX;
 
-    private int elementWidth;
-    private int elementHeight;
-    private int elementPaddingY;
-    private int elementPaddingX;
+    /**
+     * All elements are rectangles of the same dimensions with padding
+     */
+    private int elementWidth, elementHeight, elementPaddingY, elementPaddingX;
     
+    /**
+     * Create a new empty TopMenu
+     */
     public TopMenu() {
         super();
 
@@ -62,16 +78,34 @@ public class TopMenu extends Menu {
         Attach(App.view.getTopMenuView());
     }
 
+    /**
+     * Update the dimensions of the TopMenu
+     * 
+     * @param width The new width
+     * @param height The new height (Careful: It shouldn't change !)
+     */
     public void Resize(int width, int height) {
         this.width = width;
         this.height = height;
         this.background.Update(this.pos, width, height);
     }
 
+    /**
+     * When the menu is clicked, it will propagate the click to the concerned element(s).
+     * Overlap authorized.
+     * 
+     * @param x The location of the click relative to the window
+     * @param y The location of the click relative to the window
+     */
     public void onClick(int x, int y) {
         elements.forEach(element -> { if (element.isClicked(x, y)) element.onClick(); });
     }
 
+    /**
+     * Add a new element to the top menu
+     * 
+     * @param element The element should be an image, but it can be anything in a rectangle shape
+     */
     public void addElement(TopMenuElement element) {
         element.pos.x = nextPosX + elementPaddingX;
         element.pos.y = pos.y + elementPaddingY;
@@ -82,6 +116,10 @@ public class TopMenu extends Menu {
         this.width = nextPosX - pos.x;
     }
 
+    /**
+     * Remove the element from the list of elements
+     * @param element
+     */
     public void removeElement(TopMenuElement element) {
         this.elements.remove(element);
         this.width -= element.width + elementPaddingX;

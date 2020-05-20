@@ -17,6 +17,11 @@ public class SidesCountChangeInteraction extends ElementInteraction {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Initiate an interaction used to change the amount of sides in an Element.
+     * 
+     * @param element The element in question
+     */
     public SidesCountChangeInteraction(RegularPolygon element) {
         super("Change sides", element);
     }

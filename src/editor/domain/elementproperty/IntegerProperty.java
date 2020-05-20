@@ -11,8 +11,17 @@ import editor.domain.ElementProperty;
 public class IntegerProperty extends ElementProperty {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * The value of the property
+     */
     public int value;
 
+    /**
+     * Create a new property represented by an integer
+     * 
+     * @param value The value of the property
+     */
     public IntegerProperty(int value) {
         this.value = value;
     }
