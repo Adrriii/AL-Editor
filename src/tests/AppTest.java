@@ -2,13 +2,17 @@ package tests;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
+
 import org.junit.Test;
 
 import editor.application.App;
 import editor.domain.AppController;
+import editor.domain.Element;
 import editor.domain.Position;
 import editor.domain.element.Rectangle;
 import editor.domain.operation.AddToolbarElement;
+import editor.domain.operation.CreateElement;
 import editor.domain.operation.MoveElement;
 
 public class AppTest {
@@ -120,5 +124,42 @@ public class AppTest {
         AppController.actionControl.Redo();
 
         assertTrue(App.model.getToolbar().getToolbarElements().size() == 1);
+    }
+
+    @Test
+    public void CanvasTest() {
+        // Tests if handling elements in the whiteboard works correctly
+        AppStart();
+
+        Rectangle rec = new Rectangle(10, 20);
+
+        AppController.actionControl.Do(new CreateElement(rec, new Position(4,3)));
+
+        Optional<Element> elemOk = App.model.getCanvas().getElementAt(5, 4);
+        Optional<Element> elemNo = App.model.getCanvas().getElementAt(1, 1);
+
+        assertTrue(!elemNo.isPresent()); // test getElementat
+        assertTrue(elemOk.isPresent()); // element is present and obtainable
+
+        Element elem = elemOk.get();
+
+        assertTrue(elem.width == 10);
+        assertTrue(elem.height == 20); // basic properties preserved
+
+        AppController.actionControl.Do(new MoveElement(elem, elem.pos, new Position(6,5)));
+
+        elemOk = App.model.getCanvas().getElementAt(7, 6);
+        elemNo = App.model.getCanvas().getElementAt(4, 3);
+
+        assertTrue(!elemNo.isPresent()); // test getElementat when previouis position still here
+        assertTrue(elemOk.isPresent()); // element is present and obtainable at new position
+
+        AppController.actionControl.Undo();
+
+        elemOk = App.model.getCanvas().getElementAt(5, 4);
+        elemNo = App.model.getCanvas().getElementAt(1, 1);
+
+        assertTrue(!elemNo.isPresent()); // test getElementat undo
+        assertTrue(elemOk.isPresent()); // element is present and obtainable undo
     }
 }
