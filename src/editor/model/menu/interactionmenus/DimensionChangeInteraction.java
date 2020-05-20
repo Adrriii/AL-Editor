@@ -4,7 +4,7 @@ import editor.application.App;
 import editor.controller.AppController;
 import editor.model.Element;
 import editor.model.Position;
-import editor.controller.control.InputBoxes;
+import editor.userinterface.control.InputBoxes;
 import editor.controller.operation.ChangeElementSize;
 
 /**

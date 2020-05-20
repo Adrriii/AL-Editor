@@ -1,7 +1,7 @@
 package editor.userinterface.javafximpl.control;
 
 import editor.model.Position;
-import editor.controller.control.Slider;
+import editor.userinterface.control.Slider;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;

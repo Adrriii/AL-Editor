@@ -3,7 +3,7 @@ package editor.model.menu.interactionmenus;
 import editor.application.App;
 import editor.controller.AppController;
 import editor.model.Element;
-import editor.controller.control.Slider;
+import editor.userinterface.control.Slider;
 import editor.controller.operation.ChangeElementRotation;
 
 /**

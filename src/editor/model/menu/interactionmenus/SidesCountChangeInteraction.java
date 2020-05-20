@@ -2,7 +2,7 @@ package editor.model.menu.interactionmenus;
 
 import editor.application.App;
 import editor.controller.AppController;
-import editor.controller.control.InputBoxes;
+import editor.userinterface.control.InputBoxes;
 import editor.model.element.RegularPolygon;
 import editor.model.elementproperty.SidesCountProperty;
 import editor.controller.operation.ChangeElementProperty;

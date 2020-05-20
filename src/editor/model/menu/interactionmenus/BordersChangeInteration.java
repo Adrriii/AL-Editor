@@ -3,7 +3,7 @@ package editor.model.menu.interactionmenus;
 import editor.application.App;
 import editor.controller.AppController;
 import editor.model.Element;
-import editor.controller.control.InputBoxes;
+import editor.userinterface.control.InputBoxes;
 import editor.model.elementproperty.RoundedBorderProperty;
 import editor.controller.operation.ChangeElementProperty;
 

@@ -6,7 +6,7 @@ import editor.application.App;
 import editor.model.*;
 import editor.model.element.Rectangle;
 import editor.model.menu.*;
-import editor.controller.Control;
+import editor.userinterface.Control;
 import editor.controller.operation.LoadToolbar;
 
 /**

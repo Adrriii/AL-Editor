@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.function.UnaryOperator;
 
 import editor.model.Position;
-import editor.controller.control.InputBoxes;
+import editor.userinterface.control.InputBoxes;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;

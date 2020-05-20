@@ -1,6 +1,6 @@
-package editor.controller.control;
+package editor.userinterface.control;
 
-import editor.controller.Control;
+import editor.userinterface.Control;
 import editor.model.elementproperty.ColorProperty;
 
 /**

@@ -3,7 +3,7 @@ package editor.model.menu.interactionmenus;
 import editor.application.App;
 import editor.controller.AppController;
 import editor.model.Element;
-import editor.controller.control.ColorPicker;
+import editor.userinterface.control.ColorPicker;
 import editor.model.elementproperty.ColorProperty;
 import editor.controller.operation.ChangeElementProperty;
 

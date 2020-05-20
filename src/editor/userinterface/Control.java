@@ -1,4 +1,4 @@
-package editor.controller;
+package editor.userinterface;
 
 import editor.model.Drawable;
 

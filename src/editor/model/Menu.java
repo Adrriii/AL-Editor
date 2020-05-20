@@ -2,7 +2,7 @@ package editor.model;
 
 import java.util.ArrayList;
 
-import editor.controller.Control;
+import editor.userinterface.Control;
 
 /**
 * A menu listing controls.
