@@ -30,7 +30,9 @@ public class TopMenuSaveNew extends TopMenuElement {
 
     @Override
     public void onClick() {
-        AppController.currentCanvasPath = App.controller.getChosenSaveFile();
+        String path = App.controller.getChosenFile();
+        if (path == null) return;
+        AppController.currentCanvasPath = path;
         (new SaveCanvas()).Do();
     }
     

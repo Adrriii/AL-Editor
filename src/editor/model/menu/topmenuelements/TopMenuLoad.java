@@ -30,7 +30,9 @@ public class TopMenuLoad extends TopMenuElement {
 
     @Override
     public void onClick() {
-        AppController.currentCanvasPath = App.controller.getChosenFile();
+        String path = App.controller.getChosenFile();
+        if (path == null) return;
+        AppController.currentCanvasPath = path;
         (new LoadCanvas()).Do();
     }
     

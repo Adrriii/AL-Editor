@@ -34,6 +34,7 @@ public class TopMenuSave extends TopMenuElement {
 
     @Override
     public void onClick() {
+        if (AppController.currentCanvasPath == null) return;
         (new SaveCanvas()).Do();
     }
     
