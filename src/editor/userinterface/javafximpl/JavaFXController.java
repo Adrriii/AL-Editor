@@ -1,5 +1,6 @@
 package editor.userinterface.javafximpl;
 
+import java.io.File;
 import java.util.HashMap;
 
 import editor.application.App;
@@ -110,8 +111,10 @@ public class JavaFXController implements Controller {
 
         fileChooser.setInitialFileName("myCanvas.ale");
         fileChooser.setSelectedExtensionFilter(new ExtensionFilter("AL-Editor Canvas","*.ale"));
-
-        return fileChooser.showSaveDialog(JavaFXApplication.stage).getAbsolutePath();
+        File chosenSaveFile = fileChooser.showSaveDialog(JavaFXApplication.stage);
+        if (chosenSaveFile != null)
+            return chosenSaveFile.getAbsolutePath();
+        return null;
     }
 
     @Override
@@ -120,8 +123,10 @@ public class JavaFXController implements Controller {
 
         fileChooser.setInitialFileName("myCanvas.ale");
         fileChooser.setSelectedExtensionFilter(new ExtensionFilter("AL-Editor Canvas","*.ale"));
-
-        return fileChooser.showOpenDialog(JavaFXApplication.stage).getAbsolutePath();
+        File chosenFile = fileChooser.showOpenDialog(JavaFXApplication.stage);
+        if (chosenFile != null)
+            return chosenFile.getAbsolutePath();
+        return null;
     }
 
 }
