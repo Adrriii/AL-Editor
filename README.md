@@ -1,7 +1,7 @@
 # AL-Editor
 Projet Architecture Logicielle M1 Informatique 2019-2020
 
-[Requirements (courtesy of Auber David)](https://www.labri.fr/perso/auber/ALM1GL/tds/projet/index.html)
+Requirements (courtesy of Auber David) - awaiting for approval to give the link
 
 ![preview](http://rhythmgamers.net/dl/al_editor.png)
 
